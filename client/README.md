@@ -1,68 +1,81 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Vuemmerce - Ecommerce Template
 
-## Available Scripts
+Responsive ecommerce template built with Vue.js and Nuxt.js
 
-In the project directory, you can run:
+[![Build Status](https://travis-ci.org/ivanlori/Vuemmerce.svg)](https://travis-ci.org/ivanlori/Vuemmerce)
+[![devDependency Status](https://david-dm.org/ivanlori/Vuemmerce/dev-status.svg)](https://david-dm.org/ivanlori/Vuemmerce#info=devDependencies)
+[![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
+[![GitHub license](https://img.shields.io/github/license/ivanlori/Vuemmerce.svg)](https://github.com/ivanlori/Vuemmerce/blob/master/LICENSE)
+[![](https://img.shields.io/twitter/url/https/github.com/ivanlori/Vuemmerce.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fivanlori%2FVuemmerce)
 
-### `yarn start`
+![Bulma](http://svilpress.altervista.org/made-with-bulma.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Installing
 
-### `yarn test`
+```
+# install Vue cli
+npm install -g @vue/cli
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# clone repository
+git clone https://github.com/ivanlori/Vuemmerce.git
 
-### `yarn build`
+# install dependencies
+npm install
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# serve with hot reload at localhost:3000
+npm run dev
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+# prepare for production via webpack
+npm run production
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# generate static pages via nuxt.js for static hosting
+nuxt generate
 
-### `yarn eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Screenshot
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Vuemmerce - Ecommerce Template](http://svilpress.altervista.org/screen.png "Vuemmerce - Ecommerce Browser Preview")
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**[Template Demo](https://vuemmerce-git-master.ivanlori.now.sh/)**
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Authors
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Ivan Lori** - _Initial work_ - [ivanlori](https://github.com/ivanlori)
 
-### Code Splitting
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Contributing on Vuemmerce
 
-### Analyzing the Bundle Size
+Thanks for your interest!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+To contribute, please ensure that you have stable Node.js and npm installed.
 
-### Making a Progressive Web App
+Follow the steps below.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+1. Follow the [Installing](#installing) instructions
+2. Check the open issues out
+3. Create your branch with a reference to the open issue
+4. Commit your changes: git commit -am 'Add some feature'
+5. Push to the branch: git push origin my-new-feature
+6. Submit a pull request
 
-### Advanced Configuration
+If you have any questions, feel free to email me at [ivan.lori@protonmail.com](mailto:ivan.lori@protonmail.com).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+---
 
-### Deployment
+## Changelog
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+See the release notes into [changelog.md](changelog.md)
 
-### `yarn build` fails to minify
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
