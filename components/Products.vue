@@ -1,82 +1,49 @@
 <template>
-  <div>
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-content">
-          <p class="title is-4">{{ product.title }}</p>
-        </div>
-        <div>
-          <button class="button is-small" :title="removeFromFavouriteLabel" v-show="product.isFavourite" @click="removeFromFavourite(product.id)">
-            <span class="icon is-small">
-              <i class="fa fa-heart"></i>
-            </span>
-          </button>
-          <button class="button is-small" :title="addToFavouriteLabel" v-show="!product.isFavourite" @click="saveToFavorite(product.id)">
-            <span class="icon is-small">
-              <i class="fa fa-heart-o"></i>
-            </span>
-          </button>
-        </div>
+  <v-card
+    class="mx-auto my-12"
+    max-width="374"
+  >
+    <v-img
+      height="250"
+      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+    ></v-img>
+
+    <v-card-title>Cafe Badilico</v-card-title>
+
+    <v-card-text>
+      <v-row
+        align="center"
+        class="mx-0"
+      >
+        <v-rating
+          :value="4.5"
+          color="amber"
+          dense
+          half-increments
+          readonly
+          size="14"
+        ></v-rating>
+
+        <div class="grey--text ml-4">4.5 (413)</div>
+      </v-row>
+
+      <div class="my-4 subtitle-1">
+        $ • Italian, Cafe
       </div>
-      <div class="content is-clearfix">
-        <p>{{ product.description }}</p>
-        <div class="is-pulled-left">
-          <i v-if="product.ratings === 1" class="fa fa-star"></i>
-          <i v-if="product.ratings === 2" class="fa fa-star"></i>
-          <i v-if="product.ratings === 2" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 3" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 4" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <i v-if="product.ratings === 5" class="fa fa-star"></i>
-          <p>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</p>
-        </div>
-        <p class="is-pulled-right">
-          <span class="title is-4"><strong>&euro; {{ product.price }}</strong></span>
-        </p>
-      </div>
-      <div class="card-footer btn-actions">
-        <div class="card-footer-item field is-grouped">
-          <div class="buttons">
-            <button class="button is-primary" v-if="!product.isAddedToCart" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
-            <button class="button is-text" v-if="product.isAddedToCart" @click="removeFromCart(product.id, false)">{{ removeFromCartLabel }}</button>
-          </div>
-           <div class="select is-rounded is-small">
-            <select @change="onSelectQuantity(product.id)" v-model="selected">
-              <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <nuxt-link
-      class="details"
-      :to="{
-        name: 'product_detail-id',
-        params: {
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          rating: product.ratings,
-          reviews: product.reviews,
-          isAddedBtn: product.isAddedBtn
-        }
-      }"
-    >
-    </nuxt-link>
-  </div>
+
+      <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn
+        color="deep-purple lighten-2"
+        text
+
+      >
+        Reserve
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>

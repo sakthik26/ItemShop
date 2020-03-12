@@ -12,14 +12,14 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-
+      <!-- <button class="test" aria-label="close" @click="auth0">Autho</button> -->
       <div class="navbar-menu is-active">
         <div class="navbar-start">
           <div class="navbar-item field">
             <VmSearch></VmSearch>
           </div>
         </div>
-        
+
         <div class="navbar-end">
           <div class="navbar-item social">
             <a href="#" class="icon" :title="facebookTooltip">
@@ -89,7 +89,8 @@
     methods: {
       showCheckoutModal () {
         this.$store.commit('showCheckoutModal', true);
-      }
+      },
+
     }
   };
 </script>

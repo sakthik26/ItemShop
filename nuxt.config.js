@@ -16,7 +16,7 @@ module.exports = {
       { name: 'msapplication-TileColor',  content: '#ffffff' },
       { name: 'msapplication-TileImage',  content: '/ms-icon-144x144.png' },
       { name: 'theme-color',  content: '#ffffff' },
-      
+
       // Facebook open graph
       { property: 'og:type',  content: 'website' },
       { property: 'og:url',  content: 'https://example.com/page.html' },
@@ -75,15 +75,31 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [],
+  plugins: ['~plugins/vuetify.js'],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/font-awesome'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/vuetify'
   ],
+
+  auth: {
+    // Options
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'dev-owxl7c5w.eu.auth0.com',
+        client_id: 'w1Cy4XsnNicTI5cptHgKeqNbiBKVWVmB',
+      }
+    }
+  },
+  vuetify: {
+    /* module options */
+  },
   /*
   ** Axios module configuration
   */

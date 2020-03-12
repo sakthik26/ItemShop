@@ -1,6 +1,6 @@
 <template>
-  <div class="columns is-centered is-multiline">
-    <div class="card column is-one-quarter" v-for="product in products" :key="product.id">
+  <div class="card-container columns is-multiline">
+    <div class="column is-one-quarter" v-for="product in products" :key="product.id">
       <VmProducts :product="product"></VmProducts>
     </div>
     <div class="section" v-if="products.length === 0">
@@ -15,9 +15,9 @@ import { getByTitle } from '@/assets/filters';
 
 export default {
   name: 'productsList',
-  
+
   components: { VmProducts },
-  
+
   data () {
     return {
       id: '',
@@ -40,7 +40,7 @@ export default {
     getProductByTitle () {
       let listOfProducts = this.$store.state.products,
           titleSearched = this.$store.state.userInfo.productTitleSearched;
-      
+
       return this.productsFiltered = getByTitle(listOfProducts, titleSearched);
     }
   }
@@ -49,7 +49,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card {
-    margin: 10px;
-  }
+.card-container{
+  width: 75%;
+  margin: 0 auto
+}
 </style>

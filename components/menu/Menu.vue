@@ -3,7 +3,7 @@
 		<div class="navbar-item">
 			<div class="field is-grouped">
 				<p class="control">
-					<a v-if="!isUserLoggedIn" class="button" @click="showSignupModal">
+					<a v-if="!isUserLoggedIn" class="button" @click="redirectToAuth0">
 						<span class="icon">
 							<i class="fa fa-user-plus"></i>
 						</span>
@@ -11,7 +11,7 @@
 					</a>
 				</p>
 				<p class="control">
-					<a v-if="!isUserLoggedIn" class="button" @click="showLoginModal">
+					<a v-if="!isUserLoggedIn" class="button" @click="redirectToAuth0">
 						<span class="icon">
 							<i class="fa fa-user"></i>
 						</span>
@@ -50,12 +50,13 @@ export default {
 	},
 
 	computed: {
+
 		isUserLoggedIn () {
 			return this.$store.getters.isUserLoggedIn;
 		},
 		getUserName () {
 			let name = this.$store.getters.getUserName;
-			
+
 			if (name === '') {
 				return 'user';
 			} else {
@@ -65,6 +66,9 @@ export default {
 	},
 
 	methods: {
+    redirectToAuth0(){
+       this.$auth.loginWith('auth0')
+    },
 		logout () {
 			this.$store.commit('isUserLoggedIn', false);
 			this.$store.commit('isUserSignedUp', false);
