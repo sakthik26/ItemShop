@@ -58,55 +58,64 @@
 </template>
 
 <script>
-  import VmMenu from '../menu/Menu';
-  import VmSearch from '../search/Search';
+import VmMenu from "../menu/Menu";
+import VmSearch from "../search/Search";
 
-  export default {
-    name: 'VmHeader',
+export default {
+  name: "VmHeader",
 
-    data () {
-      return {
-        linkedinTooltip: 'Follow us on Linkedin',
-        facebookTooltip: 'Follow us on Facebook',
-        twitterTooltip: 'Follow us on Twitter',
-        instagramTooltip: 'Follow us on Instagram',
-        isCheckoutActive: false,
-        isMenuOpen: false
-      }
-    },
+  data() {
+    return {
+      user: "",
+      linkedinTooltip: "Follow us on Linkedin",
+      facebookTooltip: "Follow us on Facebook",
+      twitterTooltip: "Follow us on Twitter",
+      instagramTooltip: "Follow us on Instagram",
+      isCheckoutActive: false,
+      isMenuOpen: false
+    };
+  },
 
-    components: {
-      VmSearch,
-      VmMenu
-    },
-
-    computed: {
-      numProductsAdded () {
-        return this.$store.getters.productsAdded.length;
-      }
-    },
-
-    methods: {
-      showCheckoutModal () {
-        this.$store.commit('showCheckoutModal', true);
-      },
-
+  mounted() {
+    console.log(this.$auth);
+    if (this.$auth.loggedIn) {
+      this.$store.commit("isUserLoggedIn", true);
     }
-  };
+  },
+  components: {
+    VmSearch,
+    VmMenu
+  },
+
+  computed: {
+    numProductsAdded() {
+      return this.$store.getters.productsAdded.length;
+    }
+  },
+
+  methods: {
+    showCheckoutModal() {
+      this.$store.commit("showCheckoutModal", true);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .title {
-    background: url('../../static/vuemmerce-logo.png') no-repeat;
-    background-position: 50% 50%;
-    background-size: 165px;
-    width: 175px;
-    height: 35px;
-  }
-  .shopping-cart {
-    cursor: pointer;
-  }
-  a {
-    color: grey;
-  }
+.title {
+  background: url("../../static/vuemmerce-logo.png") no-repeat;
+  background-position: 50% 50%;
+  background-size: 165px;
+  width: 175px;
+  height: 35px;
+}
+.shopping-cart {
+  cursor: pointer;
+}
+a {
+  color: grey;
+}
+div.navbar-end {
+  align-items: flex-end;
+}
 </style>

@@ -12,28 +12,28 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
-      { 'http-equiv': 'x-ua-compatible',  content: 'ie=edge' },
-      { name: 'msapplication-TileColor',  content: '#ffffff' },
-      { name: 'msapplication-TileImage',  content: '/ms-icon-144x144.png' },
-      { name: 'theme-color',  content: '#ffffff' },
+      { 'http-equiv': 'x-ua-compatible', content: 'ie=edge' },
+      { name: 'msapplication-TileColor', content: '#ffffff' },
+      { name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' },
+      { name: 'theme-color', content: '#ffffff' },
 
       // Facebook open graph
-      { property: 'og:type',  content: 'website' },
-      { property: 'og:url',  content: 'https://example.com/page.html' },
-      { property: 'og:title',  content: 'Content Title' },
-      { property: 'og:image',  content: 'https://example.com/image.jpg' },
-      { property: 'og:description',  content: 'Description Here' },
-      { property: 'og:site_name',  content: 'Site Name' },
-      { property: 'og:locale',  content: 'en_US' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://example.com/page.html' },
+      { property: 'og:title', content: 'Content Title' },
+      { property: 'og:image', content: 'https://example.com/image.jpg' },
+      { property: 'og:description', content: 'Description Here' },
+      { property: 'og:site_name', content: 'Site Name' },
+      { property: 'og:locale', content: 'en_US' },
 
       // Twitter card
-      { property: 'twitter:card',  content: 'summary' },
-      { property: 'twitter:site',  content: '@site_account' },
-      { property: 'twitter:creator',  content: '@individual_account' },
-      { property: 'twitter:url',  content: 'https://example.com/page.html' },
-      { property: 'twitter:title',  content: 'Content Title' },
-      { property: 'twitter:description',  content: 'Content description less than 200 characters' },
-      { property: 'twitter:image',  content: 'https://example.com/image.jpg' }
+      { property: 'twitter:card', content: 'summary' },
+      { property: 'twitter:site', content: '@site_account' },
+      { property: 'twitter:creator', content: '@individual_account' },
+      { property: 'twitter:url', content: 'https://example.com/page.html' },
+      { property: 'twitter:title', content: 'Content Title' },
+      { property: 'twitter:description', content: 'Content description less than 200 characters' },
+      { property: 'twitter:image', content: 'https://example.com/image.jpg' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -88,6 +88,11 @@ module.exports = {
   ],
 
   auth: {
+    redirect: {
+
+      // logout: '/logout', // redirect user when not connected
+      callback: '/callback'
+    },
     // Options
     strategies: {
       local: false,
