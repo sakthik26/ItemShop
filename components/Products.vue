@@ -40,7 +40,14 @@
         text
 
       >
-        Reserve
+        Buy Now
+      </v-btn>
+      <v-btn
+        color="deep-purple lighten-2"
+        text
+
+      >
+        Add to Cart
       </v-btn>
     </v-card-actions>
   </v-card>

@@ -31,7 +31,7 @@
             </div>
             <div class="field">
               <p class="control has-icons-left has-icons-right">
-                <input 
+                <input
                   :class="[highlightPasswordWithError ? 'input is-danger' : 'input']"
                   type="password"
                   placeholder="Your password"
@@ -68,23 +68,23 @@
 </template>
 
 <script>
-import { isValidEmail } from '@/assets/validators';
+import { isValidEmail } from "@/assets/validators";
 
 export default {
-  name: 'login',
+  name: "login",
 
-  data () {
+  data() {
     return {
-      modalTitle: 'Log in',
-      modalTitleLoggedIn: 'Welcome!',
-      primaryBtnLabel: 'Log in',
-      emailRequiredLabel: 'Email required',
-      passwordRequiredLabel: 'Password required',
-      emailNotValidLabel: 'Valid email required',
-      btnLoggedInLabel: 'Close',
-      emailPlaceholder: 'Your email',
-      email: '',
-      password: '',
+      modalTitle: "Log in",
+      modalTitleLoggedIn: "Welcome!",
+      primaryBtnLabel: "Log in",
+      emailRequiredLabel: "Email required",
+      passwordRequiredLabel: "Password required",
+      emailNotValidLabel: "Valid email required",
+      btnLoggedInLabel: "Close",
+      emailPlaceholder: "Your email",
+      email: "",
+      password: "",
       highlightEmailWithError: null,
       highlightPasswordWithError: null,
       isFormSuccess: false
@@ -92,10 +92,10 @@ export default {
   },
 
   computed: {
-    isUserLoggedIn () {
+    isUserLoggedIn() {
       return this.$store.getters.isUserLoggedIn;
     },
-    openModal () {
+    openModal() {
       if (this.$store.getters.isLoginModalOpen) {
         return true;
       } else {
@@ -105,17 +105,17 @@ export default {
   },
 
   methods: {
-    closeModal () {
-      this.$store.commit('showLoginModal', false);
+    closeModal() {
+      this.$store.commit("showLoginModal", false);
     },
-    checkForm (e) {
+    checkForm(e) {
       e.preventDefault();
 
       if (this.email && this.password) {
         this.highlightEmailWithError = false;
         this.highlightPasswordWithError = false;
         this.isFormSuccess = true;
-        this.$store.commit('isUserLoggedIn', this.isFormSuccess);
+        this.$store.commit("isUserLoggedIn", this.isFormSuccess);
       }
 
       if (!this.email) {
@@ -134,7 +134,7 @@ export default {
         this.highlightPasswordWithError = false;
       }
     },
-    checkEmailOnKeyUp (emailValue) {
+    checkEmailOnKeyUp(emailValue) {
       if (emailValue && isValidEmail(emailValue)) {
         this.highlightEmailWithError = false;
       } else {
@@ -145,7 +145,7 @@ export default {
         }
       }
     },
-    checkPasswordOnKeyUp (passwordValue) {
+    checkPasswordOnKeyUp(passwordValue) {
       if (passwordValue) {
         this.highlightPasswordWithError = false;
       } else {
