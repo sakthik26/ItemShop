@@ -119,6 +119,7 @@ export const state = () => ({
   systemInfo: {
     openLoginModal: false,
     openSignupModal: false,
+    showProgressLoader: false,
     openCheckoutModal: false
   }
 })
@@ -148,6 +149,9 @@ export const getters = {
   },
   isLoginModalOpen: state => {
     return state.systemInfo.openLoginModal;
+  },
+  showProgressLoader: state => {
+    return state.systemInfo.showProgressLoader;
   },
   isSignupModalOpen: state => {
     return state.systemInfo.openSignupModal;
@@ -189,6 +193,9 @@ export const mutations = {
   },
   isUserLoggedIn: (state, isUserLoggedIn) => {
     state.userInfo.isLoggedIn = isUserLoggedIn;
+  },
+  showProgressLoader: (state, showProgressLoader) => {
+    state.systemInfo.showProgressLoader = showProgressLoader;
   },
   isUserSignedUp: (state, isSignedUp) => {
     state.userInfo.isSignedUp = isSignedUp;
@@ -236,7 +243,7 @@ export const mutations = {
     state.authUser = authUser
   }
 }
-/* 
+/*
 export const actions = {
   async nuxtServerInit({ commit }) {
     const res = await this.$axios.get("/api/current_user")
