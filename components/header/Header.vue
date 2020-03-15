@@ -35,12 +35,12 @@
               <i class="fa fa-linkedin"></i>
             </a>
           </div>
-          <div class="navbar-item shopping-cart" @click="showCheckoutModal">
+          <!-- <div class="navbar-item shopping-cart" @click="showCheckoutModal">
             <span class="icon">
               <i class="fa fa-shopping-cart"></i>
             </span>
             <span :class="[numProductsAdded > 0 ? 'tag is-info' : '']">{{ numProductsAdded }}</span>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -53,7 +53,16 @@
       <div class="navbar-end is-hidden-mobile">
         <VmMenu></VmMenu>
       </div>
+      <v-progress-linear v-if="showProgressLoader"
+        :active="showProgressLoader"
+        :indeterminate="showProgressLoader"
+        absolute
+        bottom
+        color="deep-purple accent-4"
+      ></v-progress-linear>
+
     </nav>
+
   </div>
 </template>
 
@@ -66,6 +75,7 @@ export default {
 
   data() {
     return {
+      loading: true,
       user: "",
       linkedinTooltip: "Follow us on Linkedin",
       facebookTooltip: "Follow us on Facebook",
@@ -90,6 +100,9 @@ export default {
   computed: {
     numProductsAdded() {
       return this.$store.getters.productsAdded.length;
+    },
+    showProgressLoader() {
+      return this.$store.getters.showProgressLoader;
     }
   },
 
@@ -116,6 +129,6 @@ a {
   color: grey;
 }
 div.navbar-end {
-  align-items: flex-end;
+  align-items: center;
 }
 </style>

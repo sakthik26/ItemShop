@@ -6,8 +6,12 @@
 export default {
   name: "callback",
   mounted() {
+    this.$store.commit("showProgressLoader", true);
     this.$store.commit("isUserLoggedIn", true);
-    this.$router.push({ path: "/" });
+    this.$router.push({ name: "" });
+    setTimeout(function() {
+      this.$store.commit("showProgressLoader", false);
+    }, 1500);
   }
 };
 </script>
