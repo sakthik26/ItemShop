@@ -12,14 +12,14 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-
+      <!-- <button class="test" aria-label="close" @click="auth0">Autho</button> -->
       <div class="navbar-menu is-active">
         <div class="navbar-start">
           <div class="navbar-item field">
-            <VmSearch></VmSearch>
+
           </div>
         </div>
-        
+
         <div class="navbar-end">
           <div class="navbar-item social">
             <a href="#" class="icon" :title="facebookTooltip">
@@ -35,12 +35,12 @@
               <i class="fa fa-linkedin"></i>
             </a>
           </div>
-          <div class="navbar-item shopping-cart" @click="showCheckoutModal">
+          <!-- <div class="navbar-item shopping-cart" @click="showCheckoutModal">
             <span class="icon">
               <i class="fa fa-shopping-cart"></i>
             </span>
             <span :class="[numProductsAdded > 0 ? 'tag is-info' : '']">{{ numProductsAdded }}</span>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -53,59 +53,82 @@
       <div class="navbar-end is-hidden-mobile">
         <VmMenu></VmMenu>
       </div>
+      <v-progress-linear v-if="showProgressLoader"
+        :active="showProgressLoader"
+        :indeterminate="showProgressLoader"
+        absolute
+        bottom
+        color="deep-purple accent-4"
+      ></v-progress-linear>
+
     </nav>
+
   </div>
 </template>
 
 <script>
-  import VmMenu from '../menu/Menu';
-  import VmSearch from '../search/Search';
+import VmMenu from "../menu/Menu";
+import VmSearch from "../search/Search";
 
-  export default {
-    name: 'VmHeader',
+export default {
+  name: "VmHeader",
 
-    data () {
-      return {
-        linkedinTooltip: 'Follow us on Linkedin',
-        facebookTooltip: 'Follow us on Facebook',
-        twitterTooltip: 'Follow us on Twitter',
-        instagramTooltip: 'Follow us on Instagram',
-        isCheckoutActive: false,
-        isMenuOpen: false
-      }
-    },
+  data() {
+    return {
+      loading: true,
+      user: "",
+      linkedinTooltip: "Follow us on Linkedin",
+      facebookTooltip: "Follow us on Facebook",
+      twitterTooltip: "Follow us on Twitter",
+      instagramTooltip: "Follow us on Instagram",
+      isCheckoutActive: false,
+      isMenuOpen: false
+    };
+  },
 
-    components: {
-      VmSearch,
-      VmMenu
-    },
-
-    computed: {
-      numProductsAdded () {
-        return this.$store.getters.productsAdded.length;
-      }
-    },
-
-    methods: {
-      showCheckoutModal () {
-        this.$store.commit('showCheckoutModal', true);
-      }
+  mounted() {
+    console.log(this.$auth);
+    if (this.$auth.loggedIn) {
+      this.$store.commit("isUserLoggedIn", true);
     }
-  };
+  },
+  components: {
+    VmSearch,
+    VmMenu
+  },
+
+  computed: {
+    numProductsAdded() {
+      return this.$store.getters.productsAdded.length;
+    },
+    showProgressLoader() {
+      return this.$store.getters.showProgressLoader;
+    }
+  },
+
+  methods: {
+    showCheckoutModal() {
+      this.$store.commit("showCheckoutModal", true);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .title {
-    background: url('../../static/vuemmerce-logo.png') no-repeat;
-    background-position: 50% 50%;
-    background-size: 165px;
-    width: 175px;
-    height: 35px;
-  }
-  .shopping-cart {
-    cursor: pointer;
-  }
-  a {
-    color: grey;
-  }
+.title {
+  background: url("../../static/vuemmerce-logo.png") no-repeat;
+  background-position: 50% 50%;
+  background-size: 165px;
+  width: 175px;
+  height: 35px;
+}
+.shopping-cart {
+  cursor: pointer;
+}
+a {
+  color: grey;
+}
+div.navbar-end {
+  align-items: center;
+}
 </style>
