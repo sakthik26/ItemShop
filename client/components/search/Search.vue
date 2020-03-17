@@ -1,5 +1,5 @@
 <template>
-	<p class="control has-icons-left">
+	<p class="control has-icons-left search-container">
 		<input
 			class="input is-rounded"
 			type="text"
@@ -45,4 +45,16 @@ export default {
   }
 };
 </script>
+
+<style>
+p.search-container{
+      width: 75%;
+    margin: 0 auto;
+}
+
+p.search-container input{
+  width: 20%;
+    float: right;
+}
+</style>
 
