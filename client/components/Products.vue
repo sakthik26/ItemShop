@@ -17,7 +17,7 @@
   >
     <v-img
       height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+      :src="product.image"
     ></v-img>
 
     <v-card-title>{{ product.title }}</v-card-title>
@@ -41,7 +41,7 @@
 
 
 
-      <div>{{ product.description }}</div>
+      <!-- <div>{{ product.description }}</div> -->
       <div class="my-4 subtitle-1">
         <strong>&euro; {{ product.price }}</strong>
       </div>
