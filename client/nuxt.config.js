@@ -84,9 +84,28 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    'nuxt-shopify'
   ],
 
+  shopify: {
+    /**
+     * Your shopify domain
+     */
+    domain: 'derneuesitemshop.myshopify.com/',
+
+    /**
+     * Your shopify storefront access token
+     */
+    storefrontAccessToken: '0243067c912abe3a8d853fdaec78203c',
+
+    /**
+     * This will be larger than the optimized version, as it will contain all fields that are available in the
+     * Storefront API. (https://help.shopify.com/en/api/custom-storefronts/storefront-api/reference)
+     * This should only be used when you need to add custom queries to supplement the JS Buy SDK queries.
+     */
+    unoptimized: false,
+  },
   auth: {
     redirect: {
 
