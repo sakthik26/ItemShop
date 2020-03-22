@@ -64,7 +64,7 @@
         Add to Cart
       </v-btn>
     </v-card-actions>
-    <nuxt-link to="discussion/1">Go to Discussion</nuxt-link>
+
   </v-card>
 </template>
 

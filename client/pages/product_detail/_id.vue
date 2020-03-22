@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div class="card is-clearfix columns">
+    <div v-if="!loading" class="card is-clearfix columns">
         <figure class="card-image is-480x480 column is-one-thirds">
           <img :src="product.image">
         </figure>
@@ -94,6 +94,7 @@ export default {
       addToFavouriteLabel: "Add to favourite",
       removeFromFavouriteLabel: "Remove from favourite",
       product: {},
+      loading: true,
       selected: 1,
       quantityArray: []
     };
@@ -101,9 +102,24 @@ export default {
 
   mounted() {
     console.log("enter id");
-    this.product = this.$store.getters.getProductById(this.$route.params.id);
+    //this.product = this.$store.getters.getProductById(this.$route.params.id);
     // this.selected = this.product.quantity;
+    this.loading = true;
+    this.$shopify.product.fetch(this.$route.params.id).then(products => {
+      console.log(this.product);
+      // Do something with the product
 
+      this.product.title = products.title;
+      this.product.availableForSale = products.availableForSale;
+      this.product.description = products.description;
+      this.product.variants = products.variants;
+      this.product.image = products.images[0].src;
+      this.product.price = products.variants[0].price;
+      this.product.currency = products.variants[0].priceV2.currencyCode;
+      this.product.quantity = 1;
+      console.log(this.product);
+      this.loading = false;
+    });
     for (let i = 1; i <= 20; i++) {
       this.quantityArray.push(i);
     }
