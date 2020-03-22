@@ -8,9 +8,10 @@
           id: product.id,
           title: product.title,
           price: product.price,
-          rating: product.ratings,
-          reviews: product.reviews,
-          isAddedBtn: product.isAddedBtn
+          rating: 5,
+          reviews: 10,
+          isAddedBtn: false,
+          image: product.image
         }
       }"
       :hover=true
@@ -63,6 +64,7 @@
         Add to Cart
       </v-btn>
     </v-card-actions>
+    <nuxt-link to="discussion/1">Go to Discussion</nuxt-link>
   </v-card>
 </template>
 

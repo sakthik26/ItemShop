@@ -30,6 +30,7 @@ export default {
       //   isFavourite: false,
       //   quantity: 1
       // }
+      //If product no available set available tag to false
       var productsList = [];
       for (var i = 0; i < products.length; i++) {
         var product = {};
@@ -41,9 +42,9 @@ export default {
         product.image = products[i].images[0].src;
         product.price = products[i].variants[0].price;
         product.currency = products[i].variants[0].priceV2.currencyCode;
+        product.quantity = 1;
         productsList.push(product);
       }
-
       console.log(productsList);
       this.$store.commit("populateProductsList", productsList);
       console.log(products);

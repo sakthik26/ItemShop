@@ -24,7 +24,7 @@ export default {
 
   data() {
     return {
-      id: "",
+      // id: "",
       noProductLabel: "No product found",
       productsFiltered: []
     };

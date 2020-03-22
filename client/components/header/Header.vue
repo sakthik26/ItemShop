@@ -131,4 +131,7 @@ a {
 div.navbar-end {
   align-items: center;
 }
+div .navbar {
+  z-index: 0;
+}
 </style>
