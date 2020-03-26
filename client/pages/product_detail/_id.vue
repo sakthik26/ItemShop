@@ -67,6 +67,7 @@
             <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
             <button class="button is-text" v-if="isAddedBtn" @click="removeFromCart(product.id)">{{ removeFromCartLabel }}</button>
           </div>
+           <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button>
       </div>
     </div>
     <Checkout :drawer="showCheckoutDrawer"></Checkout>
@@ -132,6 +133,50 @@ export default {
   },
 
   methods: {
+    checkout() {
+      this.$shopify.checkout.create().then(checkout => {
+        // Do something with the checkout
+        console.log(checkout.id);
+        var checkoutId = checkout.id;
+        const lineItemsToAdd = [
+          {
+            variantId:
+              "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjkxMjk1NDI2MTY0Mw==",
+            quantity: 4,
+            customAttributes: [{ key: "MyKey", value: "MyValue" }]
+          }
+        ];
+        this.$shopify.checkout
+          .addLineItems(checkoutId, lineItemsToAdd)
+          .then(checkout => {
+            // Do something with the updated checkout
+            console.log(checkout.lineItems);
+            // const checkoutId =
+            //   "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0SW1hZ2UvMTgyMTc3ODc1OTI="; // ID of an existing checkout
+
+            const shippingAddress = {
+              address1: "Chestnut Street 92",
+              address2: "Apartment 2",
+              city: "Louisville",
+              company: null,
+              country: "United States",
+              firstName: "Bob",
+              lastName: "Norman",
+              phone: "555-625-1199",
+              province: "Kentucky",
+              zip: "40202"
+            };
+
+            // Update the shipping address for an existing checkout.
+            this.$shopify.checkout
+              .updateShippingAddress(checkout.id, shippingAddress)
+              .then(checkout => {
+                console.log(checkout.lineItems);
+                // Do something with the updated checkout
+              }); // Array with one additional line item
+          });
+      });
+    },
     away() {
       this.showCheckoutDrawer = false;
     },
