@@ -257,6 +257,8 @@ div.product-image {
   min-width: 400px;
 }
 div.product-content {
+  max-width: 400px;
+  min-width: 400px;
 }
 div.product-detail {
   justify-content: center;
@@ -271,6 +273,12 @@ div.product-detail {
   }
   div.product-image {
     margin: 0% 0% 5% 0%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+  div.product-content {
+    max-width: 100%;
+    min-width: 100%;
   }
 }
 </style>
