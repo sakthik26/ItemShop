@@ -1,10 +1,11 @@
 <template>
   <div class="section">
-    <div v-if="!loading" class="card is-clearfix columns">
-        <figure class="card-image is-480x480 column is-one-thirds">
-          <img :src="product.image">
-        </figure>
-        <div class="card-content column is-two-thirds">
+    <div v-if="!loading" class="product-detail columns">
+        <div class="product-image">
+          <!-- <img :src="product.image"> -->
+          <Carousel v-bind:slides="slides"></Carousel>
+        </div>
+        <div class="product-content">
           <div class="card-content__title">
             <h2 class="title is-4">{{ product.title }}
               <button class="button is-small" :title="removeFromFavouriteLabel" v-show="product.isFavourite" @click="removeFromFavourite(product.id)">
@@ -67,7 +68,7 @@
             <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
             <button class="button is-text" v-if="isAddedBtn" @click="removeFromCart(product.id)">{{ removeFromCartLabel }}</button>
           </div>
-           <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button>
+           <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
       </div>
     </div>
     <Checkout :drawer="showCheckoutDrawer"></Checkout>
@@ -77,10 +78,15 @@
 
 <script>
 import Checkout from "@/components/checkout/Checkout";
+import Carousel from "@/components/carousel/Carousel";
+import Vue from "vue";
+import VueAgile from "vue-agile";
 export default {
   name: "product_detail-id",
   components: {
-    Checkout
+    Checkout,
+    Carousel,
+    agile: VueAgile
   },
 
   // validate({ params }) {
@@ -97,7 +103,8 @@ export default {
       product: {},
       loading: true,
       selected: 1,
-      quantityArray: []
+      quantityArray: [],
+      slides: []
     };
   },
 
@@ -118,6 +125,10 @@ export default {
       this.product.price = products.variants[0].price;
       this.product.currency = products.variants[0].priceV2.currencyCode;
       this.product.quantity = 1;
+
+      for (var i = 0; i < products.images.length; i++) {
+        this.slides.push(products.images[i].src);
+      }
       console.log(this.product);
       this.loading = false;
     });
@@ -239,6 +250,28 @@ div.outside {
   position: fixed;
   top: 0px;
   left: 0px;
+}
+div.product-image {
+  margin: 0% 10% 0% 10%;
+  max-width: 400px;
+  min-width: 400px;
+}
+div.product-content {
+}
+div.product-detail {
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 850px) {
+  div.product-detail {
+    width: 80%;
+    display: block;
+  }
+  div.product-image {
+    margin: 0% 0% 5% 0%;
+  }
 }
 </style>
 
