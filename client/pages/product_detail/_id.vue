@@ -40,7 +40,7 @@
           </div>
           </div>
           <div class="card-content__btn">
-            <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(product.id)"> + {{ addToCartLabel }}</button>
+            <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(selectedVariant)"> + {{ addToCartLabel }}</button>
           </div>
 
           <div class="card-content__description">
@@ -79,19 +79,19 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
           </div>
-          <!-- <div class="card-content__reviews">
-            <div class="is-pulled-left">
-              <p><strong>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</strong></p>
-            </div>
-            <div class="select is-rounded is-small is-pulled-right">
-              <select @change="onSelectQuantity(product.id)" v-model="selected">
-                <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
-              </select>
-            </div>
-          </div> -->
+              <!-- <div class="card-content__reviews">
+                <div class="is-pulled-left">
+                  <p><strong>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</strong></p>
+                </div>
+                <div class="select is-rounded is-small is-pulled-right">
+                  <select @change="onSelectQuantity(product.id)" v-model="selected">
+                    <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
+                  </select>
+                </div>
+              </div> -->
 
 
-           <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
+              <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
       </div>
     </div>
     <Checkout :drawer="showCheckoutDrawer"></Checkout>
@@ -172,22 +172,34 @@ export default {
             id: this.product.variants[i].id,
             image: this.product.variants[i].image.src,
             price: this.product.variants[i].priceV2.amount,
+            cumulativePrice: this.product.variants[i].priceV2.amount,
             currency: this.product.variants[i].priceV2.currencyCode,
             available: this.product.variants[i].available,
             size: this.product.variants[i].selectedOptions[0].value,
-            title: this.product.title
+            title: this.product.title,
+            quantity: 1
           };
+          for (var j = 0; j < this.variantsOrder.length; j++) {
+            if (this.availableVariants.indexOf(this.variantsOrder[j]) >= 0) {
+              this.selectedVariant = this.variantsOrder[j];
+              break;
+            }
+          }
         } else {
           this.variantIdMap["all"] = {
             id: this.product.variants[i].id,
             image: this.product.variants[i].image.src,
+            cumulativePrice: this.product.variants[i].priceV2.amount,
             price: this.product.variants[i].priceV2.amount,
             currency: this.product.variants[i].priceV2.currencyCode,
             available: this.product.variants[i].available,
-            title: this.product.title
+            title: this.product.title,
+            quantity: 1
           };
+          this.selectedVariant = "all";
         }
       }
+
       console.log(this.product);
       console.log(this.availableVariants);
       this.loading = false;
@@ -196,7 +208,7 @@ export default {
 
   watch: {
     selectedVariant: function(variant) {
-      console.log(this.variantIdMap[variant]);
+      //console.log(this.variantIdMap[variant]);
       //this.$store.commit("cartItem", this.variantIdMap[variant]);
     }
   },
@@ -208,61 +220,14 @@ export default {
   },
 
   methods: {
-    checkout() {
-      this.$shopify.checkout.create().then(checkout => {
-        // Do something with the checkout
-        console.log(checkout.id);
-        var checkoutId = checkout.id;
-        const lineItemsToAdd = [
-          {
-            variantId:
-              "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMjkxMjk1NDI2MTY0Mw==",
-            quantity: 4,
-            customAttributes: [{ key: "MyKey", value: "MyValue" }]
-          }
-        ];
-        this.$shopify.checkout
-          .addLineItems(checkoutId, lineItemsToAdd)
-          .then(checkout => {
-            // Do something with the updated checkout
-            console.log(checkout.lineItems);
-            // const checkoutId =
-            //   "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0SW1hZ2UvMTgyMTc3ODc1OTI="; // ID of an existing checkout
-
-            const shippingAddress = {
-              address1: "Chestnut Street 92",
-              address2: "Apartment 2",
-              city: "Louisville",
-              company: null,
-              country: "United States",
-              firstName: "Bob",
-              lastName: "Norman",
-              phone: "555-625-1199",
-              province: "Kentucky",
-              zip: "40202"
-            };
-
-            // Update the shipping address for an existing checkout.
-            this.$shopify.checkout
-              .updateShippingAddress(checkout.id, shippingAddress)
-              .then(checkout => {
-                console.log(checkout.lineItems);
-                // Do something with the updated checkout
-              }); // Array with one additional line item
-          });
-      });
-    },
     away() {
       this.showCheckoutDrawer = false;
     },
-    addToCart(id) {
+    addToCart(selectedVariant) {
       this.showCheckoutDrawer = true;
-      let data = {
-        id: id,
-        status: true
-      };
-      this.$store.commit("addToCart", id);
-      this.$store.commit("setAddedBtn", data);
+      var productInformation = this.variantIdMap[selectedVariant];
+      this.$store.commit("addToCart", productInformation);
+      // this.$store.commit("setAddedBtn", data);
     },
     removeFromCart(id) {
       let data = {
@@ -314,6 +279,7 @@ div.outside {
   position: fixed;
   top: 0px;
   left: 0px;
+  background: rgba(120, 120, 120, 0.7);
 }
 div.product-image {
   margin: 0% 10% 0% 10%;
