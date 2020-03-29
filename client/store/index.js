@@ -124,6 +124,9 @@ export const state = () => ({
     openSignupModal: false,
     showProgressLoader: false,
     openCheckoutModal: false
+  },
+  cart: {
+    items: []
   }
 })
 
@@ -247,6 +250,8 @@ export const mutations = {
   },
   populateProductsList(state, productsList) {
     state.products = productsList
+  },
+  cartItem(state, cartItemId) {
   }
 }
 

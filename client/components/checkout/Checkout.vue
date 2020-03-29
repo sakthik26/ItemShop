@@ -12,23 +12,13 @@
         absolute
         dark
       >
-        <v-list
-          dense
-          nav
-          class="py-0"
-        >
-          <v-list-item two-line :class="miniVariant && 'px-0'">
-            <v-list-item-avatar>
-              <img src="https://randomuser.me/api/portraits/men/81.jpg">
-            </v-list-item-avatar>
-
-            <v-list-item-content>
-              <v-list-item-title>Application</v-list-item-title>
-              <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+          <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="title">
+            Shopping Cart
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-
-          <v-divider></v-divider>
 
           <v-list-item
             v-for="item in items"
@@ -85,5 +75,31 @@ export default {
   opacity: 0.9;
   z-index: 1;
   position: fixed;
+  width: 25% !important;
+}
+div.v-navigation-drawer__content {
+  background: #fff;
+}
+@media screen and (max-width: 1200px) {
+  .v-navigation-drawer {
+    width: 40% !important;
+  }
+}
+@media screen and (max-width: 800px) {
+  .v-navigation-drawer {
+    width: 60% !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .v-navigation-drawer {
+    width: 65% !important;
+  }
+}
+
+div.v-list-item__title .title {
+  text-align: center;
+  color: #000;
+  padding-bottom: 8%;
+  border-bottom: 1px solid #efefef;
 }
 </style>

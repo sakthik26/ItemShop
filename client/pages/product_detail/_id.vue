@@ -20,45 +20,40 @@
               </button> -->
             </h2>
           </div>
-          <div class="card-content__variants">
-          <!-- <v-radio-group v-model="radios" :mandatory="false">
-            <v-radio label="Radio 11" value="radio-1"></v-radio>
-            <v-radio label="Radio 2" value="radio-2"></v-radio>
-          </v-radio-group> -->
-          <div class="product-option-row product-option-row--swatches product-option-row--5 product-option-row--size" >
-          <div class="swatch">
-            <div class="swatch-element swatch-element--s">
-              <input type="radio"  v-model="variant" name="single-option-select-1" id="swatch-1-s" value="S" data-index="option1" class="single-option-select visually-hidden">
-              <label :class="variant==='S'? 'selected':''" for="swatch-1-s">S</label>
-            </div>
-            <div class="swatch-element swatch-element--m">
-              <input type="radio" v-model="variant" name="single-option-select-1" id="swatch-1-m" value="M" data-index="option1" class="single-option-select visually-hidden">
-              <label :class="variant==='M'? 'selected':''" for="swatch-1-m">M</label>
-            </div>
-            <div class="swatch-element swatch-element--l">
-              <input type="radio" v-model="variant" name="single-option-select-1" id="swatch-1-l" value="L" data-index="option1" class="single-option-select visually-hidden">
-              <label :class="variant==='L'? 'selected':''" for="swatch-1-l">L</label>
-            </div>
-            <div class="swatch-element swatch-element--xl selected-swatch">
-              <input type="radio" v-model="variant" name="single-option-select-1" id="swatch-1-xl" value="XL" data-index="option1" class="single-option-select visually-hidden" checked="">
-              <label  :class="variant==='XL'? 'selected':''" for="swatch-1-xl">XL</label>
-            </div>
-            <div class="swatch-element swatch-element--xxl swatch--unavailable">
-              <input type="radio" v-model="variant" name="single-option-select-1" id="swatch-1-xxl" value="XXL" data-index="option1" class="single-option-select visually-hidden">
-              <label :class="variant==='XXL'? 'selected':''" for="swatch-1-xxl">XXL</label>
-            </div>
-      </div>
-    </div>
-          </div>
           <div class="card-content__price">
             <span>&euro;{{ product.price }}</span>
           </div>
-          <div class="card-content__text">
+          <div class="card-content__variants" v-if="availableVariants.length>0">
+           <div class="product-option-row product-option-row--swatches product-option-row--5 product-option-row--size" >
+           <div class="swatch">
+            <div v-for = "variant in variantsOrder" v-bind:key="variant">
+              <div class="swatch-element" v-if="availableVariants.indexOf(variant) >=0">
+              <input type="radio"  v-model="selectedVariant" name="single-option-select-1" v-bind:id="variant" :value="variant" class="single-option-select visually-hidden">
+              <label :class="selectedVariant=== variant ? 'selected':''" :for="variant">{{variant}}</label>
+              </div>
+              <div class="swatch-element  swatch--unavailable" v-else>
+                 <input type="radio"  v-model="selectedVariant" name="single-option-select-1" v-bind:id="variant" :value="variant" class="single-option-select visually-hidden" disabled>
+              <label :class="selectedVariant=== variant ? 'selected':''" :for="variant">{{variant}}</label>
+              </div>
+            </div>
+            </div>
+          </div>
+          </div>
+          <div class="card-content__btn">
+            <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(product.id)"> + {{ addToCartLabel }}</button>
+          </div>
+
+          <div class="card-content__description">
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud
             </p>
           </div>
+           <div class="card-content__other-details">
+          <!-- <img :src="product.image"> -->
+           <Tabs></Tabs>
+           </div>
+
           <div class="card-content__ratings" v-if="product.rating === 1">
             <i class="fa fa-star"></i>
           </div>
@@ -95,9 +90,7 @@
             </div>
           </div> -->
 
-          <div class="card-content__btn">
-            <button class="button is-primary" v-if="!isAddedBtn" @click="addToCart(product.id)">{{ addToCartLabel }}</button>
-          </div>
+
            <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
       </div>
     </div>
@@ -109,14 +102,14 @@
 <script>
 import Checkout from "@/components/checkout/Checkout";
 import Carousel from "@/components/carousel/Carousel";
+import Tabs from "@/components/tabs/Tabs";
 import Vue from "vue";
-import VueAgile from "vue-agile";
 export default {
   name: "product_detail-id",
   components: {
     Checkout,
     Carousel,
-    agile: VueAgile
+    Tabs
   },
 
   // validate({ params }) {
@@ -135,7 +128,10 @@ export default {
       selected: 1,
       quantityArray: [],
       slides: [],
-      variant: "S"
+      selectedVariant: "",
+      variantsOrder: ["S", "M", "L", "XL", "XXL"],
+      variantIdMap: {},
+      availableVariants: []
     };
   },
 
@@ -161,16 +157,48 @@ export default {
       for (var i = 0; i < products.images.length; i++) {
         this.slides.push(products.images[i].src);
       }
+
+      for (let i = 0; i < this.product.variants.length; i++) {
+        if (
+          this.product.variants[i].selectedOptions[0] &&
+          this.product.variants[i].selectedOptions[0].name == "Size"
+        ) {
+          this.availableVariants.push(
+            this.product.variants[i].selectedOptions[0].value
+          );
+          this.variantIdMap[
+            this.product.variants[i].selectedOptions[0].value
+          ] = {
+            id: this.product.variants[i].id,
+            image: this.product.variants[i].image.src,
+            price: this.product.variants[i].priceV2.amount,
+            currency: this.product.variants[i].priceV2.currencyCode,
+            available: this.product.variants[i].available,
+            size: this.product.variants[i].selectedOptions[0].value,
+            title: this.product.title
+          };
+        } else {
+          this.variantIdMap["all"] = {
+            id: this.product.variants[i].id,
+            image: this.product.variants[i].image.src,
+            price: this.product.variants[i].priceV2.amount,
+            currency: this.product.variants[i].priceV2.currencyCode,
+            available: this.product.variants[i].available,
+            title: this.product.title
+          };
+        }
+      }
       console.log(this.product);
+      console.log(this.availableVariants);
       this.loading = false;
     });
-    for (let i = 1; i <= 20; i++) {
-      this.quantityArray.push(i);
-    }
   },
 
   watch: {
-    variant: function(variant) {}
+    selectedVariant: function(variant) {
+      console.log(this.variantIdMap[variant]);
+      //this.$store.commit("cartItem", this.variantIdMap[variant]);
+    }
   },
 
   computed: {
@@ -301,11 +329,16 @@ div.product-detail {
   width: 70%;
   margin: 0 auto;
 }
-
+div.card-content__title {
+  font-weight: 400;
+}
 div.card-content__btn button {
   background-color: #1976d2 !important;
 }
-
+div.card-content__btn button,
+div.card-content__variants {
+  margin-top: 20px;
+}
 @media screen and (max-width: 850px) {
   div.product-detail {
     width: 80%;
@@ -322,6 +355,13 @@ div.card-content__btn button {
   }
 }
 div.card-content__price {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  font-weight: 300;
+  font-size: 16px;
+}
+div.card-content__description {
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
   border-bottom: 1px solid #ddd;
@@ -405,6 +445,48 @@ div.swatch {
     background-color: #1976d2 !important;
     color: #fff;
   }
+  .swatch--unavailable label:hover {
+    border: 1px solid #ddd;
+  }
+  .swatch--unavailable label {
+    color: #aeaeae;
+    border-color: #aeaeae;
+    position: relative;
+    background: -webkit-gradient(
+      linear,
+      right bottom,
+      left top,
+      color-stop(49%, transparent),
+      color-stop(49.5%, currentColor),
+      color-stop(50.5%, currentColor),
+      color-stop(51%, transparent)
+    );
+    background: -webkit-linear-gradient(
+      right bottom,
+      transparent 49%,
+      currentColor 49.5%,
+      currentColor 50.5%,
+      transparent 51%
+    );
+    background: -o-linear-gradient(
+      right bottom,
+      transparent 49%,
+      currentColor 49.5%,
+      currentColor 50.5%,
+      transparent 51%
+    );
+    background: linear-gradient(
+      to left top,
+      transparent 49%,
+      currentColor 49.5%,
+      currentColor 50.5%,
+      transparent 51%
+    );
+  }
+}
+
+div.card-content__other-details {
+  margin-top: 10px;
 }
 </style>
 
