@@ -126,7 +126,8 @@ export const state = () => ({
     openCheckoutModal: false
   },
   cart: {
-    items: []
+    items: [],
+    subTotal: '',
   }
 })
 
@@ -144,6 +145,7 @@ export const getters = {
   getProductById: state => id => {
     return state.products.find(product => product.id == id);
   },
+
   isUserLoggedIn: state => {
     return state.userInfo.isLoggedIn;
   },
@@ -167,16 +169,51 @@ export const getters = {
   },
   quantity: state => {
     return state.products.quantity;
-  }
+  },
+  cartItems: state => {
+    return state.cart;
+  },
+  // subTotal: state => {
+  //   return state.cart.subTotal;
+  // }
 }
 
 export const mutations = {
-  addToCart: (state, id) => {
-    state.products.forEach(el => {
-      if (id === el.id) {
-        el.isAddedToCart = true;
-      }
-    });
+  addToCart: (state, productInformation) => {
+    var itemIndex = state.cart.items.map(item => {
+      return item.id
+    }).indexOf(productInformation.id)
+    if (itemIndex == -1) {
+      state.cart.items.splice(state.cart.items.length, 0, productInformation)
+    }
+    else {
+      state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
+      state.cart.items[itemIndex].cumulativePrice = '' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)
+    }
+    var total = 0;
+    for (var i = 0; i < state.cart.items.length; i++) {
+      total += parseFloat(state.cart.items[i].cumulativePrice)
+    }
+    state.cart.subTotal = state.cart.items[0].currency + ' ' + total
+  },
+  changeQuantity: (state, val) => {
+    var itemIndex = state.cart.items.map(item => {
+      return item.id
+    }).indexOf(val.id)
+    if (val.operation === 'add') {
+      state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
+
+    }
+    else {
+      state.cart.items[itemIndex].quantity = --state.cart.items[itemIndex].quantity
+
+    }
+    state.cart.items[itemIndex].cumulativePrice = '' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)
+    var total = 0;
+    for (var i = 0; i < state.cart.items.length; i++) {
+      total += parseFloat(state.cart.items[i].cumulativePrice)
+    }
+    state.cart.subTotal = state.cart.items[0].currency + ' ' + total
   },
   setAddedBtn: (state, data) => {
     state.products.forEach(el => {
@@ -251,8 +288,7 @@ export const mutations = {
   populateProductsList(state, productsList) {
     state.products = productsList
   },
-  cartItem(state, cartItemId) {
-  }
+
 }
 
 export const actions = {
