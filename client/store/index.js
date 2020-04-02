@@ -188,13 +188,13 @@ export const mutations = {
     }
     else {
       state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
-      state.cart.items[itemIndex].cumulativePrice = '' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)
+      state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price))
     }
     var total = 0;
     for (var i = 0; i < state.cart.items.length; i++) {
       total += parseFloat(state.cart.items[i].cumulativePrice)
     }
-    state.cart.subTotal = state.cart.items[0].currency + ' ' + total
+    state.cart.subTotal = state.cart.items[0].currency + ' ' + ('' + total).slice(0, 5)
   },
   changeQuantity: (state, val) => {
     var itemIndex = state.cart.items.map(item => {
@@ -208,12 +208,12 @@ export const mutations = {
       state.cart.items[itemIndex].quantity = --state.cart.items[itemIndex].quantity
 
     }
-    state.cart.items[itemIndex].cumulativePrice = '' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)
+    state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 5)
     var total = 0;
     for (var i = 0; i < state.cart.items.length; i++) {
       total += parseFloat(state.cart.items[i].cumulativePrice)
     }
-    state.cart.subTotal = state.cart.items[0].currency + ' ' + total
+    state.cart.subTotal = state.cart.items[0].currency + ' ' + ('' + total).slice(0, 5)
   },
   setAddedBtn: (state, data) => {
     state.products.forEach(el => {
