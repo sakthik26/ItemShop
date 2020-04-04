@@ -93,7 +93,7 @@
               <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
       </div>
     </div>
-    <Checkout :drawer="showCheckoutDrawer"></Checkout>
+    <Checkout v-if="showCheckoutDrawer" :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div>
   </div>
 </template>

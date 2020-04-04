@@ -31,88 +31,88 @@
 
 <script>
 export default {
-	name: 'checkout',
-    
-	data () {
-		return {
-			modalTitle: 'Checkout',
-			removeLabel: 'Remove from cart',
-			cartEmptyLabel: 'Your cart is empty',
-			closeLabel: 'Close',
-			isCheckoutSection: false
-		}
-	},
+  name: "checkout",
 
-	computed: {
-			products () {
-				return this.$store.getters.productsAdded;
-			},
-			openModal () {
-				if (this.$store.getters.isCheckoutModalOpen) {
-					return true;
-				} else {
-					return false;
-				}
-			},
-			buyLabel () {
-				let totalProducts = this.products.length,
-						productsAdded = this.$store.getters.productsAdded,
-						pricesArray = [],
-						productLabel = '',
-						finalPrice = '',
-						quantity = 1;
+  data() {
+    return {
+      modalTitle: "Checkout",
+      removeLabel: "Remove from cart",
+      cartEmptyLabel: "Your cart is empty",
+      closeLabel: "Close",
+      isCheckoutSection: false
+    };
+  },
 
-				productsAdded.forEach(product => {
+  computed: {
+    products() {
+      return this.$store.getters.productsAdded;
+    },
+    openModal() {
+      if (this.$store.getters.isCheckoutModalOpen) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    buyLabel() {
+      let totalProducts = this.products.length,
+        productsAdded = this.$store.getters.productsAdded,
+        pricesArray = [],
+        productLabel = "",
+        finalPrice = "",
+        quantity = 1;
 
-					if (product.quantity >= 1) {
-						quantity = product.quantity;
-					}
+      productsAdded.forEach(product => {
+        if (product.quantity >= 1) {
+          quantity = product.quantity;
+        }
 
-					pricesArray.push((product.price * quantity)); // get the price of every product added and multiply quantity
-				});
+        pricesArray.push(product.price * quantity); // get the price of every product added and multiply quantity
+      });
 
-				finalPrice = pricesArray.reduce((a, b) => a + b, 0); // sum the prices
-				
-				if (totalProducts > 1) { // set plural or singular
-					productLabel = 'products';
-				} else {
-					productLabel = 'product';
-				}
-				return `Buy ${totalProducts} ${productLabel} at ${finalPrice}€`;
-		},
-		isUserLoggedIn () {
-			return this.$store.getters.isUserLoggedIn;
-		}
-	},
+      finalPrice = pricesArray.reduce((a, b) => a + b, 0); // sum the prices
 
-	methods: {
-		closeModal (reloadPage) {
-			this.$store.commit('showCheckoutModal', false);
+      if (totalProducts > 1) {
+        // set plural or singular
+        productLabel = "products";
+      } else {
+        productLabel = "product";
+      }
+      return `Buy ${totalProducts} ${productLabel} at ${finalPrice}€`;
+    },
+    isUserLoggedIn() {
+      return this.$store.getters.isUserLoggedIn;
+    }
+  },
 
-			if (reloadPage) {
-				window.location.reload();
-			}
-		},
-		removeFromCart (id) {
-			let data = {
-					id: id,
-					status: false
-			}
-			this.$store.commit('removeFromCart', id);
-			this.$store.commit('setAddedBtn', data);
-		},
-		onNextBtn () {
-			if (this.isUserLoggedIn) {
-				this.isCheckoutSection = true;
-			} else {
-				this.$store.commit('showCheckoutModal', false);
-				this.$store.commit('showLoginModal', true);
-			}
-		},
-		onPrevBtn () {
-			this.isCheckoutSection = false;
-		}
-	}
-}
+  methods: {
+    closeModal(reloadPage) {
+      this.$store.commit("showCheckoutModal", false);
+
+      if (reloadPage) {
+        window.location.reload();
+      }
+    },
+    removeFromCart(id) {
+      let data = {
+        id: id,
+        status: false
+      };
+      this.$store.commit("removeFromCart", id);
+      this.$store.commit("setAddedBtn", data);
+    },
+    onNextBtn() {
+      if (this.isUserLoggedIn) {
+        this.isCheckoutSection = true;
+      } else {
+        this.$store.commit("showCheckoutModal", false);
+        this.$store.commit("showLoginModal", true);
+      }
+    },
+    onPrevBtn() {
+      this.isCheckoutSection = false;
+    }
+  }
+};
 </script>
 

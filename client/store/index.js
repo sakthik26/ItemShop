@@ -208,12 +208,19 @@ export const mutations = {
       state.cart.items[itemIndex].quantity = --state.cart.items[itemIndex].quantity
 
     }
+
     state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 5)
+    if (state.cart.items[itemIndex].quantity == 0) {
+
+      state.cart.items.splice(itemIndex, 1)
+
+    }
     var total = 0;
     for (var i = 0; i < state.cart.items.length; i++) {
       total += parseFloat(state.cart.items[i].cumulativePrice)
     }
-    state.cart.subTotal = state.cart.items[0].currency + ' ' + ('' + total).slice(0, 5)
+    //change currency
+    state.cart.subTotal = state.cart.items.length > 0 ? state.cart.items[0].currency + ' ' + ('' + total).slice(0, 5) : 'EUR 0.00'
   },
   setAddedBtn: (state, data) => {
     state.products.forEach(el => {
