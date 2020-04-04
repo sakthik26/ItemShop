@@ -188,7 +188,7 @@ export const mutations = {
     }
     else {
       state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
-      state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price))
+      state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 5)
     }
     var total = 0;
     for (var i = 0; i < state.cart.items.length; i++) {
