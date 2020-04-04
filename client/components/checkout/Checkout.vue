@@ -56,7 +56,7 @@
             </div>
             <div class="minicart__message"><p>Shipping and taxes calculated at checkout</p></div>
             <div class="minicart__actions">
-               <button class="button is-primary" v-on:click="checkout"> Checkout →</button>
+               <button class="button is-primary"  :disabled="disableCheckout" v-on:click="checkout"> Checkout →</button>
             </div>
             </v-list-item-content>
           </v-list-item>
@@ -79,16 +79,21 @@ export default {
       background: false,
       fixed: true,
       hideOverlay: true,
-      cartItems: {}
+      cartItems: {},
+      disableCheckout: false
     };
   },
   mounted() {
     console.log("cart");
     this.cartItems = this.$store.getters.cartItems;
   },
+  computed: {},
   methods: {
     changeQuantity(id, operation) {
       this.$store.commit("changeQuantity", { id: id, operation: operation });
+      if (this.cartItems.items.length == 0) {
+        this.disableCheckout = true;
+      }
     },
     checkout() {
       this.$shopify.checkout.create().then(checkout => {
