@@ -42,7 +42,7 @@
                       <div class="qty__form">
                         <div class="qty__label">Quantity:</div>
                         <div class="qty__minus" v-on:click="changeQuantity(item.id,'sub')">–</div>
-                        <input type="text" class="qty__value" :value="item.quantity">
+                        <input type="text" class="qty__value" :value="item.quantity" disabled="true">
                         <div class="qty__plus" v-on:click="changeQuantity(item.id,'add')">+</div>
                       </div>
                     </div>
