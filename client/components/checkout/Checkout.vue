@@ -22,7 +22,7 @@
           <v-list-item>
             <v-list-item-content>
               <ul class="minicart__list">
-                <li v-for="item in cartItems.items" v-if="item.quantity>0" v-bind:key="item.id" class="minicart-line-item" data-id="32288652329097" data-type="Men's Printed">
+                <li v-for="item in cartItems.items" v-if="item.quantity>0" v-bind:key="item.id" class="minicart-line-item">
 
                 <div class="minicart-line-item__image">
                   <!-- <a href="/products/circular-sienna" title="View Circular (Sienna) - S"> -->
@@ -45,6 +45,7 @@
                         <input type="text" class="qty__value" :value="item.quantity" disabled="true">
                         <div class="qty__plus" v-on:click="changeQuantity(item.id,'add')">+</div>
                       </div>
+                      <div class="qty__error" :class="item.quantityExceeded == true? 'show':'hide'">Requested quantity not available</div>
                     </div>
                     <div class="minicart-line-item__price">{{item.currency}} {{item.cumulativePrice}}</div>
                  </div>
@@ -87,10 +88,18 @@ export default {
     console.log("cart");
     this.cartItems = this.$store.getters.cartItems;
   },
-  computed: {},
+  computed: {
+    bg() {
+      return this.background
+        ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+        : undefined;
+    }
+  },
   methods: {
     changeQuantity(id, operation) {
+      // if (quantity < 10 || operation == "sub") {
       this.$store.commit("changeQuantity", { id: id, operation: operation });
+      // }
       if (this.cartItems.items.length == 0) {
         this.disableCheckout = true;
       }
@@ -148,19 +157,19 @@ export default {
         }
       });
     }
-  },
-  watch: {
-    subTotal: function(val) {
-      this.subTotal = this.$store.getters.subTotal;
-    }
-  },
-  computed: {
-    bg() {
-      return this.background
-        ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-        : undefined;
-    }
   }
+  // watch: {
+  //   subTotal: function(val) {
+  //     this.subTotal = this.$store.getters.subTotal;
+  //   }
+  // },
+  // computed: {
+  //   bg() {
+  //     return this.background
+  //       ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+  //       : undefined;
+  //   }
+  // }
 };
 </script>
 
@@ -291,5 +300,21 @@ div.minicart-line-item__price {
 .minicart__actions button {
   width: 100%;
   background-color: #1976d2 !important;
+}
+.minicart-line-item .qty__error {
+  font-size: 15px;
+  color: #ff3451;
+  /* margin-top: 1rem; */
+  margin: 5px 0px 5px 0px;
+}
+
+.minicart-line-item .disable-add {
+  pointer-events: none;
+}
+.minicart-line-item .show {
+  display: block;
+}
+.minicart-line-item .hide {
+  visibility: hidden;
 }
 </style>

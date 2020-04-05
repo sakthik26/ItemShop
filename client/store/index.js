@@ -176,6 +176,7 @@ export const getters = {
   // subTotal: state => {
   //   return state.cart.subTotal;
   // }
+
 }
 
 export const mutations = {
@@ -187,8 +188,14 @@ export const mutations = {
       state.cart.items.splice(state.cart.items.length, 0, productInformation)
     }
     else {
-      state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
-      state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 5)
+      if (state.cart.items[itemIndex].quantity < 10) {
+        state.cart.items[itemIndex].quantityExceeded = false
+        state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
+        state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 5)
+      }
+      else {
+        state.cart.items[itemIndex].quantityExceeded = true
+      }
     }
     var total = 0;
     for (var i = 0; i < state.cart.items.length; i++) {
@@ -201,11 +208,18 @@ export const mutations = {
       return item.id
     }).indexOf(val.id)
     if (val.operation === 'add') {
-      state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
+      if (state.cart.items[itemIndex].quantity < 10) {
+
+        state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
+        state.cart.items[itemIndex].quantityExceeded = false
+      }
+      else
+        state.cart.items[itemIndex].quantityExceeded = true
 
     }
     else {
       state.cart.items[itemIndex].quantity = --state.cart.items[itemIndex].quantity
+      state.cart.items[itemIndex].quantityExceeded = false
 
     }
 

@@ -30,6 +30,7 @@ export default {
         product.price = products[i].variants[0].price;
         product.currency = products[i].variants[0].priceV2.currencyCode;
         product.quantity = 1;
+        product.quantityExceeded = false;
         productsList.push(product);
       }
       console.log(productsList);
