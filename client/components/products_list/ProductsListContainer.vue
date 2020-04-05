@@ -1,6 +1,6 @@
 <template>
 <div>
- <VmSearch></VmSearch>
+ <!-- <VmSearch></VmSearch> -->
   <div class="card-container columns is-multiline">
 
     <div class="column is-one-quarter" v-for="product in products" :key="product.id">

@@ -176,7 +176,8 @@ export default {
             available: this.product.variants[i].available,
             size: this.product.variants[i].selectedOptions[0].value,
             title: this.product.title,
-            quantity: 1
+            quantity: 1,
+            quantityExceeded: false
           };
           for (var j = 0; j < this.variantsOrder.length; j++) {
             if (this.availableVariants.indexOf(this.variantsOrder[j]) >= 0) {
@@ -193,7 +194,8 @@ export default {
             currency: this.product.variants[i].priceV2.currencyCode,
             available: this.product.variants[i].available,
             title: this.product.title,
-            quantity: 1
+            quantity: 1,
+            quantityExceeded: false
           };
           this.selectedVariant = "all";
         }
