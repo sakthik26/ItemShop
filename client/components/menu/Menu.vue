@@ -1,20 +1,29 @@
 <template>
 	<div>
 		<div class="navbar-item">
-			<div class="field is-grouped">
+			<div class="">
 
 					 <v-btn v-if="!isUserLoggedIn" depressed color="primary" @click="redirectToAuth0">{{ loginLabel }}
 				   </v-btn>
 
 
+			</div>
+
+        <div>
 					 <v-btn v-if="isUserLoggedIn"  text large color="primary"> My Account
 				   </v-btn>
 
 					 <v-btn v-if="isUserLoggedIn"  text large color="primary" v-on:click="logout"> Logout
 				   </v-btn>
+      </div>
+      <div>
+				 <v-btn  text large color="primary" v-on:click="openCheckoutDrawer">  <v-icon medium>shopping_cart</v-icon>
+				   </v-btn>
+      </div>
 
-			</div>
 		</div>
+    <Checkout v-if="showCheckoutDrawer" :drawer="showCheckoutDrawer"></Checkout>
+    <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div>
 		<!-- <div v-if="isUserLoggedIn" class="navbar-item has-dropdown is-hoverable">
 			<a class="navbar-link">
 			Welcome {{ getUserName }}
@@ -33,13 +42,18 @@
 </template>
 
 <script>
+import Checkout from "../checkout/Checkout";
 export default {
   name: "VmMenu",
+  components: {
+    Checkout
+  },
   data() {
     return {
       wishlistLabel: "Wishlist",
       logoutLabel: "Log out",
-      loginLabel: "Sign in"
+      loginLabel: "Sign in",
+      showCheckoutDrawer: false
     };
   },
 
@@ -61,6 +75,12 @@ export default {
   },
 
   methods: {
+    away() {
+      this.showCheckoutDrawer = false;
+    },
+    openCheckoutDrawer() {
+      this.showCheckoutDrawer = true;
+    },
     logout() {
       this.$store.commit("showProgressLoader", true);
       this.$auth.logout({
@@ -104,5 +124,13 @@ export default {
 <style lang="scss" scoped>
 div.navbar-item button.v-size--large {
   margin-top: 10%;
+}
+div.outside {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(120, 120, 120, 0.7);
 }
 </style>
