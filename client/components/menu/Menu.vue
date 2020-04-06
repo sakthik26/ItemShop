@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="navbar-item">
-			<div class="">
+			<div class="  ">
 
 					 <v-btn v-if="!isUserLoggedIn" depressed color="primary" @click="redirectToAuth0">{{ loginLabel }}
 				   </v-btn>
@@ -77,9 +77,11 @@ export default {
   methods: {
     away() {
       this.showCheckoutDrawer = false;
+      this.$store.commit("closeCheckoutDrawer");
     },
     openCheckoutDrawer() {
       this.showCheckoutDrawer = true;
+      this.$store.commit("openCheckoutDrawer");
     },
     logout() {
       this.$store.commit("showProgressLoader", true);
@@ -128,9 +130,10 @@ div.navbar-item button.v-size--large {
 div.outside {
   width: 100vw;
   height: 100vh;
-  position: fixed;
+  position: fixed !important;
   top: 0px;
   left: 0px;
-  background: rgba(120, 120, 120, 0.7);
+  overflow-y: hidden;
+  background: rgba(120, 120, 120, 0.7) !important;
 }
 </style>

@@ -128,7 +128,8 @@ export const state = () => ({
   cart: {
     items: [],
     subTotal: '',
-  }
+  },
+  showCheckoutDrawer: false
 })
 
 export const getters = {
@@ -173,6 +174,9 @@ export const getters = {
   cartItems: state => {
     return state.cart;
   },
+  showCheckoutDrawer: state => {
+    return state.showCheckoutDrawer
+  }
   // subTotal: state => {
   //   return state.cart.subTotal;
   // }
@@ -180,6 +184,12 @@ export const getters = {
 }
 
 export const mutations = {
+  openCheckoutDrawer: (state) => {
+    state.showCheckoutDrawer = true
+  },
+  closeCheckoutDrawer: (state) => {
+    state.showCheckoutDrawer = false
+  },
   addToCart: (state, productInformation) => {
     var itemIndex = state.cart.items.map(item => {
       return item.id

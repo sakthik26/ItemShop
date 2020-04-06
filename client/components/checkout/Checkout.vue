@@ -81,12 +81,15 @@ export default {
       fixed: true,
       hideOverlay: true,
       cartItems: {},
-      disableCheckout: false
+      disableCheckout: true
     };
   },
   mounted() {
     console.log("cart");
     this.cartItems = this.$store.getters.cartItems;
+    if (this.cartItems.items.length > 0) {
+      this.disableCheckout = false;
+    }
   },
   computed: {
     bg() {
