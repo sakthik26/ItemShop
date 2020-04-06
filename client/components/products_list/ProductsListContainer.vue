@@ -1,7 +1,7 @@
 <template>
 <div>
  <!-- <VmSearch></VmSearch> -->
-  <div class="card-container columns is-multiline">
+  <div class="card-container columns is-multiline" :class="isCheckoutDrawerOpen? 'disable': ''">
 
     <div class="column is-one-quarter" v-for="product in products" :key="product.id">
       <VmProducts :product="product"></VmProducts>
@@ -31,6 +31,9 @@ export default {
   },
 
   computed: {
+    isCheckoutDrawerOpen() {
+      return this.$store.getters.showCheckoutDrawer;
+    },
     products() {
       if (this.$store.state.userInfo.hasSearched) {
         return this.getProductByTitle();
@@ -58,5 +61,8 @@ export default {
 .card-container {
   width: 75%;
   margin: 0 auto;
+}
+.card-container.disable {
+  pointer-events: none;
 }
 </style>

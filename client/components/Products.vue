@@ -1,6 +1,7 @@
 <template>
   <v-card
     class="mx-auto my-12"
+    :class="isCheckoutDrawerOpen? 'disable':''"
     max-width="374"
     :to="{
         name: 'product_detail-id',
@@ -98,6 +99,9 @@ export default {
   computed: {
     isUserLogged() {
       return this.$store.getters.isUserLoggedIn;
+    },
+    isCheckoutDrawerOpen() {
+      return this.$store.getters.showCheckoutDrawer;
     }
   },
 
@@ -171,8 +175,12 @@ export default {
   margin: 0;
 }
 
-div.v-card {
+.v-card {
   cursor: pointer;
+}
+
+.v-card.disable {
+  background: rgba(120, 120, 120, 0.7) !important;
 }
 // div.v-card.v-sheet:hover {
 //   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
