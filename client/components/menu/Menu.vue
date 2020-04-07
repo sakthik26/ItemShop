@@ -22,7 +22,7 @@
       </div>
 
 		</div>
-    <Checkout v-if="showCheckoutDrawer" :drawer="showCheckoutDrawer"></Checkout>
+    <Checkout :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div>
 		<!-- <div v-if="isUserLoggedIn" class="navbar-item has-dropdown is-hoverable">
 			<a class="navbar-link">
@@ -77,11 +77,11 @@ export default {
   methods: {
     away() {
       this.showCheckoutDrawer = false;
-      this.$store.commit("closeCheckoutDrawer");
+      /// this.$store.commit("closeCheckoutDrawer");
     },
     openCheckoutDrawer() {
       this.showCheckoutDrawer = true;
-      this.$store.commit("openCheckoutDrawer");
+      // this.$store.commit("openCheckoutDrawer");
     },
     logout() {
       this.$store.commit("showProgressLoader", true);
@@ -127,13 +127,12 @@ export default {
 div.navbar-item button.v-size--large {
   margin-top: 10%;
 }
-div.outside {
+.outside {
   width: 100vw;
   height: 100vh;
-  position: fixed !important;
+  position: fixed;
   top: 0px;
   left: 0px;
-  overflow-y: hidden;
-  background: rgba(120, 120, 120, 0.7) !important;
+  background: rgba(120, 120, 120, 0.7);
 }
 </style>
