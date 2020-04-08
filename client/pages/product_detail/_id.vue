@@ -93,8 +93,8 @@
               <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
       </div>
     </div>
-    <Checkout v-if="showCheckoutDrawer" :drawer="showCheckoutDrawer"></Checkout>
-    <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div>
+    <!-- <Checkout :drawer="showCheckoutDrawer"></Checkout>
+    <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div> -->
   </div>
 </template>
 
@@ -225,7 +225,7 @@ export default {
       this.showCheckoutDrawer = false;
     },
     addToCart(selectedVariant) {
-      this.showCheckoutDrawer = true;
+      //this.showCheckoutDrawer = true;
       var productInformation = this.variantIdMap[selectedVariant];
       this.$store.commit("addToCart", productInformation);
       // this.$store.commit("setAddedBtn", data);
@@ -274,14 +274,7 @@ export default {
     margin-bottom: 10px;
   }
 }
-div.outside {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  background: rgba(120, 120, 120, 0.7);
-}
+
 div.product-image {
   margin: 0% 10% 0% 10%;
   max-width: 400px;
@@ -290,6 +283,9 @@ div.product-image {
 div.product-content {
   max-width: 400px;
   min-width: 400px;
+  button {
+    position: static;
+  }
 }
 div.product-detail {
   justify-content: center;
@@ -371,7 +367,7 @@ div.swatch {
     height: 50px;
     line-height: 50px;
     margin: 0 0.8rem 0.8rem 0;
-    position: relative;
+    position: static;
   }
   .visually-hidden {
     border: 0;

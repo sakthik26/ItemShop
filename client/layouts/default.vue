@@ -8,6 +8,8 @@
       <VmRegistrationModal></VmRegistrationModal>
 
     </main>
+      <Checkout :drawer="showCheckoutDrawer"></Checkout>
+    <div v-if="showCheckoutDrawer" class="outside" v-on:click="away"></div>
     <VmFooter></VmFooter>
     </v-app>
   </div>
@@ -15,6 +17,7 @@
 
 <script>
 import VmHeader from "@/components/header/Header";
+import Checkout from "@/components/checkout/Checkout";
 import VmFooter from "@/components/footer/Footer";
 import VmLoginModal from "@/components/modal/Login";
 import VmRegistrationModal from "@/components/modal/Registration";
@@ -24,7 +27,21 @@ export default {
     VmHeader,
     VmFooter,
     VmLoginModal,
+    Checkout,
     VmRegistrationModal
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    showCheckoutDrawer() {
+      return this.$store.getters.showCheckoutDrawer;
+    }
+  },
+  methods: {
+    away() {
+      this.$store.commit("closeCheckoutDrawer");
+    }
   }
 };
 </script>
@@ -63,5 +80,13 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+div.outside {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(120, 120, 120, 0.7);
 }
 </style>
