@@ -79,19 +79,25 @@ export default {
       expandOnHover: false,
       background: false,
       fixed: true,
-      hideOverlay: true,
-      cartItems: {},
-      disableCheckout: true
+      hideOverlay: true
+      // cartItems: {},
     };
   },
   mounted() {
     console.log("cart");
-    this.cartItems = this.$store.getters.cartItems;
-    if (this.cartItems.items.length > 0) {
-      this.disableCheckout = false;
-    }
+    //this.cartItems = this.$store.getters.cartItems;
+    // if (this.$store.getters.cartItems.length > 0) {
+    //   this.disableCheckout = false;
+    // }
   },
   computed: {
+    cartItems() {
+      return this.$store.getters.cartItems;
+    },
+    disableCheckout() {
+      if (this.$store.getters.cartItems.items.length > 0) return false;
+      else return true;
+    },
     bg() {
       return this.background
         ? "https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
@@ -103,7 +109,7 @@ export default {
       // if (quantity < 10 || operation == "sub") {
       this.$store.commit("changeQuantity", { id: id, operation: operation });
       // }
-      if (this.cartItems.items.length == 0) {
+      if (this.$store.getters.cartItems.items.length == 0) {
         this.disableCheckout = true;
       }
     },
