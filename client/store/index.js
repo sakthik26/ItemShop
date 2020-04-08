@@ -191,6 +191,7 @@ export const mutations = {
     state.showCheckoutDrawer = false
   },
   addToCart: (state, productInformation) => {
+    state.showCheckoutDrawer = true
     var itemIndex = state.cart.items.map(item => {
       return item.id
     }).indexOf(productInformation.id)

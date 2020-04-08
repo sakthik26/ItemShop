@@ -22,8 +22,8 @@
       </div>
 
 		</div>
-    <Checkout :drawer="showCheckoutDrawer"></Checkout>
-    <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div>
+    <!-- <Checkout  :drawer="showCheckoutDrawer"></Checkout>
+    <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div> -->
 		<!-- <div v-if="isUserLoggedIn" class="navbar-item has-dropdown is-hoverable">
 			<a class="navbar-link">
 			Welcome {{ getUserName }}
@@ -80,7 +80,7 @@ export default {
       /// this.$store.commit("closeCheckoutDrawer");
     },
     openCheckoutDrawer() {
-      this.showCheckoutDrawer = true;
+      this.$store.commit("openCheckoutDrawer");
       // this.$store.commit("openCheckoutDrawer");
     },
     logout() {
