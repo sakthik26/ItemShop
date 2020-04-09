@@ -8,7 +8,11 @@ export default {
   mounted() {
     this.$store.commit("showProgressLoader", true);
     this.$store.commit("isUserLoggedIn", true);
-    this.$router.push({ name: "" });
+
+    console.log("helloitsme" + this.$store.getters.cartItems.redirectToPath);
+    this.$router.push({
+      path: "" + this.$store.getters.cartItems.redirectToPath
+    });
     setTimeout(function() {
       this.$store.commit("showProgressLoader", false);
     }, 1500);

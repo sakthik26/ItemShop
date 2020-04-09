@@ -99,6 +99,8 @@ export default {
       //Remove products from fav
     },
     redirectToAuth0() {
+      console.log("current" + $nuxt.$route.path);
+      this.$store.commit("redirectToPath", $nuxt.$route.path);
       this.$auth.loginWith("auth0");
       this.$store.commit("showProgressLoader", true);
 
