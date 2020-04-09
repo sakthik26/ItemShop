@@ -128,8 +128,10 @@ export const state = () => ({
   cart: {
     items: [],
     subTotal: '',
+    redirectToPath: '',
   },
-  showCheckoutDrawer: false
+  showCheckoutDrawer: false,
+
 })
 
 export const getters = {
@@ -176,6 +178,9 @@ export const getters = {
   },
   showCheckoutDrawer: state => {
     return state.showCheckoutDrawer
+  },
+  redirectToPath: state => {
+    return state.cart.redirectToPath
   }
   // subTotal: state => {
   //   return state.cart.subTotal;
@@ -184,6 +189,9 @@ export const getters = {
 }
 
 export const mutations = {
+  redirectToPath: (state, path) => {
+    state.cart.redirectToPath = path
+  },
   openCheckoutDrawer: (state) => {
     state.showCheckoutDrawer = true
   },
