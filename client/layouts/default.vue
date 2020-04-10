@@ -11,6 +11,7 @@
       <Checkout :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away"></div>
     <VmFooter></VmFooter>
+     <Cookie />
     </v-app>
   </div>
 </template>
@@ -19,12 +20,14 @@
 import VmHeader from "@/components/header/Header";
 import Checkout from "@/components/checkout/Checkout";
 import VmFooter from "@/components/footer/Footer";
+import Cookie from "@/components/cookie/Cookie";
 import VmLoginModal from "@/components/modal/Login";
 import VmRegistrationModal from "@/components/modal/Registration";
 
 export default {
   components: {
     VmHeader,
+    Cookie,
     VmFooter,
     VmLoginModal,
     Checkout,
