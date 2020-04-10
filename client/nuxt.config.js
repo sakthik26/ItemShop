@@ -75,7 +75,10 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [{ src: '~plugins/vuetify.js', ssr: false }, { src: '~/plugins/localStorage.js', ssr: false }],
+  plugins: [{ src: '~plugins/vuetify.js', ssr: false }, { src: '~/plugins/localStorage.js', ssr: false }, {
+    src: './plugins/googleAnalytics.js',
+    mode: 'client'
+  }],
 
   /*
   ** Nuxt.js modules

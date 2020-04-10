@@ -38,6 +38,7 @@
     "nuxt-shopify": "^1.8.0",
     "vue": "^2.6.11",
     "vue-agile": "^1.0.11",
+    "vue-analytics": "^5.22.1",
     "vue-carousel": "^0.18.0",
     "vue-product-carousel": "^1.2.0",
     "vue-router": "^3.1.5",
