@@ -74,11 +74,13 @@ module.exports = {
 
   /*
   ** Plugins to load before mounting the App
-  */
-  plugins: [{ src: '~plugins/vuetify.js', ssr: false }, { src: '~/plugins/localStorage.js', ssr: false }, {
+    plugins: [{ src: '~plugins/vuetify.js', ssr: false }, { src: '~/plugins/localStorage.js', ssr: false }, {
     src: './plugins/googleAnalytics.js',
     mode: 'client'
   }],
+  */
+
+  plugins: [{ src: '~plugins/vuetify.js', ssr: false }, { src: '~/plugins/localStorage.js', ssr: false }],
 
   /*
   ** Nuxt.js modules
@@ -133,4 +135,13 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
+  buildModules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-163421171-1',
+      debug: {
+        enabled: true,
+        sendHitTask: true
+      }
+    }]
+  ]
 }
