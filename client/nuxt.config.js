@@ -80,7 +80,11 @@ module.exports = {
   }],
   */
 
-  plugins: [{ src: '~plugins/vuetify.js', ssr: false }, { src: '~/plugins/localStorage.js', ssr: false }],
+  plugins: [{ src: '~plugins/vuetify.js', ssr: false }, { src: '~/plugins/localStorage.js', ssr: false },
+  {
+    src: './plugins/googleAnalytics.js',
+    mode: 'client'
+  }],
 
   /*
   ** Nuxt.js modules
@@ -121,8 +125,8 @@ module.exports = {
     strategies: {
       local: false,
       auth0: {
-        domain: 'dev-owxl7c5w.eu.auth0.com',
-        client_id: 'w1Cy4XsnNicTI5cptHgKeqNbiBKVWVmB',
+        domain: 'hypezhop.eu.auth0.com',
+        client_id: 'jOpZ4JozQIu2Gwv4Nbtn97aFBF0UV2ap',
       }
     }
   },
@@ -135,13 +139,27 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
-  buildModules: [
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-163421171-1',
-      debug: {
-        enabled: true,
-        sendHitTask: true
-      }
-    }]
-  ]
+  // buildModules: [
+  //   ['@nuxtjs/google-analytics', {
+  //     id: 'UA-163421171-1',
+  //     checkDuplicatedScript: true,
+  //     autoTracking: {
+  //       pageviewTemplate(route) {
+  //         return {
+  //           page: route.path,
+  //           title: document.title,
+  //           location: window.location.href
+  //         }
+  //       }
+  //     },
+  //     debug: {
+  //       enabled: true,
+  //       sendHitTask: true
+  //     },
+  //     ecommerce: {
+  //       enabled: true,
+  //       enhanced: true
+  //     }
+  //   }]
+  // ]
 }

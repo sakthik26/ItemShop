@@ -89,7 +89,7 @@ export default {
         returnTo: "http://localhost:3000"
       });
       window.location.href =
-        "https://dev-owxl7c5w.eu.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost:3000&client_id=w1Cy4XsnNicTI5cptHgKeqNbiBKVWVmB";
+        "https://hypezhop.eu.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost:3000&client_id=jOpZ4JozQIu2Gwv4Nbtn97aFBF0UV2ap";
       setTimeout(function() {
         this.$store.commit("isUserLoggedIn", false);
         this.$store.commit("showProgressLoader", false);
