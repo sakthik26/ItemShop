@@ -10,7 +10,7 @@
 			</div>
 
         <div>
-					 <v-btn v-if="isUserLoggedIn"  text large color="primary"> My Account
+					 <v-btn v-if="isUserLoggedIn"  text large color="primary" v-on:click="openDialog"> Account
 				   </v-btn>
 
 					 <v-btn v-if="isUserLoggedIn"  text large color="primary" v-on:click="logout"> Logout
@@ -20,7 +20,7 @@
 				 <v-btn  text large color="primary" v-on:click="openCheckoutDrawer">  <v-icon medium>shopping_cart</v-icon>
 				   </v-btn>
       </div>
-
+      <UserProfile/>
 		</div>
     <!-- <Checkout  :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div> -->
@@ -43,10 +43,12 @@
 
 <script>
 import Checkout from "../checkout/Checkout";
+import UserProfile from "../user/userProfile";
 export default {
   name: "VmMenu",
   components: {
-    Checkout
+    Checkout,
+    UserProfile
   },
   data() {
     return {
@@ -75,6 +77,9 @@ export default {
   },
 
   methods: {
+    openDialog() {
+      this.$store.commit("changeAccountDialogState", true);
+    },
     away() {
       this.showCheckoutDrawer = false;
       /// this.$store.commit("closeCheckoutDrawer");

@@ -117,7 +117,9 @@ export const state = () => ({
     isSignedUp: false,
     hasSearched: false,
     name: '',
-    productTitleSearched: ''
+    productTitleSearched: '',
+    isAccountDialogOpen: false,
+    email: '',
   },
   systemInfo: {
     openLoginModal: false,
@@ -181,6 +183,12 @@ export const getters = {
   },
   redirectToPath: state => {
     return state.cart.redirectToPath
+  },
+  isAccountDialogOpen: state => {
+    return state.userInfo.isAccountDialogOpen
+  },
+  email: state => {
+    return state.userInfo.email
   }
   // subTotal: state => {
   //   return state.cart.subTotal;
@@ -328,7 +336,12 @@ export const mutations = {
   populateProductsList(state, productsList) {
     state.products = productsList
   },
-
+  changeAccountDialogState(state, flag) {
+    state.userInfo.isAccountDialogOpen = flag
+  },
+  setEmail(state, email) {
+    state.userInfo.email = email
+  }
 }
 
 export const actions = {

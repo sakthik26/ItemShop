@@ -8,6 +8,7 @@
 <script>
 import VmProductsList from "@/components/products_list/ProductsListContainer";
 import VmHero from "@/components/hero/Hero";
+import axios from "axios";
 
 export default {
   name: "index",
@@ -16,6 +17,23 @@ export default {
     VmHero
   },
   mounted() {
+    //fetch the user information
+    if (this.$store.getters.isUserLoggedIn) {
+      axios
+        .get("https://hypezhop.eu.auth0.com/userinfo", {
+          headers: {
+            Authorization: localStorage.getItem("auth._token.auth0") + ""
+          }
+        })
+        .then(response => {
+          if (response && response.data)
+            this.$store.commit("setEmail", response.data.email);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+
     this.$shopify.product.fetchAll().then(products => {
       //If product no available set available tag to false
       var productsList = [];

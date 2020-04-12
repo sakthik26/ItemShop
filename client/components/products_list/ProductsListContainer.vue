@@ -15,6 +15,7 @@
 
 <script>
 import VmProducts from "../Products";
+import axios from "axios";
 import { getByTitle } from "@/assets/filters";
 import VmSearch from "../search/Search";
 export default {
@@ -29,7 +30,7 @@ export default {
       productsFiltered: []
     };
   },
-
+  mounted() {},
   computed: {
     isCheckoutDrawerOpen() {
       return this.$store.getters.showCheckoutDrawer;
