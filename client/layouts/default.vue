@@ -11,7 +11,9 @@
       <Checkout :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away"></div>
     <VmFooter></VmFooter>
-     <Cookie />
+     <div v-if="showCookieConsent">
+     <Cookie/>
+     </div>
     </v-app>
   </div>
 </template>
@@ -34,7 +36,14 @@ export default {
     VmRegistrationModal
   },
   data() {
-    return {};
+    return {
+      showCookieConsent: false
+    };
+  },
+  mounted() {
+    this.showCookieConsent = localStorage.getItem("GDPR:accepted")
+      ? false
+      : true;
   },
   computed: {
     showCheckoutDrawer() {
