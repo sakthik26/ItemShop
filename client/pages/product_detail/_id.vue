@@ -262,6 +262,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.section {
+  margin-bottom: 10%;
+}
 .card-content {
   padding: 15px 10px 15px 0;
 
