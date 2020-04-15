@@ -1,8 +1,22 @@
 <template>
 <div>
  <!-- <VmSearch></VmSearch> -->
-  <div class="card-container columns is-multiline" :class="isCheckoutDrawerOpen? 'disable': ''">
 
+  <div class="card-container columns is-multiline" :class="isCheckoutDrawerOpen? 'disable': ''">
+  <v-tabs>
+    <v-tab>Best Sellers</v-tab>
+    <v-tab>Men</v-tab>
+    <v-tab>Women</v-tab>
+   </v-tabs>
+   <v-col>
+     <div> Sort By</div>
+       <v-select
+          :items="items"
+          label="Solo field"
+          dense
+          solo
+        ></v-select>
+      </v-col>
     <div class="column is-one-quarter" v-for="product in products" :key="product.id">
       <VmProducts :product="product"></VmProducts>
     </div>
@@ -27,7 +41,8 @@ export default {
     return {
       // id: "",
       noProductLabel: "No product found",
-      productsFiltered: []
+      productsFiltered: [],
+      items: ["Foo", "Bar", "Fizz", "Buzz"]
     };
   },
   mounted() {},
@@ -62,6 +77,14 @@ export default {
 .card-container {
   width: 75%;
   margin: 0 auto;
+  position: relative;
+
+  .col {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 250px;
+  }
 }
 .card-container.disable {
   pointer-events: none;
