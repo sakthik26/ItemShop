@@ -203,7 +203,7 @@ export default {
 }
 @media screen and (max-width: 500px) {
   .v-navigation-drawer {
-    width: 65% !important;
+    width: 80% !important;
   }
 }
 
