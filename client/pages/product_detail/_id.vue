@@ -53,31 +53,7 @@
            <Tabs></Tabs>
            </div>
 
-          <div class="card-content__ratings" v-if="product.rating === 1">
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="card-content__ratings" v-else-if="product.rating === 2">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="card-content__ratings" v-else-if="product.rating === 3">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="card-content__ratings" v-else-if="product.rating === 4">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="card-content__ratings" v-else-if="product.rating === 5">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-          </div>
+
               <!-- <div class="card-content__reviews">
                 <div class="is-pulled-left">
                   <p><strong>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</strong></p>
@@ -93,6 +69,17 @@
               <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
       </div>
     </div>
+
+     <div class ="review-title"> <h1>Customer Reviews</h1> </div>
+
+    <div class="customer-reviews">
+
+    <Reviews> </Reviews>
+      <Reviews> </Reviews>
+      <Reviews> </Reviews>
+      <Reviews> </Reviews>
+
+    </div>
     <!-- <Checkout :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div> -->
   </div>
@@ -102,13 +89,15 @@
 import Checkout from "@/components/checkout/Checkout";
 import Carousel from "@/components/carousel/Carousel";
 import Tabs from "@/components/tabs/Tabs";
+import Reviews from "@/components/reviews/Reviews";
 import Vue from "vue";
 export default {
   name: "product_detail-id",
   components: {
     Checkout,
     Carousel,
-    Tabs
+    Tabs,
+    Reviews
   },
 
   // validate({ params }) {
@@ -264,6 +253,21 @@ export default {
 <style lang="scss" scoped>
 .section {
   margin-bottom: 10%;
+}
+
+div.review-title {
+  margin: 0 auto;
+  /* width: 100%; */
+  text-align: center;
+}
+
+div.customer-reviews {
+  display: flex;
+
+  /* width: 70%; */
+  margin: 0 auto;
+  width: 70%;
+  flex-wrap: wrap;
 }
 .card-content {
   padding: 15px 10px 15px 0;
@@ -453,6 +457,12 @@ div.swatch {
 
 div.card-content__other-details {
   margin-top: 10px;
+}
+
+div.review-title h1 {
+  font-size: 1.25rem !important;
+  font-weight: 500;
+  letter-spacing: 0.0125em !important;
 }
 </style>
 
