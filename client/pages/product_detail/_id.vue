@@ -74,10 +74,10 @@
 
     <div class="customer-reviews">
 
-    <Reviews> </Reviews>
+    <Reviews v-for="reviewProp in reviewProps":reviewProps="reviewProp"> </Reviews>
+      <!-- <Reviews> </Reviews>
       <Reviews> </Reviews>
-      <Reviews> </Reviews>
-      <Reviews> </Reviews>
+      <Reviews> </Reviews> -->
 
     </div>
     <!-- <Checkout :drawer="showCheckoutDrawer"></Checkout>
@@ -106,6 +106,13 @@ export default {
 
   data() {
     return {
+      // reviewProps: {
+      //   rating: 4,
+      //   name: "sakthi",
+      //   date: "2020-02-13T02:51:00+00:00",
+      //   body: "this is test"
+      // },
+      reviewProps: [],
       showCheckoutDrawer: false,
       addToCartLabel: "Add to cart",
       removeFromCartLabel: "Remove from cart",
@@ -193,6 +200,25 @@ export default {
       console.log(this.product);
       console.log(this.availableVariants);
       this.loading = false;
+
+      //Review handling here
+      var productReviews = this.$store.getters.reviews.filter(review => {
+        return review.product_title == this.product.title;
+      });
+      var reviewCollection = [];
+      for (var i = 0; i < productReviews.length; i++) {
+        reviewCollection.push({
+          body: productReviews[i].body,
+          rating: productReviews[i].rating,
+          date: productReviews[i].created_at,
+          name: productReviews[i].reviewer.name,
+          images: productReviews[i].pictures.map(reviewImages => {
+            return reviewImages.urls.original;
+          })
+        });
+      }
+      this.reviewProps = [];
+      this.reviewProps = reviewCollection;
     });
   },
 
@@ -263,7 +289,7 @@ div.review-title {
 
 div.customer-reviews {
   display: flex;
-
+  justify-content: center;
   /* width: 70%; */
   margin: 0 auto;
   width: 70%;
@@ -460,9 +486,10 @@ div.card-content__other-details {
 }
 
 div.review-title h1 {
-  font-size: 1.25rem !important;
+  font-size: 1.55rem !important;
   font-weight: 500;
   letter-spacing: 0.0125em !important;
+  margin: 20px 0px;
 }
 </style>
 

@@ -133,7 +133,7 @@ export const state = () => ({
     redirectToPath: '',
   },
   showCheckoutDrawer: false,
-
+  reviews: []
 })
 
 export const getters = {
@@ -189,6 +189,9 @@ export const getters = {
   },
   email: state => {
     return state.userInfo.email
+  },
+  reviews: state => {
+    return state.reviews
   }
   // subTotal: state => {
   //   return state.cart.subTotal;
@@ -341,6 +344,10 @@ export const mutations = {
   },
   setEmail(state, email) {
     state.userInfo.email = email
+  },
+  populateProductReviews(state, reviews) {
+    for (var i = 0; i < reviews.length; i++)
+      state.reviews.splice(state.reviews.length, 0, reviews[i])
   }
 }
 
