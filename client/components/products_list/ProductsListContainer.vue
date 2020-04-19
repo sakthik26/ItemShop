@@ -58,7 +58,262 @@ export default {
       items: ["Foo", "Bar", "Fizz", "Buzz"]
     };
   },
-  mounted() {},
+  mounted() {
+    //change the shopname and API token for the store for changing the reviews
+    var reviewAPI =
+      "https://judge.me/api/v1/reviews?api_token=_B6uADabPFBI5y94UqWtVp6Xndg&shop_domain=derneuesitemshop.myshopify.com";
+    //store the reviews in the state before rendering the product description
+    for (var i = 1; i <= 10; i++)
+      axios(reviewAPI + "&page=" + 1, {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+      })
+        .then(response => {
+          if (response.reviews.length > 0)
+            this.$store.commit("populateProductReviews", response.reviews);
+        })
+        .catch(e => {
+          this.$store.commit("populateProductReviews", [
+            {
+              id: 102095375,
+              title: null,
+              body: "They came perfect. Seem good quality. Still not tested.",
+              rating: 5,
+              product_external_id: 4714294542475,
+              reviewer: {
+                id: 194034339,
+                external_id: null,
+                email: "ali_review_10013730959845251+import83_AbCs@example.com",
+                name: "Breana Schneider",
+                phone: null,
+                accepts_marketing: true,
+                unsubscribed_at: null,
+                source_email: "ali_review_10013730959845251@example.com",
+                tags: null
+              },
+              source: "aliexpress",
+              curated: "not-yet",
+              hidden: false,
+              verified: "nothing",
+              featured: false,
+              created_at: "2020-02-23T14:35:00+00:00",
+              updated_at: "2020-04-18T22:41:30+00:00",
+              pictures: [
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/U951b897cc4cd447c96c9af86edba64ebE.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/U951b897cc4cd447c96c9af86edba64ebE.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/U951b897cc4cd447c96c9af86edba64ebE.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/U951b897cc4cd447c96c9af86edba64ebE.jpg"
+                  },
+                  hidden: false
+                },
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/U52f8b23c68aa495ca1c10c87fb10f33cQ.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/U52f8b23c68aa495ca1c10c87fb10f33cQ.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/U52f8b23c68aa495ca1c10c87fb10f33cQ.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/U52f8b23c68aa495ca1c10c87fb10f33cQ.jpg"
+                  },
+                  hidden: false
+                },
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/Uf000101872194e04a470e296da3a8e6aM.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/Uf000101872194e04a470e296da3a8e6aM.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/Uf000101872194e04a470e296da3a8e6aM.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/Uf000101872194e04a470e296da3a8e6aM.jpg"
+                  },
+                  hidden: false
+                }
+              ],
+              ip_address: null,
+              product_title:
+                "New design mixed color bamboo toothbrush Eco Friendly wooden Tooth Brush Soft bristle Tip Charcoal adults oral care toothbrush",
+              product_handle:
+                "new-design-mixed-color-bamboo-toothbrush-eco-friendly-wooden-tooth-brush-soft-bristle-tip-charcoal-adults-oral-care-toothbrush"
+            },
+            {
+              id: 102095376,
+              title: null,
+              body:
+                "Brushes with soft bristles. Environmentally friendly, which I really liked. Bristles are bright, there is no smell.",
+              rating: 5,
+              product_external_id: 4714294542475,
+              reviewer: {
+                id: 194034341,
+                external_id: null,
+                email: "ali_review_20008230610270043+import74_lYMO@example.com",
+                name: "Frances Kuphal",
+                phone: null,
+                accepts_marketing: true,
+                unsubscribed_at: null,
+                source_email: "ali_review_20008230610270043@example.com",
+                tags: null
+              },
+              source: "aliexpress",
+              curated: "not-yet",
+              hidden: false,
+              verified: "nothing",
+              featured: false,
+              created_at: "2020-02-21T19:02:00+00:00",
+              updated_at: "2020-04-18T22:41:31+00:00",
+              pictures: [
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/U379469ace91e4ae7aaa4f5f32d5d72b1T.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/U379469ace91e4ae7aaa4f5f32d5d72b1T.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/U379469ace91e4ae7aaa4f5f32d5d72b1T.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/U379469ace91e4ae7aaa4f5f32d5d72b1T.jpg"
+                  },
+                  hidden: false
+                },
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/Ub1cdc21f1de640048ded03e15fa7b9b4v.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/Ub1cdc21f1de640048ded03e15fa7b9b4v.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/Ub1cdc21f1de640048ded03e15fa7b9b4v.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/Ub1cdc21f1de640048ded03e15fa7b9b4v.jpg"
+                  },
+                  hidden: false
+                },
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/U4bce4bee68324bbd98301743dca4b55dZ.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/U4bce4bee68324bbd98301743dca4b55dZ.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/U4bce4bee68324bbd98301743dca4b55dZ.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/U4bce4bee68324bbd98301743dca4b55dZ.jpg"
+                  },
+                  hidden: false
+                }
+              ],
+              ip_address: null,
+              product_title:
+                "New design mixed color bamboo toothbrush Eco Friendly wooden Tooth Brush Soft bristle Tip Charcoal adults oral care toothbrush",
+              product_handle:
+                "new-design-mixed-color-bamboo-toothbrush-eco-friendly-wooden-tooth-brush-soft-bristle-tip-charcoal-adults-oral-care-toothbrush"
+            },
+            {
+              id: 101943476,
+              title: null,
+              body:
+                "Product as the announcement came perfect condition. Arrived in perfect condition…",
+              rating: 5,
+              product_external_id: 4673712259211,
+              reviewer: {
+                id: 193733880,
+                external_id: null,
+                email: "ali_review_10012670536564646+import20_shKn@example.com",
+                name: "Corene Moen",
+                phone: null,
+                accepts_marketing: true,
+                unsubscribed_at: null,
+                source_email: "ali_review_10012670536564646@example.com",
+                tags: null
+              },
+              source: "aliexpress",
+              curated: "not-yet",
+              hidden: false,
+              verified: "nothing",
+              featured: false,
+              created_at: "2020-02-13T05:42:00+00:00",
+              updated_at: "2020-04-18T11:55:21+00:00",
+              pictures: [
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/U662bf5fe12c743ba832908ea8b649d64N.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/U662bf5fe12c743ba832908ea8b649d64N.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/U662bf5fe12c743ba832908ea8b649d64N.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/U662bf5fe12c743ba832908ea8b649d64N.jpg"
+                  },
+                  hidden: false
+                },
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/U47dcde7565d94ee09cb696554b9d38044.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/U47dcde7565d94ee09cb696554b9d38044.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/U47dcde7565d94ee09cb696554b9d38044.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/U47dcde7565d94ee09cb696554b9d38044.jpg"
+                  },
+                  hidden: false
+                },
+                {
+                  urls: {
+                    small:
+                      "https://ae01.alicdn.com/kf/Ubf99905d469c4225bfcb1a0d287488edr.jpg",
+                    compact:
+                      "https://ae01.alicdn.com/kf/Ubf99905d469c4225bfcb1a0d287488edr.jpg",
+                    huge:
+                      "https://ae01.alicdn.com/kf/Ubf99905d469c4225bfcb1a0d287488edr.jpg",
+                    original:
+                      "https://ae01.alicdn.com/kf/Ubf99905d469c4225bfcb1a0d287488edr.jpg"
+                  },
+                  hidden: false
+                }
+              ],
+              ip_address: null,
+              product_title: "Mens Joggers Casual Pants",
+              product_handle:
+                "mens-joggers-casual-pants-fitness-men-sportswear-tracksuit-bottoms-skinny-sweatpants-trousers-black-gyms-jogger-track-pants"
+            }
+          ]);
+        });
+
+    // fetch(reviewAPI + "&page=" + 1)
+    //   .then(function(response) {
+    //     if (response.status !== 200) {
+    //       console.log(
+    //         "Looks like there was a problem. Status Code: " + response.status
+    //       );
+    //       return;
+    //     }
+
+    //     // Examine the text in the response
+    //     response.json().then(function(data) {
+    //       console.log(data);
+    //     });
+    //   })
+    //   .catch(function(err) {
+    //     console.log("Fetch Error :-S", err);
+    //   });
+  },
   computed: {
     isCheckoutDrawerOpen() {
       return this.$store.getters.showCheckoutDrawer;
