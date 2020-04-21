@@ -15,7 +15,7 @@
     </v-card-text>
     <div class="images" v-viewer="{movable: false,toolbar: false,title: false}">
       <!-- <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png">-->
-       <img v-for="src in reviewProps.images" :src="src">
+       <img v-for="src in reviewProps.images" :src="src"></img>
     </div>
      <viewer :images="images" :navbar="false">
       <img v-for="src in images" :src="src" :key="src">
@@ -102,6 +102,7 @@ div.customer-reviews .images {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 6%;
+  cursor: pointer;
   padding-left: 5%;
 }
 div.customer-reviews img {

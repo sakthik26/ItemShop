@@ -16,7 +16,14 @@
           align="center"
           justify="center"
         >
-          <img :src="slide"> </img>
+
+          <div class="images" v-viewer="{movable: false,toolbar: false,title: false}">
+      <!-- <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png">-->
+       <img :src="slide"> </img>
+    </div>
+     <viewer :images="images" :navbar="false">
+      <img v-for="src in images" :src="src" :key="src">
+    </viewer>
         </v-row>
       </v-sheet>
     </v-carousel-item>
@@ -37,5 +44,8 @@ export default {
 .footer {
   background: #b9e2fc;
   color: black;
+}
+div.v-carousel__item .images {
+  cursor: pointer;
 }
 </style>
