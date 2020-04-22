@@ -2,7 +2,7 @@
 <div>
  <!-- <VmSearch></VmSearch> -->
 
-  <div class="card-container columns is-multiline" :class="isCheckoutDrawerOpen? 'disable': ''">
+  <div class="product-list card-container columns is-multiline" :class="isCheckoutDrawerOpen? 'disable': ''">
   <v-tabs >
     <v-tab>Best Sellers</v-tab>
     <v-tab>Men</v-tab>
@@ -30,7 +30,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" fill="#000000"></path></svg>
     </div>
   </div> -->
-    <div class="column is-one-quarter" v-for="product in products" :key="product.id">
+    <div class="column product-card" v-for="product in products" :key="product.id">
       <VmProducts :product="product"></VmProducts>
     </div>
     <div class="section" v-if="products.length === 0">
@@ -289,7 +289,8 @@ export default {
                 }
               ],
               ip_address: null,
-              product_title: "Mens Joggers Casual Pants",
+              product_title:
+                "Mens Joggers Casual Pants Fitness Men Sportswear - Blue",
               product_handle:
                 "mens-joggers-casual-pants-fitness-men-sportswear-tracksuit-bottoms-skinny-sweatpants-trousers-black-gyms-jogger-track-pants"
             }
@@ -342,10 +343,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card-container {
+.product-list.card-container {
   width: 75%;
   margin: 0 auto;
   position: relative;
+  // display: flex;
+  // /* justify-content: center; */
+  // flex-direction: row;
+  // /* width: 70%; */
+  // /* justify-content: space-around; */
+  // margin: 0 auto;
+  // flex-wrap: wrap;
 
   .v-tabs {
     flex: 1 1 80%;
@@ -370,5 +378,23 @@ export default {
 }
 .card-container.disable {
   pointer-events: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .column.product-card {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    width: 33.3%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1159px) {
+  .column.product-card {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    width: 50%;
+  }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <v-card
+  height="700"
     class="mx-auto my-12"
     :class="isCheckoutDrawerOpen? 'disable':''"
     max-width="374"
@@ -18,7 +19,7 @@
       :hover=true
   >
     <v-img
-      height="250"
+      height="400"
       :src="product.image"
     ></v-img>
 
