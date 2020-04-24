@@ -2,10 +2,10 @@
   <div class="footer">
     <div class="columns container">
       <div class="column">
-        <p>Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.</p>
+        <p></p>
       </div>
     <div class="column has-text-right">
-      <p>Vuemmerce | Made with ❤</p>
+      <p></p>
     </div>
     </div>
   </div>
@@ -13,13 +13,13 @@
 
 <script>
 export default {
-  name: 'VmFooter',
-}
+  name: "VmFooter"
+};
 </script>
 
 <style lang="scss" scoped>
- .footer {
-   background: #b9e2fc;
-   color: black;
- }
+.footer {
+  background: #b9e2fc;
+  color: black;
+}
 </style>
