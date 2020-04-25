@@ -133,10 +133,16 @@ export const state = () => ({
     redirectToPath: '',
   },
   showCheckoutDrawer: false,
-  reviews: []
+  reviews: [],
+  tabs: [],
 })
 
 export const getters = {
+
+  products: state => {
+    return state.products
+  },
+
   productsAdded: state => {
     return state.products.filter(el => {
       return el.isAddedToCart;
@@ -192,6 +198,9 @@ export const getters = {
   },
   reviews: state => {
     return state.reviews
+  },
+  tabs: state => {
+    return state.tabs
   }
   // subTotal: state => {
   //   return state.cart.subTotal;
@@ -202,6 +211,9 @@ export const getters = {
 export const mutations = {
   redirectToPath: (state, path) => {
     state.cart.redirectToPath = path
+  },
+  setTabContent: (state, tabs) => {
+    state.tabs = tabs
   },
   openCheckoutDrawer: (state) => {
     state.showCheckoutDrawer = true

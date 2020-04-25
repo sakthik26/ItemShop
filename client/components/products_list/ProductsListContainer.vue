@@ -4,9 +4,8 @@
 
   <div class="product-list card-container columns is-multiline" :class="isCheckoutDrawerOpen? 'disable': ''">
   <v-tabs >
-    <v-tab>Best Sellers</v-tab>
-    <v-tab>Men</v-tab>
-    <v-tab>Women</v-tab>
+    <v-tab v-for="section in tabs"
+    @click="OnTabClick(section)"> {{section}}</v-tab>
    </v-tabs>
    <v-col>
      <div class="select-label"> Sort By</div>
@@ -314,21 +313,23 @@ export default {
     //   .catch(function(err) {
     //     console.log("Fetch Error :-S", err);
     //   });
+
+    // Assign products to the respective tabs
   },
   computed: {
     isCheckoutDrawerOpen() {
       return this.$store.getters.showCheckoutDrawer;
     },
     products() {
-      if (this.$store.state.userInfo.hasSearched) {
-        return this.getProductByTitle();
-      } else {
-        return this.$store.state.products;
-      }
+      return this.$store.state.products;
+    },
+    tabs() {
+      return this.$store.getters.tabs;
     }
   },
 
   methods: {
+    OnTabClick(tabId) {},
     getProductByTitle() {
       let listOfProducts = this.$store.state.products,
         titleSearched = this.$store.state.userInfo.productTitleSearched;
