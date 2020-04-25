@@ -77,11 +77,20 @@ export default {
         var tabSections = productsList.map(product => {
           return product.tab;
         });
-        tabSections = new Set(tabSections);
+        tabSections = Array.from(new Set(tabSections));
+        var tabsWithId = [];
+        for (var i = 0; i < tabSections.length; i++) {
+          var obj = { id: i, title: tabSections[i] };
+          tabsWithId.push(obj);
+        }
+        tabSections = tabsWithId;
         // tabSections.filter((product, index) => {
-        //   return tabSections.indexOf(product) === index;
+        //   return tabSections.inselectedTabdexOf(product) === index;
         // });
         this.$store.commit("setTabContent", tabSections);
+        if (this.$store.getters.selectedTab)
+          this.$store.commit("setTabSelected", this.$store.getters.selectedTab);
+        else this.$store.commit("setTabSelected", tabSections[0].id);
       }
     });
   }

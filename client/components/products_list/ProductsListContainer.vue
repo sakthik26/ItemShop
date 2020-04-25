@@ -3,9 +3,9 @@
  <!-- <VmSearch></VmSearch> -->
 
   <div class="product-list card-container columns is-multiline" :class="isCheckoutDrawerOpen? 'disable': ''">
-  <v-tabs >
-    <v-tab v-for="section in tabs"
-    @click="OnTabClick(section)"> {{section}}</v-tab>
+  <v-tabs v-model="selectedTab">
+    <v-tab v-for="tab in tabs" :key="tab.id"
+    @click="onTabClick(tab.id)"> {{tab.title}}</v-tab>
    </v-tabs>
    <v-col>
      <div class="select-label"> Sort By</div>
@@ -313,23 +313,31 @@ export default {
     //   .catch(function(err) {
     //     console.log("Fetch Error :-S", err);
     //   });
-
-    // Assign products to the respective tabs
   },
   computed: {
     isCheckoutDrawerOpen() {
       return this.$store.getters.showCheckoutDrawer;
     },
     products() {
-      return this.$store.state.products;
+      return this.$store.state.products.filter(product => {
+        return (
+          product.tab ===
+          this.$store.getters.tabs[this.$store.getters.selectedTab].title
+        );
+      });
     },
     tabs() {
       return this.$store.getters.tabs;
+    },
+    selectedTab() {
+      return this.$store.getters.selectedTab;
     }
   },
 
   methods: {
-    OnTabClick(tabId) {},
+    onTabClick(tabId) {
+      this.$store.commit("setTabSelected", tabId);
+    },
     getProductByTitle() {
       let listOfProducts = this.$store.state.products,
         titleSearched = this.$store.state.userInfo.productTitleSearched;

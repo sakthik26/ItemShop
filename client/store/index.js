@@ -135,6 +135,7 @@ export const state = () => ({
   showCheckoutDrawer: false,
   reviews: [],
   tabs: [],
+  selectedTab: '',
 })
 
 export const getters = {
@@ -142,7 +143,9 @@ export const getters = {
   products: state => {
     return state.products
   },
-
+  selectedTab: state => {
+    return state.selectedTab
+  },
   productsAdded: state => {
     return state.products.filter(el => {
       return el.isAddedToCart;
@@ -214,6 +217,9 @@ export const mutations = {
   },
   setTabContent: (state, tabs) => {
     state.tabs = tabs
+  },
+  setTabSelected: (state, tabId) => {
+    state.selectedTab = tabId
   },
   openCheckoutDrawer: (state) => {
     state.showCheckoutDrawer = true
