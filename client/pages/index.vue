@@ -16,6 +16,11 @@ export default {
     VmProductsList,
     VmHero
   },
+  data() {
+    return {
+      collectionName: "Fitness" // hardcoded at the moment
+    };
+  },
   mounted() {
     //fetch the user information
     if (this.$store.getters.isUserLoggedIn) {
@@ -34,8 +39,17 @@ export default {
         });
     }
 
-    this.$shopify.product.fetchAll().then(products => {
-      //If product no available set available tag to false
+    // this.$shopify.product.fetchAll().then(products => {
+    //   //If product no available set available tag to false
+
+    // });
+
+    this.$shopify.collection.fetchAllWithProducts().then(collections => {
+      // Do something with the collections
+      //Currently fetching only one collection
+      var products = collections.filter(
+        collection => collection.title == this.collectionName
+      )[0].products;
       var productsList = [];
       for (var i = 0; i < products.length; i++) {
         var product = {};
@@ -44,7 +58,12 @@ export default {
         product.availableForSale = products[i].availableForSale;
         product.description = products[i].description;
         product.variants = products[i].variants;
-        product.image = products[i].images[0].src;
+        (product.tab =
+          products[i].variants[0].selectedOptions[2] &&
+          products[i].variants[0].selectedOptions[2].name == "Tab"
+            ? products[i].variants[0].selectedOptions[2].value
+            : null),
+          (product.image = products[i].images[0].src);
         product.price = products[i].variants[0].price;
         product.currency = products[i].variants[0].priceV2.currencyCode;
         product.quantity = 1;
@@ -54,6 +73,16 @@ export default {
       console.log(productsList);
       this.$store.commit("populateProductsList", productsList);
       console.log(products);
+      if (productsList.length > 0) {
+        var tabSections = productsList.map(product => {
+          return product.tab;
+        });
+        tabSections = new Set(tabSections);
+        // tabSections.filter((product, index) => {
+        //   return tabSections.indexOf(product) === index;
+        // });
+        this.$store.commit("setTabContent", tabSections);
+      }
     });
   }
 };
