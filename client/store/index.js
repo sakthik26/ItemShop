@@ -135,6 +135,8 @@ export const state = () => ({
   showCheckoutDrawer: false,
   reviews: [],
   tabs: [],
+  selectedTab: '',
+  filterVal: 'Featured',
 })
 
 export const getters = {
@@ -142,7 +144,9 @@ export const getters = {
   products: state => {
     return state.products
   },
-
+  selectedTab: state => {
+    return state.selectedTab
+  },
   productsAdded: state => {
     return state.products.filter(el => {
       return el.isAddedToCart;
@@ -201,6 +205,9 @@ export const getters = {
   },
   tabs: state => {
     return state.tabs
+  },
+  filterVal: state => {
+    return state.filterVal
   }
   // subTotal: state => {
   //   return state.cart.subTotal;
@@ -209,11 +216,17 @@ export const getters = {
 }
 
 export const mutations = {
+  setFilterValue: (state, filterVal) => {
+    state.filterVal = filterVal
+  },
   redirectToPath: (state, path) => {
     state.cart.redirectToPath = path
   },
   setTabContent: (state, tabs) => {
     state.tabs = tabs
+  },
+  setTabSelected: (state, tabId) => {
+    state.selectedTab = tabId
   },
   openCheckoutDrawer: (state) => {
     state.showCheckoutDrawer = true
@@ -243,7 +256,7 @@ export const mutations = {
     for (var i = 0; i < state.cart.items.length; i++) {
       total += parseFloat(state.cart.items[i].cumulativePrice)
     }
-    state.cart.subTotal = state.cart.items[0].currency + ' ' + ('' + total).slice(0, 5)
+    state.cart.subTotal = state.cart.items[0].currency + ' ' + ('' + total).slice(0, 6)
   },
   changeQuantity: (state, val) => {
     var itemIndex = state.cart.items.map(item => {

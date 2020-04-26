@@ -3,10 +3,8 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Free ecommerce template for Vue.js projects
         </h1>
         <h2 class="subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         </h2>
       </div>
     </div>
@@ -14,10 +12,32 @@
 </template>
 
 <style lang="scss" scoped>
-    .hero {
-      background: rgb(81, 186, 252);
-    }
-    h1, h2 {
-      color: #fff;
-    }
+.hero {
+  background: url(/_nuxt/static/hero.jpg) no-repeat;
+  background-size: cover;
+  max-width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .hero {
+    height: 900px;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1199px) {
+  .hero {
+    height: 600px;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .hero {
+    height: 300px;
+  }
+}
+
+h1,
+h2 {
+  color: #fff;
+}
 </style>
