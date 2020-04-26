@@ -136,6 +136,7 @@ export const state = () => ({
   reviews: [],
   tabs: [],
   selectedTab: '',
+  filterVal: 'Featured',
 })
 
 export const getters = {
@@ -204,6 +205,9 @@ export const getters = {
   },
   tabs: state => {
     return state.tabs
+  },
+  filterVal: state => {
+    return state.filterVal
   }
   // subTotal: state => {
   //   return state.cart.subTotal;
@@ -212,6 +216,9 @@ export const getters = {
 }
 
 export const mutations = {
+  setFilterValue: (state, filterVal) => {
+    state.filterVal = filterVal
+  },
   redirectToPath: (state, path) => {
     state.cart.redirectToPath = path
   },
@@ -249,7 +256,7 @@ export const mutations = {
     for (var i = 0; i < state.cart.items.length; i++) {
       total += parseFloat(state.cart.items[i].cumulativePrice)
     }
-    state.cart.subTotal = state.cart.items[0].currency + ' ' + ('' + total).slice(0, 5)
+    state.cart.subTotal = state.cart.items[0].currency + ' ' + ('' + total).slice(0, 6)
   },
   changeQuantity: (state, val) => {
     var itemIndex = state.cart.items.map(item => {

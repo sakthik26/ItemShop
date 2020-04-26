@@ -9,26 +9,10 @@
    </v-tabs>
    <v-col>
      <div class="select-label"> Sort By</div>
-       <v-select
+       <v-select v-model="filterVal"
           :items="items"
         ></v-select>
       </v-col>
-      <!-- <div class="collection-header__sorting">
-    <label for="sort-by-select" aria-label="Sort By">Sort By</label>
-    <div class="form__field--select">
-      <select id="sort-by-select">
-        <option value="manual">Featured</option>
-        <option value="price-ascending">Price: Low to High</option>
-        <option value="price-descending">Price: High to Low</option>
-        <option value="title-ascending">A-Z</option>
-        <option value="title-descending">Z-A</option>
-        <option value="created-ascending">Oldest to Newest</option>
-        <option value="created-descending">Newest to Oldest</option>
-        <option value="best-selling">Best Selling</option>
-      </select>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" fill="#000000"></path></svg>
-    </div>
-  </div> -->
     <div class="column product-card" v-for="product in products" :key="product.id">
       <VmProducts :product="product"></VmProducts>
     </div>
@@ -54,7 +38,8 @@ export default {
       // id: "",
       noProductLabel: "No product found",
       productsFiltered: [],
-      items: ["Foo", "Bar", "Fizz", "Buzz"]
+      items: ["Featured", "Price: Low to High", "Price: High to Low"],
+      selectedFilter: "Featured"
     };
   },
   mounted() {
@@ -319,21 +304,37 @@ export default {
       return this.$store.getters.showCheckoutDrawer;
     },
     products() {
-      return this.$store.state.products.filter(product => {
+      var products = this.$store.state.products.filter(product => {
         return (
           product.tab ===
           this.$store.getters.tabs[this.$store.getters.selectedTab].title
         );
       });
+      if (this.$store.getters.filterVal === "Price: Low to High")
+        return products.sort(function(p1, p2) {
+          return p1.price - p2.price;
+        });
+      else if (this.$store.getters.filterVal === "Price: High to Low")
+        return products.sort(function(p1, p2) {
+          return p2.price - p1.price;
+        });
+      else return products;
     },
     tabs() {
       return this.$store.getters.tabs;
     },
     selectedTab() {
       return this.$store.getters.selectedTab;
+    },
+    filterVal: {
+      get() {
+        return this.$store.getters.filterVal;
+      },
+      set(newFilterVal) {
+        this.$store.commit("setFilterValue", newFilterVal);
+      }
     }
   },
-
   methods: {
     onTabClick(tabId) {
       this.$store.commit("setTabSelected", tabId);
@@ -356,13 +357,6 @@ export default {
   width: 75%;
   margin: 0 auto;
   position: relative;
-  // display: flex;
-  // /* justify-content: center; */
-  // flex-direction: row;
-  // /* width: 70%; */
-  // /* justify-content: space-around; */
-  // margin: 0 auto;
-  // flex-wrap: wrap;
 
   .v-tabs {
     flex: 1 1 80%;
