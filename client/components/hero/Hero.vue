@@ -13,8 +13,9 @@
 
 <style lang="scss" scoped>
 .hero {
-  background: url(/_nuxt/static/hero.jpg) no-repeat;
+  background: url(../../static/hero.jpg) no-repeat;
   background-size: cover;
+  background-position: center;
   max-width: 100%;
 }
 
