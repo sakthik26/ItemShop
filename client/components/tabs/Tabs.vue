@@ -33,9 +33,9 @@ export default {
     return {
       tab: null,
       items: [
-        { tab: "One", content: "Tab 1 Content" },
-        { tab: "Two", content: "Tab 2 Content" },
-        { tab: "Three", content: "Tab 3 Content" }
+        { tab: "Details", content: "Tab 1 Content" },
+        { tab: "Sizing", content: "Tab 2 Content" },
+        { tab: "Shipping & Returns", content: "Tab 3 Content" }
       ]
     };
   }

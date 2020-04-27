@@ -1,6 +1,6 @@
 <template>
   <v-card
-  height="700"
+  height="650"
     class="mx-auto my-12"
     :class="isCheckoutDrawerOpen? 'disable':''"
     max-width="374"
@@ -19,13 +19,13 @@
       :hover=true
   >
     <v-img
-      height="400"
+      height= "440"
       :src="product.image"
     ></v-img>
 
-    <v-card-title>{{ product.title }}</v-card-title>
+    <v-card-title height= "90">{{ product.title }}</v-card-title>
 
-    <v-card-text>
+    <v-card-text height= "40">
       <v-row
         align="center"
         class="mx-0"
@@ -52,14 +52,14 @@
 
     <v-card-actions>
       <v-btn
-        color="deep-purple lighten-2"
+        color="primary"
         text
 
       >
         Buy Now
       </v-btn>
       <v-btn
-        color="deep-purple lighten-2"
+        color="primary"
         text
 
       >
@@ -186,6 +186,13 @@ export default {
 // div.v-card.v-sheet:hover {
 //   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 // }
+.product-list .v-card__title {
+  height: 90px;
+}
+
+.product-list .v-card__text {
+  height: 70px;
+}
 </style>
 
 
