@@ -50,11 +50,13 @@
       </div>
     </v-card-text>
 
-    <v-card-actions>
+   
+    <!-- currently commenting out because the size cannot be preselected
+       <v-card-actions>
       <v-btn
         color="primary"
         text
-
+       
       >
         Buy Now
       </v-btn>
@@ -65,7 +67,7 @@
       >
         Add to Cart
       </v-btn>
-    </v-card-actions>
+    </v-card-actions> -->
 
   </v-card>
 </template>
