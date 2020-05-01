@@ -60,6 +60,15 @@
           </li>
 
       </ul>
+      <div class="footer-brand">
+        <div class="footer-brand__text">
+          <p>© Ugmonk 2020</p>
+          <p>All images and content may not be used without permission</p>
+        </div>
+        <div class="footer-brand__logo">
+                  </div>
+
+      </div>
     </div>
   </div>
   </div>
@@ -101,7 +110,15 @@ export default {
 //   }
 
 .footer li.footer-navigation__item {
-  display: inline-block;
   margin-right: 10%;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+
+  ul.footer-navigation {
+    display: flex;
+  }
 }
 </style>
