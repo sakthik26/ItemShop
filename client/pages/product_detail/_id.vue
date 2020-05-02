@@ -74,11 +74,15 @@
 
     <div class="customer-reviews">
 
-    <Reviews v-for="reviewProp in reviewProps":reviewProps="reviewProp"> </Reviews>
+    <Reviews v-for="review in reviewsShown" :reviewProps="review"> </Reviews>
       <!-- <Reviews> </Reviews>
       <Reviews> </Reviews>
       <Reviews> </Reviews> -->
-
+     <v-pagination
+      v-model="page"
+      :length="reviewPageCount"
+      @input="onPageChange"
+    ></v-pagination>
     </div>
     <!-- <Checkout :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div> -->
@@ -112,7 +116,10 @@ export default {
       //   date: "2020-02-13T02:51:00+00:00",
       //   body: "this is test"
       // },
+      page: 1,
       reviewProps: [],
+      reviewsShown: [],
+      reviewCountPerPage: 5,
       showCheckoutDrawer: false,
       addToCartLabel: "Add to cart",
       removeFromCartLabel: "Remove from cart",
@@ -219,6 +226,7 @@ export default {
       }
       this.reviewProps = [];
       this.reviewProps = reviewCollection;
+      this.reviewsShown = this.reviewProps.slice(0, this.reviewCountPerPage);
     });
   },
 
@@ -232,10 +240,21 @@ export default {
   computed: {
     isAddedBtn() {
       return this.product.isAddedBtn;
+    },
+    reviewPageCount() {
+      return this.reviewProps && this.reviewProps.length > 0
+        ? Math.ceil(this.reviewProps.length / this.reviewCountPerPage)
+        : 0;
     }
   },
 
   methods: {
+    onPageChange() {
+      this.reviewsShown = this.reviewProps.slice(
+        (this.page - 1) * this.reviewCountPerPage,
+        this.reviewCountPerPage * this.page
+      );
+    },
     away() {
       this.showCheckoutDrawer = false;
     },
