@@ -71,7 +71,26 @@
     </div>
 
      <div class ="review-title"> <h1>Customer Reviews</h1> </div>
+    <div class="chart">
+     <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts>
+     <div style="width:200px;float:left;" class="summary-overview">
 
+   <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">5</span>
+   <v-rating
+          :value="4.5"
+          color="amber"
+          dense
+          half-increments
+          readonly
+          size="14"
+        ></v-rating>
+   </div>
+   <span class="stamped-starrating stamped-summary-starrating" aria-hidden="true"> <i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i> </span>
+   <span class="stamped-summary-caption stamped-summary-caption-2">
+   <span class="stamped-summary-text" data-count="2" data-rating="5">Based on 2 Reviews</span>
+</span>
+</div>
+</div>
     <div class="customer-reviews">
 
     <Reviews v-for="review in reviewsShown" :reviewProps="review"> </Reviews>
@@ -95,13 +114,17 @@ import Carousel from "@/components/carousel/Carousel";
 import Tabs from "@/components/tabs/Tabs";
 import Reviews from "@/components/reviews/Reviews";
 import Vue from "vue";
+import VueApexCharts from "vue-apexcharts";
+
+Vue.use(VueApexCharts);
 export default {
   name: "product_detail-id",
   components: {
     Checkout,
     Carousel,
     Tabs,
-    Reviews
+    Reviews,
+    VueApexCharts
   },
 
   // validate({ params }) {
@@ -110,6 +133,31 @@ export default {
 
   data() {
     return {
+      series: [
+        {
+          data: [100, 3, 12, 11, 78]
+        }
+      ],
+      chartOptions: {
+        chart: {
+          type: "bar",
+          height: 350,
+          toolbar: {
+            show: false
+          }
+        },
+        plotOptions: {
+          bar: {
+            horizontal: true
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: ["5", "4", "3", "2", "1"]
+        }
+      },
       // reviewProps: {
       //   rating: 4,
       //   name: "sakthi",
@@ -225,6 +273,7 @@ export default {
         });
       }
       this.reviewProps = [];
+      this.reviewsShown = [];
       this.reviewProps = reviewCollection;
       this.reviewsShown = this.reviewProps.slice(0, this.reviewCountPerPage);
     });
@@ -509,6 +558,23 @@ div.review-title h1 {
   font-weight: 500;
   letter-spacing: 0.0125em !important;
   margin: 20px 0px;
+}
+
+div.chart {
+  position: relative;
+  width: 40%;
+  display: flex;
+  /* -webkit-box-pack: center; */
+  -ms-flex-pack: center;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: center; */
+  /* width: 70%; */
+  /* justify-content: flex-start; */
+  margin: 0 auto;
+  /* width: 70%; */
+  -ms-flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 </style>
 

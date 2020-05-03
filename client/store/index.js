@@ -216,6 +216,9 @@ export const getters = {
 }
 
 export const mutations = {
+  resetProductReviews: (state) => {
+    state.reviews = []
+  },
   setFilterValue: (state, filterVal) => {
     state.filterVal = filterVal
   },

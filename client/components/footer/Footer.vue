@@ -23,9 +23,10 @@
 
               <ul class="footer-navigation__sub">
 
+
                   <li class="footer-navigation__sub-item"><a href="/pages/help" title="Help / FAQ">Help / FAQ</a></li>
 
-                  <li class="footer-navigation__sub-item"><a href="/pages/help#returns-exchanges" title="Returns &amp; Exchanges">Returns &amp; Exchanges</a></li>
+                  <li class="footer-navigation__sub-item"><nuxt-link to="/legal/refund">Returns &amp; Exchanges</nuxt-link></li>
 
                   <li class="footer-navigation__sub-item"><a href="/pages/sizing" title="Sizing">Sizing</a></li>
 
@@ -119,6 +120,7 @@ export default {
 
   ul.footer-navigation {
     display: flex;
+    flex-basis: 50%;
   }
 }
 </style>
