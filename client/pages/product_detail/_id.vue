@@ -19,6 +19,14 @@
                 </span>
               </button> -->
             </h2>
+            <v-rating
+          :value="averageReview"
+          color="amber"
+          dense
+          half-increments
+          readonly
+          size="14"
+        ></v-rating>
           </div>
           <div class="card-content__price">
             <span>&euro;{{ product.price }}</span>
@@ -71,13 +79,13 @@
     </div>
 
      <div class ="review-title"> <h1>Customer Reviews</h1> </div>
-    <div class="chart">
+    <div class="chart" v-if="averageReview">
      <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts>
      <div style="width:200px;float:left;" class="summary-overview">
 
-   <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">5</span>
+   <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </span>
    <v-rating
-          :value="4.5"
+          :value="averageReview"
           color="amber"
           dense
           half-increments
@@ -87,7 +95,7 @@
    </div>
    <span class="stamped-starrating stamped-summary-starrating" aria-hidden="true"> <i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i> </span>
    <span class="stamped-summary-caption stamped-summary-caption-2">
-   <span class="stamped-summary-text" data-count="2" data-rating="5">Based on 2 Reviews</span>
+   <span class="stamped-summary-text" data-count="2" data-rating="5">Based on {{reviewProps.length}} Reviews</span>
 </span>
 </div>
 </div>
@@ -135,10 +143,13 @@ export default {
     return {
       series: [
         {
-          data: [100, 3, 12, 11, 78]
+          data: [0, 0, 0, 0, 0]
         }
       ],
       chartOptions: {
+        tooltip: {
+          enabled: false
+        },
         chart: {
           type: "bar",
           height: 350,
@@ -155,7 +166,7 @@ export default {
           enabled: false
         },
         xaxis: {
-          categories: ["5", "4", "3", "2", "1"]
+          categories: ["1", "2", "3", "4", "5"]
         }
       },
       // reviewProps: {
@@ -167,6 +178,7 @@ export default {
       page: 1,
       reviewProps: [],
       reviewsShown: [],
+      averageReview: 0,
       reviewCountPerPage: 5,
       showCheckoutDrawer: false,
       addToCartLabel: "Add to cart",
@@ -276,6 +288,15 @@ export default {
       this.reviewsShown = [];
       this.reviewProps = reviewCollection;
       this.reviewsShown = this.reviewProps.slice(0, this.reviewCountPerPage);
+
+      //average review
+      var reviewRating = this.reviewProps.map(review => review.rating);
+      for (var i = 0; i < reviewRating.length; i++) {
+        ++this.series[0].data[reviewRating[i] - 1];
+      }
+      if (reviewRating.length > 0)
+        this.averageReview =
+          reviewRating.reduce((a, b) => a + b, 0) / this.reviewProps.length;
     });
   },
 

@@ -69,7 +69,7 @@ export default {
               title: null,
               body:
                 "Product as the announcement came perfect condition. Arrived in perfect condition…",
-              rating: 5,
+              rating: 1,
               product_external_id: 4673712259211,
               reviewer: {
                 id: 193733880,
@@ -141,7 +141,7 @@ export default {
               title: null,
               body:
                 "The goods are cool... as in the photo .. the size XL came up perfectly .. on the height of 174 weight 86 delivery fast .. I advise this product .. and shop ..!!!",
-              rating: 5,
+              rating: 2,
               product_external_id: 4814757527691,
               reviewer: {
                 id: 195627705,
