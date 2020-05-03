@@ -44,6 +44,7 @@ export default {
   },
   mounted() {
     //change the shopname and API token for the store for changing the reviews
+    this.$store.commit("resetProductReviews");
     var reviewAPI =
       "https://judge.me/api/v1/reviews?api_token=_B6uADabPFBI5y94UqWtVp6Xndg&shop_domain=derneuesitemshop.myshopify.com";
     //store the reviews in the state before rendering the product description
