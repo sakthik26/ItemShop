@@ -24,13 +24,15 @@
               <ul class="footer-navigation__sub">
 
 
-                  <li class="footer-navigation__sub-item"><a href="/pages/help" title="Help / FAQ">Help / FAQ</a></li>
+                  <li class="footer-navigation__sub-item"><nuxt-link to="/legal/faq">FAQ</nuxt-link></li>
 
                   <li class="footer-navigation__sub-item"><nuxt-link to="/legal/refund">Returns &amp; Exchanges</nuxt-link></li>
 
-                  <li class="footer-navigation__sub-item"><a href="/pages/sizing" title="Sizing">Sizing</a></li>
+                  <li class="footer-navigation__sub-item"><nuxt-link to="/legal/privacy">Privacy</nuxt-link><li>
 
-                  <li class="footer-navigation__sub-item"><a href="/products/gift-card" title="Gift Cards">Gift Cards</a></li>
+                  <li class="footer-navigation__sub-item"><nuxt-link to="/legal/terms">Terms of Service</nuxt-link></li>
+
+                    <li class="footer-navigation__sub-item"><nuxt-link to="/legal/shipping">Shipping Policy</nuxt-link></li>
 
                   <li class="footer-navigation__sub-item"><a href="/pages/contact-us" title="Contact Us">Contact Us</a></li>
 
@@ -39,23 +41,10 @@
           </li>
 
           <li class="footer-navigation__item footer-navigation__item--about">
-
-
               <h2 class="footer-navigation__heading">About</h2>
-
-
               <ul class="footer-navigation__sub">
-
-                  <li class="footer-navigation__sub-item"><a href="/blogs/journal/introducing-the-new-ugmonk" title="Our Story">Our Story</a></li>
-
-                  <li class="footer-navigation__sub-item"><a href="/pages/shop" title="Shop">Shop</a></li>
-
-                  <li class="footer-navigation__sub-item"><a href="/blogs/journal" title="Journal">Journal</a></li>
-
-                  <li class="footer-navigation__sub-item"><a href="/pages/tee-story" title="About Our Tees">About Our Tees</a></li>
-
-                  <li class="footer-navigation__sub-item"><a href="/pages/reviews" title="Reviews">Reviews</a></li>
-
+                     <li class="footer-navigation__sub-item"><a href="/legal/about">About Us</a></li>
+                      <li class="footer-navigation__sub-item"><a href="/legal/about">Contact</a></li>
               </ul>
 
           </li>
@@ -68,6 +57,22 @@
         </div>
         <div class="footer-brand__logo">
                   </div>
+                  <div class="payment_methods">
+
+
+            <img src="//cdn.shopify.com/s/assets/payment_icons/american_express-2264c9b8b57b23b0b0831827e90cd7bcda2836adc42a912ebedf545dead35b20.svg" alt="American express">
+
+            <img src="//cdn.shopify.com/s/assets/payment_icons/apple_pay-f6db0077dc7c325b436ecbdcf254239100b35b70b1663bc7523d7c424901fa09.svg" alt="Apple pay">
+
+            <img src="//cdn.shopify.com/s/assets/payment_icons/google_pay-c66a29c63facf2053bf69352982c958e9675cabea4f2f7ccec08d169d1856b31.svg" alt="Google pay">
+
+            <img src="//cdn.shopify.com/s/assets/payment_icons/master-173035bc8124581983d4efa50cf8626e8553c2b311353fbf67485f9c1a2b88d1.svg" alt="Master">
+
+            <img src="//cdn.shopify.com/s/assets/payment_icons/shopify_pay-2291782b7fc5b4dd3e389192a31ec3f638a0e61fa5ce58e2f03e678949c1b666.svg" alt="Shopify pay">
+
+            <img src="//cdn.shopify.com/s/assets/payment_icons/visa-319d545c6fd255c9aad5eeaad21fd6f7f7b4fdbdb1a35ce83b89cca12a187f00.svg" alt="Visa">
+
+        </div>
 
       </div>
     </div>

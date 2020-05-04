@@ -179,7 +179,7 @@ export default {
       reviewProps: [],
       reviewsShown: [],
       averageReview: 0,
-      reviewCountPerPage: 5,
+      reviewCountPerPage: 6,
       showCheckoutDrawer: false,
       addToCartLabel: "Add to cart",
       removeFromCartLabel: "Remove from cart",
