@@ -68,8 +68,6 @@
 
             <img src="//cdn.shopify.com/s/assets/payment_icons/master-173035bc8124581983d4efa50cf8626e8553c2b311353fbf67485f9c1a2b88d1.svg" alt="Master">
 
-            <img src="//cdn.shopify.com/s/assets/payment_icons/shopify_pay-2291782b7fc5b4dd3e389192a31ec3f638a0e61fa5ce58e2f03e678949c1b666.svg" alt="Shopify pay">
-
             <img src="//cdn.shopify.com/s/assets/payment_icons/visa-319d545c6fd255c9aad5eeaad21fd6f7f7b4fdbdb1a35ce83b89cca12a187f00.svg" alt="Visa">
 
         </div>
