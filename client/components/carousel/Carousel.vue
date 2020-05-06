@@ -19,9 +19,10 @@
 
           <div class="images" v-viewer="{movable: false,toolbar: false,title: false}">
       <!-- <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png">-->
-       <!-- <img :src="slide"> </img> -->
-       <img v-for="src in slides" :src="src"></img>
+
+      <img :src="slide"> </img>
     </div>
+
      <viewer :images="images" :navbar="false">
       <img v-for="src in images" :src="src" :key="src">
     </viewer>
