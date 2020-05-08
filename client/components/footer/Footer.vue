@@ -34,8 +34,6 @@
 
                     <li class="footer-navigation__sub-item"><nuxt-link to="/legal/shipping">Shipping Policy</nuxt-link></li>
 
-                  <li class="footer-navigation__sub-item"><a href="/pages/contact-us" title="Contact Us">Contact Us</a></li>
-
               </ul>
 
           </li>
@@ -52,7 +50,7 @@
       </ul>
       <div class="footer-brand">
         <div class="footer-brand__text">
-          <p>© Ugmonk 2020</p>
+          <p>© 2020</p>
           <p>All images and content may not be used without permission</p>
         </div>
         <div class="footer-brand__logo">
