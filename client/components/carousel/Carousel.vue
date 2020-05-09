@@ -18,14 +18,15 @@
         >
 
           <div class="images" v-viewer="{movable: false,toolbar: false,title: false}">
+            <img :src="slide"> </img>
       <!-- <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png">-->
+  <img v-for="src in slides" :src="src"></img>
 
-      <img :src="slide"> </img>
     </div>
 
-     <viewer :images="images" :navbar="false">
+     <!-- <viewer :images="images" :navbar="false">
       <img v-for="src in images" :src="src" :key="src">
-    </viewer>
+    </viewer> -->
         </v-row>
       </v-sheet>
     </v-carousel-item>
