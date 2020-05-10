@@ -27,7 +27,6 @@
   "dependencies": {
     "@nuxtjs/auth": "^4.8.5",
     "@nuxtjs/axios": "^5.9.5",
-    "@storefront-ui/vue": "^0.5.1",
     "apexcharts": "^3.19.0",
     "auth0-js": "^9.12.2",
     "axios": "^0.19.2",
