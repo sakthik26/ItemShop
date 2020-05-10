@@ -80,7 +80,7 @@
 
      <div class ="review-title"> <h1>Customer Reviews</h1> </div>
     <div class="chart" v-if="averageReview">
-     <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts>
+     <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
      <div style="width:200px;float:left;" class="summary-overview">
 
    <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </span>
