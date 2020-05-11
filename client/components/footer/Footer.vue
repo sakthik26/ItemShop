@@ -88,11 +88,11 @@ export default {
   color: black;
   padding: 0px;
 }
-.footer .hero {
-  background: url(../../static/footer.jpg) no-repeat;
-  background-size: cover;
-  max-width: 100%;
-}
+// .footer .hero {
+//   background: url(../../static/footer.jpg) no-repeat;
+//   background-size: cover;
+//   max-width: 100%;
+// }
 
 // @media screen and (min-width: 1200px) {
 //   .footer .hero {
