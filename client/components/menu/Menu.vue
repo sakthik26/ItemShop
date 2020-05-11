@@ -43,7 +43,7 @@
 
 <script>
 import Checkout from "../checkout/Checkout";
-import UserProfile from "../user/userProfile";
+import UserProfile from "../user/UserProfile";
 export default {
   name: "VmMenu",
   components: {
