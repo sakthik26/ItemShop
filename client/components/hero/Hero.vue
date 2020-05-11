@@ -13,7 +13,7 @@
 
 <style lang="scss" scoped>
 .hero {
-  background: url("../../static/hero.jpg") no-repeat;
+  background: url("../../static/hero.png") no-repeat;
   background-size: cover;
   background-position: center;
   max-width: 100%;
