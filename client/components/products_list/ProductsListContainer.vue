@@ -52,6 +52,7 @@ export default {
       axios(reviewAPI + "&page=" + 1, {
         method: "GET",
         mode: "no-cors",
+        withCredentials: true,
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json"
