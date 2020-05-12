@@ -88,6 +88,12 @@ export default {
   color: black;
   padding: 0px;
 }
+@media screen and (min-width: 1264px) {
+  .container {
+    max-width: 1185px;
+  }
+}
+
 // .footer .hero {
 //   background: url(../../static/footer.jpg) no-repeat;
 //   background-size: cover;
