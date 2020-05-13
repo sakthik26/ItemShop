@@ -138,7 +138,12 @@ export default {
             .addLineItems(checkoutId, lineItemsToAdd)
             .then(checkout => {
               // Do something with the updated checkout
-              window.location.href = checkout.webUrl;
+              //Find a way to replace second level domain and subdomain
+
+              window.location.href = checkout.webUrl.replace(
+                checkout.webUrl.match("https://(.*).com")[1],
+                "itemshopp"
+              );
               // const checkoutId =
               //   "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0SW1hZ2UvMTgyMTc3ODc1OTI="; // ID of an existing checkout
 
