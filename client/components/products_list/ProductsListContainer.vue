@@ -48,17 +48,20 @@ export default {
     var reviewAPI =
       "https://judge.me/api/v1/reviews?api_token=_B6uADabPFBI5y94UqWtVp6Xndg&shop_domain=derneuesitemshop.myshopify.com";
     //store the reviews in the state before rendering the product description
+
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+    const url =
+      "https://judge.me/api/v1/reviews?api_token=_B6uADabPFBI5y94UqWtVp6Xndg&shop_domain=derneuesitemshop.myshopify.com"; // site that doesn’t send Access-Control-*
+    // fetch(proxyurl + reviewAPI+ "&page=" + 1) // https://cors-anywhere.herokuapp.com/https://example.com
+    //   .then(response => response.json())
+    //   .then(contents => console.log(contents))
+    //   .catch(() =>
+    //     console.log("Can’t access " + url + " response. Blocked by browser?")
+    //   );
     for (var i = 1; i <= 10; i++)
-      axios(reviewAPI + "&page=" + 1, {
-        method: "GET",
-        mode: "no-cors",
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json"
-        },
-        credentials: "same-origin"
-      })
+      fetch(proxyurl + reviewAPI + "&page=" + i)
+        .then(response => response.json())
         .then(response => {
           if (response.reviews.length > 0)
             this.$store.commit("populateProductReviews", response.reviews);
