@@ -21,7 +21,7 @@ export default {
       collectionName: "Fitness" // hardcoded at the moment
     };
   },
-  mounted() {
+  async mounted() {
     //fetch the user information
     if (this.$store.getters.isUserLoggedIn) {
       axios
@@ -44,7 +44,7 @@ export default {
 
     // });
 
-    this.$shopify.collection.fetchAllWithProducts().then(collections => {
+    await this.$shopify.collection.fetchAllWithProducts().then(collections => {
       // Do something with the collections
       //Currently fetching only one collection
       var products = collections.filter(

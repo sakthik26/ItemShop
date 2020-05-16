@@ -122,17 +122,14 @@ import Carousel from "@/components/carousel/Carousel";
 import Tabs from "@/components/tabs/Tabs";
 import Reviews from "@/components/reviews/Reviews";
 import Vue from "vue";
-import VueApexCharts from "vue-apexcharts";
 
-Vue.use(VueApexCharts);
 export default {
   name: "product_detail-id",
   components: {
     Checkout,
     Carousel,
     Tabs,
-    Reviews,
-    VueApexCharts
+    Reviews
   },
 
   // validate({ params }) {
@@ -141,34 +138,6 @@ export default {
 
   data() {
     return {
-      series: [
-        {
-          data: [0, 0, 0, 0, 0]
-        }
-      ],
-      chartOptions: {
-        tooltip: {
-          enabled: false
-        },
-        chart: {
-          type: "bar",
-          height: 350,
-          toolbar: {
-            show: false
-          }
-        },
-        plotOptions: {
-          bar: {
-            horizontal: true
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        xaxis: {
-          categories: ["1", "2", "3", "4", "5"]
-        }
-      },
       // reviewProps: {
       //   rating: 4,
       //   name: "sakthi",

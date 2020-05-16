@@ -50,7 +50,7 @@
       </ul>
       <div class="footer-brand">
         <div class="footer-brand__text">
-          <p>© 2020</p>
+          <p>© 2020 ItemShopp</p>
           <p>All images and content may not be used without permission</p>
         </div>
         <div class="footer-brand__logo">
