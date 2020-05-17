@@ -166,13 +166,13 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     console.log("enter id");
     console.log(this.$route.params.id);
     //this.product = this.$store.getters.getProductById(this.$route.params.id);
     // this.selected = this.product.quantity;
     this.loading = true;
-    this.$shopify.product.fetch(this.$route.params.id).then(products => {
+    await this.$shopify.product.fetch(this.$route.params.id).then(products => {
       console.log(this.product);
       // Do something with the product
 
