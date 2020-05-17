@@ -1,5 +1,5 @@
 const pkg = require('./package')
-
+import axios from 'axios'
 module.exports = {
   mode: 'universal',
 
@@ -139,6 +139,66 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
+
+  generate: {
+    routes() {
+
+      var API_URL =
+        "https://derneuesitemshop.myshopify.com/api/2020-01/graphql.json";
+
+      return axios.post(
+        API_URL,
+        {
+          query: `{
+    collectionByHandle(handle: "Fitness") {
+    id,
+    products(first:100){
+        edges{
+            node{
+                id
+            }
+        }
+    }
+    }
+    }
+  `
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-shopify-storefront-access-token":
+              "0243067c912abe3a8d853fdaec78203c"
+          }
+        }
+      ).then((res) => {
+        // Do something with the collections
+        //Currently fetching only one collection
+        console.log(res.data)
+        console.log(typeof (res.data))
+        var collection = res.data.data.collectionByHandle.products.edges
+        console.log(collection)
+        return collection.map((product) => {
+          return '/product_detail/' + product.node.id
+        })
+      })
+      // return axios.get('https://my-api/users')
+      //   .then((res) => {
+      //     return res.data.map((user) => {
+      //       return '/product_detail/' + user.id
+      //     })
+      //   })
+    }
+  }
+  // generate: {
+  //   routes() {
+  //     return axios.get('https://reqres.in/api/users?page=2')
+  //       .then((res) => {
+  //         return res.data.map((user) => {
+  //           return '/prodcut_id/' + user.id
+  //         })
+  //       })
+  //   }
+  // }
   // buildModules: [
   //   ['@nuxtjs/google-analytics', {
   //     id: 'UA-163421171-1',
