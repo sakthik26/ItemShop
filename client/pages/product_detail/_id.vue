@@ -171,12 +171,9 @@ export default {
     console.log(this.$route.params.id);
     //this.product = this.$store.getters.getProductById(this.$route.params.id);
     // this.selected = this.product.quantity;
-    var product = this.$store.getters.products.filter(
-      product => product.id === this.$route.params.id
-    )[0];
 
     this.loading = true;
-    this.$shopify.product.fetch(product.id).then(products => {
+    this.$shopify.product.fetch(this.$route.params.id).then(products => {
       console.log(this.product);
       // Do something with the product
 
