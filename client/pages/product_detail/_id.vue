@@ -172,103 +172,101 @@ export default {
     //this.product = this.$store.getters.getProductById(this.$route.params.id);
     // this.selected = this.product.quantity;
     this.loading = true;
-    var products = this.$shopify.product
-      .fetch(this.$route.params.id)
-      .then(products => {
-        console.log(this.product);
-        // Do something with the product
+    this.$shopify.product.fetch(this.$route.params.id).then(products => {
+      console.log(this.product);
+      // Do something with the product
 
-        this.product.title = products.title;
-        this.product.availableForSale = products.availableForSale;
-        this.product.description = products.description;
-        this.product.variants = products.variants;
-        this.product.image = products.images[0].src;
-        this.product.price = products.variants[0].price;
-        this.product.currency = products.variants[0].priceV2.currencyCode;
-        this.product.quantity = 1;
+      this.product.title = products.title;
+      this.product.availableForSale = products.availableForSale;
+      this.product.description = products.description;
+      this.product.variants = products.variants;
+      this.product.image = products.images[0].src;
+      this.product.price = products.variants[0].price;
+      this.product.currency = products.variants[0].priceV2.currencyCode;
+      this.product.quantity = 1;
 
-        for (var i = 0; i < products.images.length; i++) {
-          this.slides.push(products.images[i].src);
-        }
+      for (var i = 0; i < products.images.length; i++) {
+        this.slides.push(products.images[i].src);
+      }
 
-        for (let i = 0; i < this.product.variants.length; i++) {
-          if (
-            this.product.variants[i].selectedOptions[0] &&
-            this.product.variants[i].selectedOptions[0].name == "Size"
-          ) {
-            this.availableVariants.push(
-              this.product.variants[i].selectedOptions[0].value
-            );
-            this.variantIdMap[
-              this.product.variants[i].selectedOptions[0].value
-            ] = {
-              id: this.product.variants[i].id,
-              image: this.product.variants[i].image.src,
-              price: this.product.variants[i].priceV2.amount,
-              cumulativePrice: this.product.variants[i].priceV2.amount,
-              currency: this.product.variants[i].priceV2.currencyCode,
-              available: this.product.variants[i].available,
-              size: this.product.variants[i].selectedOptions[0].value,
-              title: this.product.title,
-              quantity: 1,
-              quantityExceeded: false
-            };
-            for (var j = 0; j < this.variantsOrder.length; j++) {
-              if (this.availableVariants.indexOf(this.variantsOrder[j]) >= 0) {
-                this.selectedVariant = this.variantsOrder[j];
-                break;
-              }
+      for (let i = 0; i < this.product.variants.length; i++) {
+        if (
+          this.product.variants[i].selectedOptions[0] &&
+          this.product.variants[i].selectedOptions[0].name == "Size"
+        ) {
+          this.availableVariants.push(
+            this.product.variants[i].selectedOptions[0].value
+          );
+          this.variantIdMap[
+            this.product.variants[i].selectedOptions[0].value
+          ] = {
+            id: this.product.variants[i].id,
+            image: this.product.variants[i].image.src,
+            price: this.product.variants[i].priceV2.amount,
+            cumulativePrice: this.product.variants[i].priceV2.amount,
+            currency: this.product.variants[i].priceV2.currencyCode,
+            available: this.product.variants[i].available,
+            size: this.product.variants[i].selectedOptions[0].value,
+            title: this.product.title,
+            quantity: 1,
+            quantityExceeded: false
+          };
+          for (var j = 0; j < this.variantsOrder.length; j++) {
+            if (this.availableVariants.indexOf(this.variantsOrder[j]) >= 0) {
+              this.selectedVariant = this.variantsOrder[j];
+              break;
             }
-          } else {
-            this.variantIdMap["all"] = {
-              id: this.product.variants[i].id,
-              image: this.product.variants[i].image.src,
-              cumulativePrice: this.product.variants[i].priceV2.amount,
-              price: this.product.variants[i].priceV2.amount,
-              currency: this.product.variants[i].priceV2.currencyCode,
-              available: this.product.variants[i].available,
-              title: this.product.title,
-              quantity: 1,
-              quantityExceeded: false
-            };
-            this.selectedVariant = "all";
           }
+        } else {
+          this.variantIdMap["all"] = {
+            id: this.product.variants[i].id,
+            image: this.product.variants[i].image.src,
+            cumulativePrice: this.product.variants[i].priceV2.amount,
+            price: this.product.variants[i].priceV2.amount,
+            currency: this.product.variants[i].priceV2.currencyCode,
+            available: this.product.variants[i].available,
+            title: this.product.title,
+            quantity: 1,
+            quantityExceeded: false
+          };
+          this.selectedVariant = "all";
         }
+      }
 
-        console.log(this.product);
-        console.log(this.availableVariants);
-        this.loading = false;
+      console.log(this.product);
+      console.log(this.availableVariants);
+      this.loading = false;
 
-        //Review handling here
-        var productReviews = this.$store.getters.reviews.filter(review => {
-          return review.product_title == this.product.title;
-        });
-        var reviewCollection = [];
-        for (var i = 0; i < productReviews.length; i++) {
-          reviewCollection.push({
-            body: productReviews[i].body,
-            rating: productReviews[i].rating,
-            date: productReviews[i].created_at,
-            name: productReviews[i].reviewer.name,
-            images: productReviews[i].pictures.map(reviewImages => {
-              return reviewImages.urls.original;
-            })
-          });
-        }
-        this.reviewProps = [];
-        this.reviewsShown = [];
-        this.reviewProps = reviewCollection;
-        this.reviewsShown = this.reviewProps.slice(0, this.reviewCountPerPage);
-
-        //average review
-        var reviewRating = this.reviewProps.map(review => review.rating);
-        // for (var i = 0; i < reviewRating.length; i++) {
-        //   ++this.series[0].data[reviewRating[i] - 1];
-        // }
-        if (reviewRating.length > 0)
-          this.averageReview =
-            reviewRating.reduce((a, b) => a + b, 0) / this.reviewProps.length;
+      //Review handling here
+      var productReviews = this.$store.getters.reviews.filter(review => {
+        return review.product_title == this.product.title;
       });
+      var reviewCollection = [];
+      for (var i = 0; i < productReviews.length; i++) {
+        reviewCollection.push({
+          body: productReviews[i].body,
+          rating: productReviews[i].rating,
+          date: productReviews[i].created_at,
+          name: productReviews[i].reviewer.name,
+          images: productReviews[i].pictures.map(reviewImages => {
+            return reviewImages.urls.original;
+          })
+        });
+      }
+      this.reviewProps = [];
+      this.reviewsShown = [];
+      this.reviewProps = reviewCollection;
+      this.reviewsShown = this.reviewProps.slice(0, this.reviewCountPerPage);
+
+      //average review
+      var reviewRating = this.reviewProps.map(review => review.rating);
+      // for (var i = 0; i < reviewRating.length; i++) {
+      //   ++this.series[0].data[reviewRating[i] - 1];
+      // }
+      if (reviewRating.length > 0)
+        this.averageReview =
+          reviewRating.reduce((a, b) => a + b, 0) / this.reviewProps.length;
+    });
   },
 
   watch: {
