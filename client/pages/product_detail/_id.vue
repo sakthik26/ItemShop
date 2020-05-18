@@ -53,7 +53,7 @@
 
           <div class="card-content__description">
             <p>
-            Product description here
+            Product description
             </p>
           </div>
            <div class="card-content__other-details">
