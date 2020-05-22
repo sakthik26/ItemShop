@@ -166,80 +166,92 @@ export default {
     };
   },
 
-  mounted() {
-    console.log("enter id");
-    console.log(this.$route.params.id);
-    //this.product = this.$store.getters.getProductById(this.$route.params.id);
-    // this.selected = this.product.quantity;
+  async asyncData({ params, error, store, payload }) {
+    if (payload) {
+      console.log("payload here " + payload);
+      var products = payload;
 
-    this.loading = true;
-    this.$shopify.product.fetch(this.$route.params.id).then(products => {
-      console.log(this.product);
+      console.log(JSON.stringify(products));
+      // console.log('payload here'+payload)
+
+      // console.log("enter id");
+      // console.log(this.$route.params.id);
+      //this.product = this.$store.getters.getProductById(this.$route.params.id);
+      // this.selected = this.product.quantity;
+
+      // $shopify.product.fetch(this.$route.params.id).then(products => {
+      // console.log(this.product);
       // Do something with the product
-
-      this.product.title = products.title;
-      this.product.availableForSale = products.availableForSale;
-      this.product.description = products.description;
-      this.product.variants = products.variants;
-      this.product.image = products.images[0].src;
-      this.product.price = products.variants[0].price;
-      this.product.currency = products.variants[0].priceV2.currencyCode;
-      this.product.quantity = 1;
-
-      for (var i = 0; i < products.images.length; i++) {
-        this.slides.push(products.images[i].src);
+      // store.commit("populateProductData", payload);
+      var product = {};
+      var slides = [];
+      var availableVariants = [];
+      var variantIdMap = {};
+      var variantsOrder = ["S", "M", "L", "XL", "XXL"];
+      var selectedVariant = "";
+      product.title = products.title;
+      product.availableForSale = products.availableForSale;
+      product.description = products.description;
+      product.variants = products.variants;
+      product.image = products.images.edges[0].node.src;
+      product.price = products.variants.edges[0].node.price;
+      product.currency = products.variants.edges[0].node.priceV2.currencyCode;
+      product.quantity = 1;
+      console.log(product);
+      for (var i = 0; i < products.images.edges.length; i++) {
+        slides.push(products.images.edges[i].node.src);
       }
 
-      for (let i = 0; i < this.product.variants.length; i++) {
+      for (let i = 0; i < products.variants.edges.length; i++) {
         if (
-          this.product.variants[i].selectedOptions[0] &&
-          this.product.variants[i].selectedOptions[0].name == "Size"
+          products.variants.edges[i].node.selectedOptions[0] &&
+          products.variants.edges[i].node.selectedOptions[0].name == "Size"
         ) {
-          this.availableVariants.push(
-            this.product.variants[i].selectedOptions[0].value
+          availableVariants.push(
+            products.variants.edges[i].node.selectedOptions[0].value
           );
-          this.variantIdMap[
-            this.product.variants[i].selectedOptions[0].value
+          variantIdMap[
+            products.variants.edges[i].node.selectedOptions[0].value
           ] = {
-            id: this.product.variants[i].id,
-            image: this.product.variants[i].image.src,
-            price: this.product.variants[i].priceV2.amount,
-            cumulativePrice: this.product.variants[i].priceV2.amount,
-            currency: this.product.variants[i].priceV2.currencyCode,
-            available: this.product.variants[i].available,
-            size: this.product.variants[i].selectedOptions[0].value,
-            title: this.product.title,
+            id: products.variants.edges[i].node.id,
+            image: products.variants.edges[i].node.image.src,
+            price: products.variants.edges[i].node.priceV2.amount,
+            cumulativePrice: products.variants.edges[i].node.priceV2.amount,
+            currency: products.variants.edges[i].node.priceV2.currencyCode,
+            available: products.variants.edges[i].node.available,
+            size: products.variants.edges[i].node.selectedOptions[0].value,
+            title: products.title,
             quantity: 1,
             quantityExceeded: false
           };
-          for (var j = 0; j < this.variantsOrder.length; j++) {
-            if (this.availableVariants.indexOf(this.variantsOrder[j]) >= 0) {
-              this.selectedVariant = this.variantsOrder[j];
+          for (var j = 0; j < variantsOrder.length; j++) {
+            if (availableVariants.indexOf(variantsOrder[j]) >= 0) {
+              selectedVariant = variantsOrder[j];
               break;
             }
           }
         } else {
-          this.variantIdMap["all"] = {
-            id: this.product.variants[i].id,
-            image: this.product.variants[i].image.src,
-            cumulativePrice: this.product.variants[i].priceV2.amount,
-            price: this.product.variants[i].priceV2.amount,
-            currency: this.product.variants[i].priceV2.currencyCode,
-            available: this.product.variants[i].available,
-            title: this.product.title,
+          variantIdMap["all"] = {
+            id: products.variants.edges[i].id,
+            image: products.variants.edges[i].node.image.src,
+            cumulativePrice: products.variants.edges[i].node.priceV2.amount,
+            price: products.variants.edges[i].node.priceV2.amount,
+            currency: products.variants.edges[i].node.priceV2.currencyCode,
+            available: products.variants.edges[i].node.available,
+            title: products.title,
             quantity: 1,
             quantityExceeded: false
           };
-          this.selectedVariant = "all";
+          selectedVariant = "all";
         }
       }
 
-      console.log(this.product);
-      console.log(this.availableVariants);
-      this.loading = false;
+      // console.log(this.product);
+      // console.log(this.availableVariants);
+      // this.loading = false;
 
       //Review handling here
-      var productReviews = this.$store.getters.reviews.filter(review => {
+      var productReviews = store.getters.reviews.filter(review => {
         return review.product_title == this.product.title;
       });
       var reviewCollection = [];
@@ -254,22 +266,33 @@ export default {
           })
         });
       }
-      this.reviewProps = [];
-      this.reviewsShown = [];
-      this.reviewProps = reviewCollection;
-      this.reviewsShown = this.reviewProps.slice(0, this.reviewCountPerPage);
-
+      var reviewProps = [];
+      var reviewsShown = [];
+      var reviewCountPerPage = 6;
+      reviewProps = reviewCollection;
+      reviewsShown = reviewProps.slice(0, reviewCountPerPage);
+      console.log(reviewProps);
       //average review
-      var reviewRating = this.reviewProps.map(review => review.rating);
+      var reviewRating = reviewProps.map(review => review.rating);
       // for (var i = 0; i < reviewRating.length; i++) {
       //   ++this.series[0].data[reviewRating[i] - 1];
       // }
       if (reviewRating.length > 0)
-        this.averageReview =
-          reviewRating.reduce((a, b) => a + b, 0) / this.reviewProps.length;
-    });
-  },
+        var averageReview =
+          reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
+      return {
+        selectedVariant: selectedVariant,
+        product: product,
+        slides: slides,
+        availableVariants: availableVariants,
+        variantIdMap: variantIdMap,
+        reviewsShown: reviewsShown,
+        reviewProps: reviewProps,
+        averageReview: averageReview
+      };
+    }
+  },
   watch: {
     selectedVariant: function(variant) {
       //console.log(this.variantIdMap[variant]);

@@ -1,5 +1,78 @@
 const pkg = require('./package')
 import axios from 'axios'
+import 'cross-fetch/polyfill'
+
+const dynamicRoutes = async () => {
+
+  var API_URL =
+    "https://derneuesitemshop.myshopify.com/api/2020-01/graphql.json";
+
+  var res = await axios.post(
+    API_URL,
+    {
+      query: `{
+collectionByHandle(handle: "Fitness") {
+id,
+products(first:100){
+  edges{
+      node{
+          id
+      }
+  }
+}
+}
+}
+`
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "x-shopify-storefront-access-token":
+          "0243067c912abe3a8d853fdaec78203c"
+      }
+    })
+  console.log(res.data)
+  var collection = res.data.data.collectionByHandle.products.edges
+  console.log(collection)
+
+
+  let promises = [];
+  for (var i = 0; i < collection.length; i++) {
+    promises.push(axios.post(
+      API_URL,
+      {
+        query: `fragment VariantFragment on ProductVariant  { id,title,price,priceV2 { amount,currencyCode },presentmentPrices (first: 20) { pageInfo { hasNextPage,hasPreviousPage },edges { node { price { amount,currencyCode },compareAtPrice { amount,currencyCode } } } },weight,available: availableForSale,sku,compareAtPrice,compareAtPriceV2 { amount,currencyCode },image { id,src: originalSrc,altText },selectedOptions { name,value },unitPrice { amount,currencyCode },unitPriceMeasurement { measuredType,quantityUnit,quantityValue,referenceUnit,referenceValue } },fragment ProductFragment on Product  { id,availableForSale,createdAt,updatedAt,descriptionHtml,description,handle,productType,title,vendor,publishedAt,onlineStoreUrl,options { id,name,values },images (first: 250) { pageInfo { hasNextPage,hasPreviousPage },edges { cursor,node { id,src,altText } } },variants (first: 250) { pageInfo { hasNextPage,hasPreviousPage },edges { cursor,node { ...VariantFragment } } } },query ($id:ID!)  { node (id: $id) { __typename,...ProductFragment } }`,
+        variables: { id: collection[i].node.id }
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-shopify-storefront-access-token":
+            "0243067c912abe3a8d853fdaec78203c"
+        }
+      }
+    ).then((response) => {
+      console.log('product-data-here' + JSON.stringify(response.data))
+      return {
+        route: '/product_detail/' + response.data.data.node.id,
+        payload: response.data.data.node
+      }
+    }))
+  }
+
+  const r1 = await Promise.all(promises)
+  return r1
+}
+
+
+// Do something with the collections
+//Currently fetching only one collection
+// console.log(res.data)
+// console.log(typeof (res.data))
+// var collection = res.data.data.collectionByHandle.products.edges
+// console.log(collection)
+
+
 module.exports = {
   mode: 'universal',
 
@@ -141,56 +214,7 @@ module.exports = {
   },
 
   generate: {
-    routes() {
-
-      var API_URL =
-        "https://derneuesitemshop.myshopify.com/api/2020-01/graphql.json";
-
-      return axios.post(
-        API_URL,
-        {
-          query: `{
-    collectionByHandle(handle: "Fitness") {
-    id,
-    products(first:100){
-        edges{
-            node{
-                id
-            }
-        }
-    }
-    }
-    }
-  `
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "x-shopify-storefront-access-token":
-              "0243067c912abe3a8d853fdaec78203c"
-          }
-        }
-      ).then((res) => {
-        // Do something with the collections
-        //Currently fetching only one collection
-        console.log(res.data)
-        console.log(typeof (res.data))
-        var collection = res.data.data.collectionByHandle.products.edges
-        console.log(collection)
-        return collection.map((product) => {
-          return {
-            route: '/product_detail/' + product.node.id,
-            payload: product
-          }
-        })
-      })
-      // return axios.get('https://my-api/users')
-      //   .then((res) => {
-      //     return res.data.map((user) => {
-      //       return '/product_detail/' + user.id
-      //     })
-      //   })
-    }
+    routes: dynamicRoutes
   }
   // generate: {
   //   routes() {
