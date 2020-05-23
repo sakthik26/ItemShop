@@ -1,5 +1,5 @@
 <template>
-<nuxt-link :to="{path:'/product_detail/'+ product.id}">
+<nuxt-link :to="{path:'/product_detail/'+ product.id.toLowerCase()}">
   <v-card
   height="650"
     class="mx-auto my-12"
