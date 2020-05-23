@@ -101,7 +101,7 @@
 </div>
     <div class="customer-reviews">
 
-    <Reviews v-for="review in reviewsShown" :reviewProps="reviewProps"> </Reviews>
+    <Reviews v-for="review in reviewsShown" :reviewProps="review"> </Reviews>
       <!-- <Reviews> </Reviews>
       <Reviews> </Reviews>
       <Reviews> </Reviews> -->
@@ -317,7 +317,7 @@ export default {
     } else {
       // Set a flag so that we know not to reload the page twice.
       localStorage.setItem("reloaded", "1");
-      location.reload();
+      window.location.reload();
     }
   },
 
