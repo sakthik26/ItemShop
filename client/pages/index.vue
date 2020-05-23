@@ -125,32 +125,33 @@ export default {
     //   .catch(() =>
     //     console.log("Can’t access " + url + " response. Blocked by browser?")
     //   );
-    for (var i = 1; i <= 4; i++) {
-      var response = await axios.get(proxyurl + reviewAPI + "&page=" + i, {
-        headers: { "X-Requested-With": "http://localhost:3000/" }
-      });
+    // for (var i = 1; i <= 4; i++) {
+    //   var response = await axios.get(proxyurl + reviewAPI + "&page=" + i, {
+    //     headers: { "X-Requested-With": "http://localhost:3000/" }
+    //   });
 
-      // If request is good...
-      // console.log("no error");
-      // console.log(response.data.reviews);
-      store.commit("populateProductReviews", response.data.reviews);
+    //   // If request is good...
+    //   // console.log("no error");
+    //   // console.log(response.data.reviews);
+    //   store.commit("populateProductReviews", response.data.reviews);
+    //   console.log("reviews here" + response.data.reviews);
+    // fetch(proxyurl + reviewAPI + "&page=" + i)
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     if (response.reviews.length > 0)
+    //       this.$store.commit("populateProductReviews", response.reviews);
+    //   });
+    // var response =  fetch(proxyurl + reviewAPI + "&page=" + i, {
+    //   method: "GET", // *GET, POST, PUT, DELETE, etc.
+    //   headers: {
+    //     "x-requested-with": "http://localhost:3000/"
+    //   }
+    // });
+    // var data = await response.json();
+    // if (response.reviews.length > 0)
+    //   store.commit("populateProductReviews", response.reviews);
+    // }
 
-      // fetch(proxyurl + reviewAPI + "&page=" + i)
-      //   .then(response => response.json())
-      //   .then(response => {
-      //     if (response.reviews.length > 0)
-      //       this.$store.commit("populateProductReviews", response.reviews);
-      //   });
-      // var response =  fetch(proxyurl + reviewAPI + "&page=" + i, {
-      //   method: "GET", // *GET, POST, PUT, DELETE, etc.
-      //   headers: {
-      //     "x-requested-with": "http://localhost:3000/"
-      //   }
-      // });
-      // var data = await response.json();
-      // if (response.reviews.length > 0)
-      //   store.commit("populateProductReviews", response.reviews);
-    }
     console.log("herer ###########$$$$$$$$$$");
   }
 

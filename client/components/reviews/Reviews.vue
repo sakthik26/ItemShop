@@ -17,9 +17,12 @@
       <!-- <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png">-->
        <img v-for="src in reviewProps.images" :src="src"></img>
     </div>
+
+    <no-ssr>
      <viewer :images="images" :navbar="false">
       <img v-for="src in images" :src="src" :key="src">
     </viewer>
+    </no-ssr>
     <!-- <div class="text-center mt-12"> -->
        <v-row
        class="customer-rating"

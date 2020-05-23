@@ -101,7 +101,7 @@
 </div>
     <div class="customer-reviews">
 
-    <Reviews v-for="review in reviewsShown" :reviewProps="review"> </Reviews>
+    <Reviews v-for="review in reviewsShown" :reviewProps="reviewProps"> </Reviews>
       <!-- <Reviews> </Reviews>
       <Reviews> </Reviews>
       <Reviews> </Reviews> -->
@@ -122,6 +122,7 @@ import Carousel from "@/components/carousel/Carousel";
 import Tabs from "@/components/tabs/Tabs";
 import Reviews from "@/components/reviews/Reviews";
 import Vue from "vue";
+import { paleturquoise } from "color-name";
 
 export default {
   name: "product_detail-id",
@@ -166,10 +167,13 @@ export default {
     };
   },
 
-  async asyncData({ params, error, store, payload }) {
+  async asyncData({ params, error, payload, store }) {
     if (payload) {
-      console.log("payload here " + payload);
-      var products = payload;
+      console.log("payload here " + payload.response);
+
+      console.log("reviews here " + payload.reviews);
+      var reviews = payload.reviews;
+      var products = payload.response;
 
       console.log(JSON.stringify(products));
       // console.log('payload here'+payload)
@@ -251,10 +255,11 @@ export default {
       // this.loading = false;
 
       //Review handling here
-      console.log("reviews here" + store.getters.reviews);
-      var productReviews = store.getters.reviews.filter(review => {
-        return review.product_title == this.product.title;
+      console.log("actual review" + JSON.stringify(reviews[0]));
+      var productReviews = reviews[0].filter(review => {
+        return review.product_title == product.title;
       });
+      console.log("productReviews" + productReviews);
       var reviewCollection = [];
       for (var i = 0; i < productReviews.length; i++) {
         reviewCollection.push({
@@ -267,12 +272,13 @@ export default {
           })
         });
       }
+      console.log("reviewCollection" + reviewCollection);
       var reviewProps = [];
       var reviewsShown = [];
       var reviewCountPerPage = 6;
       reviewProps = reviewCollection;
       reviewsShown = reviewProps.slice(0, reviewCountPerPage);
-      console.log(reviewProps);
+
       //average review
       var reviewRating = reviewProps.map(review => review.rating);
       // for (var i = 0; i < reviewRating.length; i++) {
@@ -282,6 +288,8 @@ export default {
         var averageReview =
           reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
+      console.log("reviewshown" + reviewsShown);
+      console.log("reviewprops" + reviewProps);
       return {
         selectedVariant: selectedVariant,
         product: product,

@@ -36,6 +36,29 @@ products(first:100){
   console.log(collection)
 
 
+
+
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+  const url =
+    "https://judge.me/api/v1/reviews?api_token=_B6uADabPFBI5y94UqWtVp6Xndg&shop_domain=derneuesitemshop.myshopify.com"; // site that doesn’t send Access-Control-*
+  // fetch(proxyurl + reviewAPI+ "&page=" + 1) // https://cors-anywhere.herokuapp.com/https://example.com
+  //   .then(response => response.json())
+  //   .then(contents => console.log(contents))
+  //   .catch(() =>
+  //     console.log("Can’t access " + url + " response. Blocked by browser?")
+  //   );
+  var reviewResponse = []
+  for (var i = 1; i <= 4; i++) {
+    var reviews = await axios.get(proxyurl + url + "&page=" + i, {
+      headers: { "X-Requested-With": "http://localhost:3000/" }
+    });
+    if (reviews.data.reviews.length > 0)
+      reviewResponse.push(reviews.data.reviews)
+  }
+
+
+
   let promises = [];
   for (var i = 0; i < collection.length; i++) {
     promises.push(axios.post(
@@ -52,13 +75,16 @@ products(first:100){
         }
       }
     ).then((response) => {
+      console.log('review inside axios' + JSON.stringify(reviewResponse))
       console.log('product-data-here' + JSON.stringify(response.data))
       return {
         route: '/product_detail/' + response.data.data.node.id,
-        payload: response.data.data.node
+        payload: { response: response.data.data.node, reviews: reviewResponse }
       }
     }))
   }
+
+
 
   const r1 = await Promise.all(promises)
   return r1
