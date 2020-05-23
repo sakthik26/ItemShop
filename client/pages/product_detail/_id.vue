@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div v-if="!loading" class="product-detail columns">
+    <div class="product-detail columns">
         <div class="product-image">
           <!-- <img :src="product.image"> -->
           <Carousel v-bind:slides="slides"></Carousel>
