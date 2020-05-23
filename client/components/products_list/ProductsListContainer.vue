@@ -239,13 +239,13 @@ export default {
       return this.$store.getters.showCheckoutDrawer;
     },
     products() {
-      // var products = this.$store.state.products.filter(product => {
-      //   return (
-      //     product.tab ===
-      //     this.$store.getters.tabs[this.$store.getters.selectedTab].title
-      //   );
-      // });
-      var products = this.$store.state.products;
+      var products = this.$store.state.products.filter(product => {
+        return (
+          product.tab ===
+          this.$store.getters.tabs[this.$store.getters.selectedTab].title
+        );
+      });
+      //var products = this.$store.state.products;
       if (this.$store.getters.filterVal === "Price: Low to High")
         return products.sort(function(p1, p2) {
           return p1.price - p2.price;
