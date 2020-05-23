@@ -251,6 +251,7 @@ export default {
       // this.loading = false;
 
       //Review handling here
+      console.log("reviews here" + store.getters.reviews);
       var productReviews = store.getters.reviews.filter(review => {
         return review.product_title == this.product.title;
       });

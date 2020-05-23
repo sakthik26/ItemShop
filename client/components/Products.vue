@@ -1,21 +1,10 @@
 <template>
+<nuxt-link :to="{path:'/product_detail/'+ product.id}">
   <v-card
   height="650"
     class="mx-auto my-12"
     :class="isCheckoutDrawerOpen? 'disable':''"
     max-width="374"
-    :to="{
-        name: 'product_detail-id',
-        params: {
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          rating: 5,
-          reviews: 10,
-          isAddedBtn: false,
-          image: product.image
-        }
-      }"
       :hover=true
   >
     <v-img
@@ -50,13 +39,13 @@
       </div>
     </v-card-text>
 
-   
+
     <!-- currently commenting out because the size cannot be preselected
        <v-card-actions>
       <v-btn
         color="primary"
         text
-       
+
       >
         Buy Now
       </v-btn>
@@ -70,6 +59,7 @@
     </v-card-actions> -->
 
   </v-card>
+  </nuxt-link>
 </template>
 
 <script>
