@@ -305,10 +305,10 @@ export default {
     }
   },
   watch: {
-    selectedVariant: function(variant) {
-      //console.log(this.variantIdMap[variant]);
-      //this.$store.commit("cartItem", this.variantIdMap[variant]);
-    }
+    // product: function() {
+    //console.log(this.variantIdMap[variant]);
+    //this.$store.commit("cartItem", this.variantIdMap[variant]);
+    // }
   },
 
   mounted() {
@@ -319,7 +319,7 @@ export default {
     // } else {
     //   // Set a flag so that we know not to reload the page twice.
     //   localStorage.setItem("reloaded", "1");
-    //   window.location.reload();
+    //   location.reload();
     // }
   },
 
