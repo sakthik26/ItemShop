@@ -114,6 +114,7 @@ export default {
       }
     },
     checkout() {
+      this.$store.commit("closeCheckoutDrawer");
       this.$store.commit("showCheckoutLoader", true);
       this.$shopify.checkout.create().then(checkout => {
         // Do something with the checkout
