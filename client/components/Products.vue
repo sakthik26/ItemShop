@@ -1,11 +1,12 @@
 <template>
-<nuxt-link :to="'/product_detail/' + product.id">
+
   <v-card
   height="650"
     class="mx-auto my-12"
     :class="isCheckoutDrawerOpen? 'disable':''"
     max-width="374"
       :hover=true
+      :to="'/product_detail/' + product.id"
   >
     <v-img
       height= "440"
@@ -59,7 +60,6 @@
     </v-card-actions> -->
 
   </v-card>
-  </nuxt-link>
 </template>
 
 <script>
