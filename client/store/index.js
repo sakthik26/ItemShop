@@ -133,7 +133,7 @@ export const state = () => ({
     redirectToPath: '',
   },
   showCheckoutDrawer: false,
-  showCheckoutLoader: false,
+  showCheckoutLoader: true,
   reviews: [],
   tabs: [],
   selectedTab: '',
