@@ -169,13 +169,12 @@ export default {
 
   async asyncData({ params, error, payload, store }) {
     if (payload) {
-      console.log("payload here " + payload.response);
+      // console.log("payload here " + payload.response);
 
-      console.log("reviews here " + payload.reviews);
+      // console.log("reviews here " + payload.reviews);
       var reviews = payload.reviews;
       var products = payload.response;
 
-      console.log(JSON.stringify(products));
       // console.log('payload here'+payload)
 
       // console.log("enter id");
@@ -255,8 +254,11 @@ export default {
       // this.loading = false;
 
       //Review handling here
-      console.log("actual review" + JSON.stringify(reviews[0]));
-      var productReviews = reviews[0].filter(review => {
+      var actualReviews = [];
+      for (var i = 0; i < reviews.length; i++)
+        actualReviews = actualReviews.concat(reviews[i]);
+      console.log("actual review" + JSON.stringify(actualReviews));
+      var productReviews = actualReviews.filter(review => {
         return review.product_title == product.title;
       });
       console.log("productReviews" + productReviews);

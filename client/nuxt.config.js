@@ -54,6 +54,7 @@ products(first:100){
       headers: { "X-Requested-With": "http://localhost:3000/" }
     });
     if (reviews.data.reviews.length > 0)
+
       reviewResponse.push(reviews.data.reviews)
   }
 
@@ -76,7 +77,6 @@ products(first:100){
       }
     ).then((response) => {
       console.log('review inside axios' + JSON.stringify(reviewResponse))
-      console.log('product-data-here' + JSON.stringify(response.data))
       return {
         route: '/product_detail/' + response.data.data.node.id,
         payload: { response: response.data.data.node, reviews: reviewResponse }
