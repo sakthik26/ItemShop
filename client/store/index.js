@@ -133,6 +133,7 @@ export const state = () => ({
     redirectToPath: '',
   },
   showCheckoutDrawer: false,
+  showCheckoutLoader: false,
   reviews: [],
   tabs: [],
   selectedTab: '',
@@ -140,7 +141,9 @@ export const state = () => ({
 })
 
 export const getters = {
-
+  showCheckoutLoader: state => {
+    return state.showCheckoutLoader
+  },
   products: state => {
     return state.products
   },
@@ -230,6 +233,9 @@ export const mutations = {
   },
   setTabSelected: (state, tabId) => {
     state.selectedTab = tabId
+  },
+  showCheckoutLoader: (state, showLoader) => {
+    state.showCheckoutDrawer = showLoader
   },
   openCheckoutDrawer: (state) => {
     state.showCheckoutDrawer = true
