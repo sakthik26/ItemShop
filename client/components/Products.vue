@@ -1,5 +1,5 @@
 <template>
-<a v-bind:href="'/product_detail/' + product.id">
+<nuxt-link :to="'/product_detail/' + product.id">
   <v-card
   height="650"
     class="mx-auto my-12"
@@ -59,7 +59,7 @@
     </v-card-actions> -->
 
   </v-card>
-  </a>
+  </nuxt-link>
 </template>
 
 <script>
