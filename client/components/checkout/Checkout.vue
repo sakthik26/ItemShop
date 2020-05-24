@@ -169,7 +169,7 @@ export default {
               //     console.log(checkout.lineItems);
               //     // Do something with the updated checkout
               //   }); // Array with one additional line item
-              this.$store.commit("hideLoader");
+              //this.$store.commit("hideLoader");
             });
         }
       });
