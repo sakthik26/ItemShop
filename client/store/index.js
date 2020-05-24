@@ -234,11 +234,11 @@ export const mutations = {
   setTabSelected: (state, tabId) => {
     state.selectedTab = tabId
   },
-  showCheckoutLoader: (state) => {
-    state.showCheckoutDrawer = true
+  showLoader: (state) => {
+    state.showCheckoutLoader = true
   },
-  hideCheckoutLoader: (state) => {
-    state.showCheckoutDrawer = false
+  hideLoader: (state) => {
+    state.showCheckoutLoader = false
   },
   openCheckoutDrawer: (state) => {
     state.showCheckoutDrawer = true
