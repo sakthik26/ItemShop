@@ -121,11 +121,21 @@ export default {
 
 .footer .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 
   ul.footer-navigation {
     display: flex;
-    flex-basis: 50%;
+    // flex-basis: 50%;
+  }
+}
+@media screen and (min-width: 200px) and (max-width: 700px) {
+  div.footer-brand {
+    text-align: center;
+    margin-top: 5%;
+  }
+  ul.footer-navigation {
+    display: -webkit-box !important;
   }
 }
 </style>
