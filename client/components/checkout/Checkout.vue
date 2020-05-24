@@ -114,6 +114,8 @@ export default {
       }
     },
     checkout() {
+      this.$store.commit("closeCheckoutDrawer");
+      this.$store.commit("showLoader");
       this.$shopify.checkout.create().then(checkout => {
         // Do something with the checkout
         console.log(checkout.id);
@@ -167,6 +169,7 @@ export default {
               //     console.log(checkout.lineItems);
               //     // Do something with the updated checkout
               //   }); // Array with one additional line item
+              this.$store.commit("hideLoader");
             });
         }
       });

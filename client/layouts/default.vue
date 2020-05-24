@@ -10,6 +10,21 @@
     </main>
       <Checkout :drawer="showCheckoutDrawer"></Checkout>
     <div v-if="showCheckoutDrawer" class="outside" v-on:click="away"></div>
+    <div v-if="showCheckoutLoader" class="text-center" style="
+    position: fixed;
+     width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(120, 120, 120, 0.7);
+">
+    <v-progress-circular
+      :size="50"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
+    </div>
     <VmFooter></VmFooter>
      <div v-if="showCookieConsent">
      <Cookie/>
@@ -48,6 +63,9 @@ export default {
   computed: {
     showCheckoutDrawer() {
       return this.$store.getters.showCheckoutDrawer;
+    },
+    showCheckoutLoader() {
+      return this.$store.getters.showCheckoutLoader;
     }
   },
   methods: {
@@ -100,5 +118,16 @@ div.outside {
   top: 0px;
   left: 0px;
   background: rgba(120, 120, 120, 0.7);
+}
+
+/* div.loader{
+  left: 50%;
+    top: 50%;
+    position: fixed;
+} */
+
+div.v-progress-circular {
+  position: absolute;
+  top: 50%;
 }
 </style>

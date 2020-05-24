@@ -2,6 +2,11 @@
   <div>
     <VmHero></VmHero>
     <VmProductsList></VmProductsList>
+   <!-- <ul class="users">
+          <li v-for="user in test" :key="user.id">
+            <nuxt-link :to="'/users/'+user.id">{{ user.name }}</nuxt-link>
+          </li>
+        </ul> -->
   </div>
 </template>
 
@@ -18,10 +23,11 @@ export default {
   },
   data() {
     return {
-      collectionName: "Fitness" // hardcoded at the moment
+      collectionName: "Fitness",
+      test: [] // hardcoded at the moment
     };
   },
-  async mounted() {
+  mounted() {
     //fetch the user information
     if (this.$store.getters.isUserLoggedIn) {
       axios
@@ -38,18 +44,94 @@ export default {
           console.log(e);
         });
     }
+  },
 
-    // this.$shopify.product.fetchAll().then(products => {
-    //   //If product no available set available tag to false
+  // this.$shopify.product.fetchAll().then(products => {
+  //   //If product no available set available tag to false
 
-    // });
+  // });
+  // async asyncData({ $shopify }) {
+  //   var resp = await axios.get("https://jsonplaceholder.typicode.com/users");
+  //   var resp = await $shopify.collection.fetchAllWithProducts();
+  //   return { test: resp.data };
+  // },
+  // async mounted() {
+  //   if (this.$store.getters.isUserLoggedIn) {
+  //     axios
+  //       .get("https://hypezhop.eu.auth0.com/userinfo", {
+  //         headers: {
+  //           Authorization: localStorage.getItem("auth._token.auth0") + ""
+  //         }
+  //       })
+  //       .then(response => {
+  //         if (response && response.data)
+  //           this.$store.commit("setEmail", response.data.email);
+  //       })
+  //       .catch(e => {
+  //         console.log(e);
+  //       });
+  //   }
+  //   await this.$shopify.collection.fetchAllWithProducts().then(collections => {
+  //     // Do something with the collections
+  //     //Currently fetching only one collection
+  //     var products = collections.filter(
+  //       collection => collection.title == this.collectionName
+  //     )[0].products;
+  //     var productsList = [];
+  //     for (var i = 0; i < products.length; i++) {
+  //       var product = {};
+  //       product.id = products[i].id;
+  //       product.title = products[i].title;
+  //       product.availableForSale = products[i].availableForSale;
+  //       product.description = products[i].description;
+  //       product.variants = products[i].variants;
+  //       (product.tab =
+  //         products[i].variants[0].selectedOptions[2] &&
+  //         products[i].variants[0].selectedOptions[2].name == "Tab"
+  //           ? products[i].variants[0].selectedOptions[2].value
+  //           : null),
+  //         (product.image = products[i].images[0].src);
+  //       product.price = products[i].variants[0].price;
+  //       product.currency = products[i].variants[0].priceV2.currencyCode;
+  //       product.quantity = 1;
+  //       product.quantityExceeded = false;
+  //       productsList.push(product);
+  //     }
+  //     console.log(productsList);
+  //     this.$store.commit("populateProductsList", productsList);
+  //     console.log(products);
+  //     if (productsList.length > 0) {
+  //       var tabSections = productsList.map(product => {
+  //         return product.tab;
+  //       });
+  //       tabSections = Array.from(new Set(tabSections));
+  //       var tabsWithId = [];
+  //       for (var i = 0; i < tabSections.length; i++) {
+  //         var obj = { id: i, title: tabSections[i] };
+  //         tabsWithId.push(obj);
+  //       }
+  //       tabSections = tabsWithId;
+  //       // tabSections.filter((product, index) => {
+  //       //   return tabSections.inselectedTabdexOf(product) === index;
+  //       // });
+  //       this.$store.commit("setTabContent", tabSections);
+  //       if (this.$store.getters.selectedTab)
+  //         this.$store.commit("setTabSelected", this.$store.getters.selectedTab);
+  //       else this.$store.commit("setTabSelected", tabSections[0].id);
+  //     }
+  //   });
+  // }
 
-    var collections = await this.$shopify.collection.fetchAllWithProducts();
+  async fetch({ store, $shopify }) {
+    var collections = await $shopify.collection.fetchAllWithProducts();
     // Do something with the collections
     //Currently fetching only one collection
+
     var products = collections.filter(
-      collection => collection.title == this.collectionName
+      collection => collection.title == "Fitness"
     )[0].products;
+    // console.log(JSON.stringify(products[0]));
+
     var productsList = [];
     for (var i = 0; i < products.length; i++) {
       var product = {};
@@ -70,9 +152,9 @@ export default {
       product.quantityExceeded = false;
       productsList.push(product);
     }
-    console.log(productsList);
-    this.$store.commit("populateProductsList", productsList);
-    console.log(products);
+
+    store.commit("populateProductsList", productsList);
+
     if (productsList.length > 0) {
       var tabSections = productsList.map(product => {
         return product.tab;
@@ -87,10 +169,10 @@ export default {
       // tabSections.filter((product, index) => {
       //   return tabSections.inselectedTabdexOf(product) === index;
       // });
-      this.$store.commit("setTabContent", tabSections);
-      if (this.$store.getters.selectedTab)
-        this.$store.commit("setTabSelected", this.$store.getters.selectedTab);
-      else this.$store.commit("setTabSelected", tabSections[0].id);
+      store.commit("setTabContent", tabSections);
+      if (store.getters.selectedTab)
+        store.commit("setTabSelected", store.getters.selectedTab);
+      else store.commit("setTabSelected", tabSections[0].id);
     }
   }
 };
