@@ -1,5 +1,5 @@
 <template>
-<a :href="/product_detail/" + product.id>
+<a v-bind:href="'/product_detail/' + product.id">
   <v-card
   height="650"
     class="mx-auto my-12"
