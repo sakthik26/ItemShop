@@ -130,4 +130,8 @@ div.v-progress-circular {
   position: absolute;
   top: 50%;
 }
+
+div.v-slide-group__prev.v-slide-group__prev--disabled {
+  display: none !important;
+}
 </style>
