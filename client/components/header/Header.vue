@@ -21,7 +21,7 @@
         </div>
 
         <div class="navbar-end">
-          <div class="navbar-item social">
+          <!-- <div class="navbar-item social">
             <a href="#" class="icon" :title="facebookTooltip">
               <i class="fa fa-facebook"></i>
             </a>
@@ -34,7 +34,7 @@
             <a href="#" class="icon" :title="linkedinTooltip">
               <i class="fa fa-linkedin"></i>
             </a>
-          </div>
+          </div> -->
           <!-- <div class="navbar-item shopping-cart" @click="showCheckoutModal">
             <span class="icon">
               <i class="fa fa-shopping-cart"></i>
@@ -133,5 +133,19 @@ div.navbar-end {
 }
 div .navbar {
   z-index: 0;
+}
+
+@media screen and (min-width: 300px) and (max-width: 1050px) {
+  div.navbar-menu {
+    display: none;
+  }
+
+  div.navbar-end {
+    .navbar-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 </style>

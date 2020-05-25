@@ -126,16 +126,21 @@ export default {
 
   ul.footer-navigation {
     display: flex;
+    width: 60%;
     // flex-basis: 50%;
   }
 }
 @media screen and (min-width: 200px) and (max-width: 700px) {
   div.footer-brand {
     text-align: center;
-    margin-top: 5%;
+    flex-basis: 80%;
+    margin: 5% auto;
   }
   ul.footer-navigation {
     display: -webkit-box !important;
+    // flex-basis: 90%;
+    width: 100% !important;
+    margin: 0 auto;
   }
 }
 </style>

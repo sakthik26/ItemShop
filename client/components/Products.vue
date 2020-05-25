@@ -185,6 +185,10 @@ export default {
 .product-list .v-card__text {
   height: 70px;
 }
+
+div.v-slide-group__prev.v-slide-group__prev--disabled {
+  display: none !important;
+}
 </style>
 
 

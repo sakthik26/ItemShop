@@ -1,5 +1,4 @@
 <template>
-	<div>
 		<div class="navbar-item">
 			<div class="  ">
 
@@ -38,7 +37,7 @@
 				</a>
 			</div>
 		</div> -->
-	</div>
+
 </template>
 
 <script>
