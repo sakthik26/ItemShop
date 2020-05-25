@@ -139,11 +139,13 @@ div .navbar {
   div.navbar-menu {
     display: none;
   }
-  div.navbar-end .navbar-item {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    /* align-content: space-evenly; */
-    align-items: center !important;
+
+  div.navbar-end {
+    .navbar-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 </style>
