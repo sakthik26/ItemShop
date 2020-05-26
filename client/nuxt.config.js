@@ -51,7 +51,7 @@ products(first:100){
   var reviewResponse = []
   for (var i = 1; i <= 4; i++) {
     var reviews = await axios.get(proxyurl + url + "&page=" + i, {
-      headers: { "X-Requested-With": "http://localhost:3000/" }
+      headers: { "X-Requested-With": "https://fit.itemshopp.com" }
     });
     if (reviews.data.reviews.length > 0)
 
