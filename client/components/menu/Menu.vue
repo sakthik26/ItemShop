@@ -15,9 +15,17 @@
 					 <v-btn v-if="isUserLoggedIn"  text large color="primary" v-on:click="logout"> Logout
 				   </v-btn>
       </div>
-      <div>
-				 <v-btn  text large color="primary" v-on:click="openCheckoutDrawer">  <v-icon medium>shopping_cart</v-icon>
+      <div :class="cartItems ? 'show-dot': 'hide-dot'">
+         <v-badge
+        overlap
+        dot
+        color="primary"
+
+      >
+       <v-btn  text large color="primary" v-on:click="openCheckoutDrawer">  <v-icon medium>shopping_cart</v-icon>
 				   </v-btn>
+      </v-badge>
+
       </div>
       <UserProfile/>
 		</div>
@@ -72,6 +80,12 @@ export default {
       } else {
         return name;
       }
+    },
+
+    cartItems() {
+      let cartItems = this.$store.getters.cartItems;
+      if (cartItems.items.length > 0) return true;
+      else return false;
     }
   },
 
@@ -129,7 +143,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style>
 div.navbar-item button.v-size--large {
   margin-top: 10%;
 }
@@ -140,5 +154,12 @@ div.navbar-item button.v-size--large {
   top: 0px;
   left: 0px;
   background: rgba(120, 120, 120, 0.7);
+}
+
+div.show-dot span.v-badge__badge.primary {
+  left: 50px !important;
+
+  /* top: 12px !important; */
+  top: 10px !important;
 }
 </style>
