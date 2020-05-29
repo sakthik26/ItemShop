@@ -102,17 +102,14 @@
     <div class="customer-reviews">
 
     <Reviews v-for="review in reviewsShown" :reviewProps="review"> </Reviews>
-      <!-- <Reviews> </Reviews>
-      <Reviews> </Reviews>
-      <Reviews> </Reviews> -->
+
      <v-pagination
       v-model="page"
       :length="reviewPageCount"
       @input="onPageChange"
     ></v-pagination>
     </div>
-    <!-- <Checkout :drawer="showCheckoutDrawer"></Checkout>
-    <div v-if="showCheckoutDrawer" class="outside" v-on:click="away()"></div> -->
+
   </div>
 </template>
 

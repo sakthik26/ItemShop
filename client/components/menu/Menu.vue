@@ -162,4 +162,7 @@ div.show-dot span.v-badge__badge.primary {
   /* top: 12px !important; */
   top: 10px !important;
 }
+div.hide-dot span.v-badge__badge.primary {
+    display: none;
+}
 </style>
