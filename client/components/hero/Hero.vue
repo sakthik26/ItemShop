@@ -38,7 +38,6 @@
     span {
       font-size: 60px !important;
       color: #fff;
-      /* position: relative; */
       background-color: #150e0c;
     }
   }
@@ -50,7 +49,6 @@
     span {
       font-size: 30px !important;
       color: #fff;
-      /* position: relative; */
       background-color: #150e0c;
     }
   }
