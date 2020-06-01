@@ -14,7 +14,6 @@
      {{dateString}}
     </v-card-text>
     <div class="images" v-viewer="{movable: false,toolbar: false,title: false}">
-      <!-- <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png">-->
        <img v-for="src in reviewProps.images" :src="src"></img>
     </div>
 
