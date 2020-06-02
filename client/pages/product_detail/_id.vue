@@ -8,16 +8,7 @@
         <div class="product-content">
           <div class="card-content__title">
             <h2 class="title is-4">{{ product.title }}
-              <!-- <button class="button is-small" :title="removeFromFavouriteLabel" v-show="product.isFavourite" @click="removeFromFavourite(product.id)">
-                <span class="icon is-small">
-                  <i class="fa fa-heart"></i>
-                </span>
-              </button>
-              <button class="button is-small" :title="addToFavouriteLabel" v-show="!product.isFavourite" @click="saveToFavorite(product.id)">
-                <span class="icon is-small">
-                  <i class="fa fa-heart-o"></i>
-                </span>
-              </button> -->
+
             </h2>
             <v-rating
           :value="averageReview"
