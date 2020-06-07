@@ -26,9 +26,8 @@
     ></v-progress-circular>
     </div>
     <VmFooter></VmFooter>
-     <div v-if="showCookieConsent">
-     <Cookie/>
-     </div>
+
+     <Cookie v-if="showCookieConsent"/>
     </v-app>
   </div>
 </template>
