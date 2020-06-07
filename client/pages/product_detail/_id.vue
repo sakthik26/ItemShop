@@ -221,7 +221,7 @@ export default {
           }
         } else {
           variantIdMap["all"] = {
-            id: products.variants.edges[i].id,
+            id: products.variants.edges[i].node.id,
             image: products.variants.edges[i].node.image.src,
             cumulativePrice: products.variants.edges[i].node.priceV2.amount,
             price: products.variants.edges[i].node.priceV2.amount,
