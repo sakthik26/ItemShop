@@ -200,12 +200,12 @@ module.exports = {
     /**
      * Your shopify domain
      */
-    domain: 'derneuesitemshop.myshopify.com/',
+    domain: 'itemshoppinfo.myshopify.com/',
 
     /**
      * Your shopify storefront access token
      */
-    storefrontAccessToken: '0243067c912abe3a8d853fdaec78203c',
+    storefrontAccessToken: '36525a7f3f93cebcdf178ca9660fa06b',
 
     /**
      * This will be larger than the optimized version, as it will contain all fields that are available in the
