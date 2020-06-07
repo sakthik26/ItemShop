@@ -72,7 +72,7 @@ products(first:100){
         headers: {
           "Content-Type": "application/json",
           "x-shopify-storefront-access-token":
-            "0243067c912abe3a8d853fdaec78203c"
+            "36525a7f3f93cebcdf178ca9660fa06b"
         }
       }
     ).then((response) => {
