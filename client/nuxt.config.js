@@ -5,7 +5,7 @@ import 'cross-fetch/polyfill'
 const dynamicRoutes = async () => {
 
   var API_URL =
-    "https://derneuesitemshop.myshopify.com/api/2020-01/graphql.json";
+    "https://itemshoppinfo.myshopify.com/api/2020-01/graphql.json";
 
   var res = await axios.post(
     API_URL,
@@ -28,7 +28,7 @@ products(first:100){
       headers: {
         "Content-Type": "application/json",
         "x-shopify-storefront-access-token":
-          "0243067c912abe3a8d853fdaec78203c"
+          "36525a7f3f93cebcdf178ca9660fa06b"
       }
     })
   console.log(res.data)
@@ -72,7 +72,7 @@ products(first:100){
         headers: {
           "Content-Type": "application/json",
           "x-shopify-storefront-access-token":
-            "0243067c912abe3a8d853fdaec78203c"
+            "36525a7f3f93cebcdf178ca9660fa06b"
         }
       }
     ).then((response) => {
@@ -200,12 +200,12 @@ module.exports = {
     /**
      * Your shopify domain
      */
-    domain: 'derneuesitemshop.myshopify.com/',
+    domain: 'itemshoppinfo.myshopify.com/',
 
     /**
      * Your shopify storefront access token
      */
-    storefrontAccessToken: '0243067c912abe3a8d853fdaec78203c',
+    storefrontAccessToken: '36525a7f3f93cebcdf178ca9660fa06b',
 
     /**
      * This will be larger than the optimized version, as it will contain all fields that are available in the

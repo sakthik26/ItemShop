@@ -141,9 +141,9 @@ export default {
       product.description = products[i].description;
       product.variants = products[i].variants;
       (product.tab =
-        products[i].variants[0].selectedOptions[2] &&
-        products[i].variants[0].selectedOptions[2].name == "Tab"
-          ? products[i].variants[0].selectedOptions[2].value
+        products[i].variants[0].selectedOptions[1] &&
+        products[i].variants[0].selectedOptions[1].name == "Tab"
+          ? products[i].variants[0].selectedOptions[1].value
           : null),
         (product.image = products[i].images[0].src);
       product.price = products[i].variants[0].price;

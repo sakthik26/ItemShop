@@ -1,20 +1,18 @@
 <template>
 <a v-bind:href="'/product_detail/' + product.id">
   <v-card
-  height="650"
     class="mx-auto my-12"
     :class="isCheckoutDrawerOpen? 'disable':''"
     max-width="374"
       :hover=true
   >
     <v-img
-      height= "440"
       :src="product.image"
     ></v-img>
 
-    <v-card-title height= "90">{{ product.title }}</v-card-title>
+    <v-card-title >{{ product.title }}</v-card-title>
 
-    <v-card-text height= "40">
+    <v-card-text>
       <v-row
         align="center"
         class="mx-0"
@@ -179,12 +177,13 @@ export default {
 //   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 // }
 .product-list .v-card__title {
-  height: 90px;
+  height: 100px;
+  align-content: baseline;
 }
 
-.product-list .v-card__text {
-  height: 70px;
-}
+// .product-list .v-card__text {
+//   height: 70px;
+// }
 
 div.v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
