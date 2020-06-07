@@ -157,12 +157,10 @@ export default {
 
   async asyncData({ params, error, payload, store }) {
     if (payload) {
-      console.log("payload here " + payload.response);
-
       // console.log("reviews here " + payload.reviews);
       var reviews = payload.reviews;
       var products = payload.response;
-
+      console.log("payload here " + JSON.stringify(products.variants.edges));
       // console.log('payload here'+payload)
 
       // console.log("enter id");
