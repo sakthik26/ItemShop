@@ -7,6 +7,7 @@
       :hover=true
   >
     <v-img
+    height = "400px"
       :src="product.image"
     ></v-img>
 
@@ -179,6 +180,10 @@ export default {
 .product-list .v-card__title {
   height: 100px;
   align-content: baseline;
+
+  margin-bottom: 20px;
+
+  word-break: break-word;
 }
 
 // .product-list .v-card__text {

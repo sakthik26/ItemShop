@@ -13,7 +13,7 @@ const dynamicRoutes = async () => {
       query: `{
 collectionByHandle(handle: "Fitness") {
 id,
-products(first:100){
+products(first:40){
   edges{
       node{
           id

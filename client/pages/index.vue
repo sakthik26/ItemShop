@@ -123,34 +123,40 @@ export default {
   // }
 
   async fetch({ store, $shopify }) {
-    var collections = await $shopify.collection.fetchAllWithProducts();
+    const collectionId = "Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzE1OTU4MjA5MzM4Mg==";
+    var collection = await $shopify.collection.fetchWithProducts(collectionId, {
+      productsFirst: 40
+    });
+    console.log(collection);
     // Do something with the collections
     //Currently fetching only one collection
-
-    var products = collections.filter(
-      collection => collection.title == "Fitness"
-    )[0].products;
+    // var collection = collections.filter(collection => collection.title == "Fitness");
+    // console.log(test);
+    var products = collection.products;
     // console.log(JSON.stringify(products[0]));
 
     var productsList = [];
+    console.log("Products length-" + products.length);
     for (var i = 0; i < products.length; i++) {
-      var product = {};
-      product.id = products[i].id;
-      product.title = products[i].title;
-      product.availableForSale = products[i].availableForSale;
-      product.description = products[i].description;
-      product.variants = products[i].variants;
-      (product.tab =
-        products[i].variants[0].selectedOptions[1] &&
-        products[i].variants[0].selectedOptions[1].name == "Tab"
-          ? products[i].variants[0].selectedOptions[1].value
-          : null),
-        (product.image = products[i].images[0].src);
-      product.price = products[i].variants[0].price;
-      product.currency = products[i].variants[0].priceV2.currencyCode;
-      product.quantity = 1;
-      product.quantityExceeded = false;
-      productsList.push(product);
+      if (products[i].availableForSale) {
+        var product = {};
+        product.id = products[i].id;
+        product.title = products[i].title;
+        product.availableForSale = products[i].availableForSale;
+        product.description = products[i].description;
+        product.variants = products[i].variants;
+        (product.tab =
+          products[i].variants[0].selectedOptions[1] &&
+          products[i].variants[0].selectedOptions[1].name == "Tab"
+            ? products[i].variants[0].selectedOptions[1].value
+            : null),
+          (product.image = products[i].images[0].src);
+        product.price = products[i].variants[0].price;
+        product.currency = products[i].variants[0].priceV2.currencyCode;
+        product.quantity = 1;
+        product.quantityExceeded = false;
+        productsList.push(product);
+      }
     }
 
     store.commit("populateProductsList", productsList);
