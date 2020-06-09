@@ -49,7 +49,7 @@
           </div>
            <div class="card-content__other-details">
           <!-- <img :src="product.image"> -->
-           <Tabs></Tabs>
+           <Tabs v-bind:src="sizingImage"></Tabs>
            </div>
 
 
@@ -148,6 +148,7 @@ export default {
       selected: 1,
       quantityArray: [],
       slides: [],
+      sizingImage: "",
       selectedVariant: "",
       variantsOrder: ["S", "M", "L", "XL", "XXL"],
       variantIdMap: {},
@@ -282,6 +283,7 @@ export default {
         selectedVariant: selectedVariant,
         product: product,
         slides: slides,
+        sizingImage: slides[slides.length - 1],
         availableVariants: availableVariants,
         variantIdMap: variantIdMap,
         reviewsShown: reviewsShown,
