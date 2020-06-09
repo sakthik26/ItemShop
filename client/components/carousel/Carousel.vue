@@ -1,6 +1,5 @@
 <template>
   <v-carousel
-    height="400"
     hide-delimiter-background
   >
     <v-carousel-item
@@ -50,5 +49,16 @@ export default {
 }
 div.v-carousel__item .images {
   cursor: pointer;
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  div.product-detail .v-carousel {
+    height: 360px !important;
+  }
+}
+@media screen and (min-width: 501px) {
+  div.product-detail .v-carousel {
+    height: 400px !important;
+  }
 }
 </style>
