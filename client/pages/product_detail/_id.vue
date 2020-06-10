@@ -236,9 +236,6 @@ export default {
         }
       }
 
-      // console.log(this.product);
-      // console.log(this.availableVariants);
-      // this.loading = false;
 
       //Review handling here
       var actualReviews = [];
