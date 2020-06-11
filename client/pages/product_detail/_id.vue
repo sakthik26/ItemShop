@@ -71,7 +71,9 @@
 
      <div class ="review-title"> <h1>Customer Reviews</h1> </div>
     <div class="chart" v-if="averageReview">
-       <v-rating
+       <div class="rating-star">
+       <div class="stamped-summary-text-1" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </div>
+        <v-rating
           :value="averageReview"
           color="amber"
           dense
@@ -79,12 +81,12 @@
           readonly
           large
         ></v-rating>
+       </div>
+
      <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
      <div style="width:200px;float:left;" class="summary-overview">
 
-   <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </span>
 
-   </div>
    <span class="stamped-starrating stamped-summary-starrating" aria-hidden="true"> <i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i> </span>
    <span class="stamped-summary-caption stamped-summary-caption-2">
    <span class="stamped-summary-text" data-count="2" data-rating="5">Based on {{reviewProps.length}} Reviews</span>
@@ -586,18 +588,26 @@ div.review-title h1 {
 
 div.chart {
   position: relative;
-  width: 40%;
+  width: 100%;
   display: flex;
   /* -webkit-box-pack: center; */
   -ms-flex-pack: center;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
   /* justify-content: center; */
   /* width: 70%; */
   /* justify-content: flex-start; */
   margin: 0 auto;
   /* width: 70%; */
   -ms-flex-wrap: wrap;
+
+  .rating-star {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
   /* flex-wrap: wrap; */
 }
 </style>

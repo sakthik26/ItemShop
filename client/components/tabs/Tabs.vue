@@ -25,7 +25,7 @@
              <div v-if="item.tab === 'Sizing'">
               <div class="images" v-viewer="{movable: false,toolbar: false,title: false}">
                 <a v-on:click="openSizing">Size Chart</a>
-               <img id='hidden' ref="image"  :src="src"></img>
+               <img id='hidden' ref="image"  :src="src"/>
              </div>
 
             <no-ssr>
@@ -55,7 +55,7 @@ export default {
       tab: null,
 
       items: [
-        { tab: "Details", content: "" },
+        { tab: "Details", content: "details" },
         {
           tab: "Sizing"
         },
@@ -65,13 +65,9 @@ export default {
   },
   computed: {
     visibleTabs() {
+      if (this.src == "") this.items.splice(1, 1);
       this.items[0].content = this.description;
-      if (this.src == "") {
-        this.items.splice(1, 1);
-        return this.items;
-      } else {
-        return this.items;
-      }
+      return this.items;
     }
   },
   methods: {
@@ -85,5 +81,9 @@ export default {
 <style>
 #hidden {
   display: none !important;
+}
+div.product-detail .v-tabs-items {
+  height: 300px;
+  overflow: auto;
 }
 </style>
