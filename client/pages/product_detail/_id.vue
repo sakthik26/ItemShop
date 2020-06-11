@@ -49,7 +49,7 @@
           </div>
            <div class="card-content__other-details">
           <!-- <img :src="product.image"> -->
-           <Tabs v-bind:src="sizingImage"></Tabs>
+           <Tabs v-bind:src="sizingImage" :description="product.description"></Tabs>
            </div>
 
 
@@ -181,7 +181,7 @@ export default {
       var selectedVariant = "";
       product.title = products.title;
       product.availableForSale = products.availableForSale;
-      product.description = products.description;
+      product.description = products.descriptionHtml;
       product.variants = products.variants;
       product.image = products.images.edges[0].node.src;
       product.price = products.variants.edges[0].node.price;
@@ -236,7 +236,6 @@ export default {
         }
       }
 
-
       //Review handling here
       var actualReviews = [];
       for (var i = 0; i < reviews.length; i++)
@@ -280,7 +279,7 @@ export default {
         selectedVariant: selectedVariant,
         product: product,
         slides: slides,
-        sizingImage: slides[slides.length - 1],
+        sizingImage: selectedVariant === "all" ? "" : slides[slides.length - 1],
         availableVariants: availableVariants,
         variantIdMap: variantIdMap,
         reviewsShown: reviewsShown,

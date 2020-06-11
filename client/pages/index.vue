@@ -143,7 +143,7 @@ export default {
         product.id = products[i].id;
         product.title = products[i].title;
         product.availableForSale = products[i].availableForSale;
-        product.description = products[i].description;
+        product.description = products[i].descriptionHtml;
         product.variants = products[i].variants;
         (product.tab =
           products[i].variants[0].selectedOptions[1] &&

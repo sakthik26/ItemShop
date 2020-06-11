@@ -7,7 +7,7 @@
       dark
     >
       <v-tab
-        v-for="item in items"
+        v-for="item in visibleTabs"
         :key="item.tab"
       >
         {{ item.tab }}
@@ -16,24 +16,26 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item
-        v-for="item in items"
+        v-for="item in visibleTabs"
         :key="item.tab"
       >
+
         <v-card flat>
           <v-card-text>
-
+             <div v-if="item.tab === 'Sizing'">
               <div class="images" v-viewer="{movable: false,toolbar: false,title: false}">
-                <a v-on:click="openSizing">Sizing Guide</a>
-       <img id='hidden' ref="image"  :src="src"></img>
-    </div>
+                <a v-on:click="openSizing">Size Chart</a>
+               <img id='hidden' ref="image"  :src="src"></img>
+             </div>
 
-    <no-ssr>
-     <viewer :navbar="false">
-      <img :src="src" :key="src">
-    </viewer>
-    </no-ssr>
-
-    <div v-html="item.content"></div></v-card-text>
+            <no-ssr>
+            <viewer :navbar="false">
+              <img :src="src" :key="src">
+            </viewer>
+            </no-ssr>
+           </div>
+           <div v-else v-html="item.content"></div>
+       </v-card-text>
         </v-card>
       </v-tab-item>
     </v-tabs-items>
@@ -47,26 +49,30 @@ import "viewerjs/dist/viewer.css";
 Vue.use(Viewer);
 export default {
   components: { Viewer },
-  props: ["src"],
+  props: ["src", "description"],
   data() {
     return {
       tab: null,
 
       items: [
-        { tab: "Details", content: "Tab 1 Content" },
+        { tab: "Details", content: "" },
         {
           tab: "Sizing",
           content: "test"
         },
-        { tab: "Shipping & Returns", content: "Tab 3 Content" }
+        { tab: "Shipping & Returns", content: "Default shipping content" }
       ]
     };
   },
   computed: {
-    libText: function() {
-      // return directly html
-      var str = "<div><p>some html</p></div>";
-      return str;
+    visibleTabs() {
+      this.items[0].content = this.description;
+      if (this.src == "") {
+        this.items.splice(1, 1);
+        return this.items;
+      } else {
+        return this.items;
+      }
     }
   },
   methods: {
