@@ -82,10 +82,13 @@ export default {
   z-index: 1
   position: fixed
   bottom: 0
+  margin: 0 auto
+    width: 100%
   &__link
     color: #ffffff
     text-decoration: underline
     transition: all .25s
     &:hover
       text-decoration: none
+
 </style>

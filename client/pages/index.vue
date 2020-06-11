@@ -136,14 +136,14 @@ export default {
     // console.log(JSON.stringify(products[0]));
 
     var productsList = [];
-    console.log("Products length-" + products.length);
+    console.log("Products length -" + products.length);
     for (var i = 0; i < products.length; i++) {
       if (products[i].availableForSale) {
         var product = {};
         product.id = products[i].id;
         product.title = products[i].title;
         product.availableForSale = products[i].availableForSale;
-        product.description = products[i].description;
+        product.description = products[i].descriptionHtml;
         product.variants = products[i].variants;
         (product.tab =
           products[i].variants[0].selectedOptions[1] &&

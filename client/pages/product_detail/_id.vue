@@ -49,7 +49,7 @@
           </div>
            <div class="card-content__other-details">
           <!-- <img :src="product.image"> -->
-           <Tabs v-bind:src="sizingImage"></Tabs>
+           <Tabs v-bind:src="sizingImage" :description="description"></Tabs>
            </div>
 
 
@@ -71,19 +71,22 @@
 
      <div class ="review-title"> <h1>Customer Reviews</h1> </div>
     <div class="chart" v-if="averageReview">
-     <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
-     <div style="width:200px;float:left;" class="summary-overview">
-
-   <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </span>
-   <v-rating
+       <div class="rating-star">
+       <div class="stamped-summary-text-1" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </div>
+        <v-rating
           :value="averageReview"
           color="amber"
           dense
           half-increments
           readonly
-          size="14"
+          large
         ></v-rating>
-   </div>
+       </div>
+
+     <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
+     <div style="width:200px;float:left;text-align: center;" class="summary-overview">
+
+
    <span class="stamped-starrating stamped-summary-starrating" aria-hidden="true"> <i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i> </span>
    <span class="stamped-summary-caption stamped-summary-caption-2">
    <span class="stamped-summary-text" data-count="2" data-rating="5">Based on {{reviewProps.length}} Reviews</span>
@@ -150,6 +153,7 @@ export default {
       slides: [],
       sizingImage: "",
       selectedVariant: "",
+      description: "",
       variantsOrder: ["S", "M", "L", "XL", "XXL"],
       variantIdMap: {},
       availableVariants: []
@@ -181,7 +185,7 @@ export default {
       var selectedVariant = "";
       product.title = products.title;
       product.availableForSale = products.availableForSale;
-      product.description = products.description;
+      product.description = products.descriptionHtml;
       product.variants = products.variants;
       product.image = products.images.edges[0].node.src;
       product.price = products.variants.edges[0].node.price;
@@ -236,7 +240,6 @@ export default {
         }
       }
 
-
       //Review handling here
       var actualReviews = [];
       for (var i = 0; i < reviews.length; i++)
@@ -270,18 +273,19 @@ export default {
       // for (var i = 0; i < reviewRating.length; i++) {
       //   ++this.series[0].data[reviewRating[i] - 1];
       // }
-      if (reviewRating.length > 0)
+      if (reviewRating.length > 0) {
         var averageReview =
           reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
-      console.log("reviewshown" + reviewsShown);
-      console.log("reviewprops" + reviewProps);
+        //store.commit("setAverageReview", averageReview);
+      }
       return {
         selectedVariant: selectedVariant,
         product: product,
         slides: slides,
-        sizingImage: slides[slides.length - 1],
+        sizingImage: selectedVariant === "all" ? "" : slides[slides.length - 1],
         availableVariants: availableVariants,
+        description: product.description,
         variantIdMap: variantIdMap,
         reviewsShown: reviewsShown,
         reviewProps: reviewProps,
@@ -584,18 +588,26 @@ div.review-title h1 {
 
 div.chart {
   position: relative;
-  width: 40%;
+  width: 100%;
   display: flex;
   /* -webkit-box-pack: center; */
   -ms-flex-pack: center;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
   /* justify-content: center; */
   /* width: 70%; */
   /* justify-content: flex-start; */
   margin: 0 auto;
   /* width: 70%; */
   -ms-flex-wrap: wrap;
+
+  .rating-star {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
   /* flex-wrap: wrap; */
 }
 </style>
