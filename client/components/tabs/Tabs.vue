@@ -13,7 +13,7 @@
         {{ item.tab }}
       </v-tab>
     </v-tabs>
-
+<no-ssr>
     <v-tabs-items v-model="tab">
       <v-tab-item
         v-for="item in visibleTabs"
@@ -39,6 +39,7 @@
         </v-card>
       </v-tab-item>
     </v-tabs-items>
+    </no-ssr>
    </div>
 </template>
 
@@ -55,7 +56,7 @@ export default {
       tab: null,
 
       items: [
-        { tab: "Details", content: "details" },
+        { tab: "Details", content: this.description },
         {
           tab: "Sizing"
         },
@@ -66,7 +67,7 @@ export default {
   computed: {
     visibleTabs() {
       if (this.src == "") this.items.splice(1, 1);
-      this.items[0].content = this.description;
+
       return this.items;
     }
   },
