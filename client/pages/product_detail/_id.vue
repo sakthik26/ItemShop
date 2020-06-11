@@ -49,7 +49,7 @@
           </div>
            <div class="card-content__other-details">
           <!-- <img :src="product.image"> -->
-           <Tabs v-bind:src="sizingImage" :description="product.description"></Tabs>
+           <Tabs v-bind:src="sizingImage" :description="description"></Tabs>
            </div>
 
 
@@ -71,18 +71,19 @@
 
      <div class ="review-title"> <h1>Customer Reviews</h1> </div>
     <div class="chart" v-if="averageReview">
-     <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
-     <div style="width:200px;float:left;" class="summary-overview">
-
-   <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </span>
-   <v-rating
+       <v-rating
           :value="averageReview"
           color="amber"
           dense
           half-increments
           readonly
-          size="14"
+          large
         ></v-rating>
+     <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
+     <div style="width:200px;float:left;" class="summary-overview">
+
+   <div class="stamped-summary-text-1" data-count="2" data-rating="5" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </span>
+
    </div>
    <span class="stamped-starrating stamped-summary-starrating" aria-hidden="true"> <i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i> </span>
    <span class="stamped-summary-caption stamped-summary-caption-2">
@@ -150,6 +151,7 @@ export default {
       slides: [],
       sizingImage: "",
       selectedVariant: "",
+      description: "",
       variantsOrder: ["S", "M", "L", "XL", "XXL"],
       variantIdMap: {},
       availableVariants: []
@@ -281,6 +283,7 @@ export default {
         slides: slides,
         sizingImage: selectedVariant === "all" ? "" : slides[slides.length - 1],
         availableVariants: availableVariants,
+        description: product.description,
         variantIdMap: variantIdMap,
         reviewsShown: reviewsShown,
         reviewProps: reviewProps,

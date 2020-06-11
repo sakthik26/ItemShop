@@ -41,7 +41,7 @@ products(first:40){
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
   const url =
-    "https://judge.me/api/v1/reviews?api_token=_B6uADabPFBI5y94UqWtVp6Xndg&shop_domain=derneuesitemshop.myshopify.com"; // site that doesn’t send Access-Control-*
+    "https://judge.me/api/v1/reviews?api_token=o7MuslGD6xMPV77IKMdRzfahVJ0&shop_domain=itemshoppinfo.myshopify.com"; // site that doesn’t send Access-Control-*
   // fetch(proxyurl + reviewAPI+ "&page=" + 1) // https://cors-anywhere.herokuapp.com/https://example.com
   //   .then(response => response.json())
   //   .then(contents => console.log(contents))

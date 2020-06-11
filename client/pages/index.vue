@@ -136,7 +136,7 @@ export default {
     // console.log(JSON.stringify(products[0]));
 
     var productsList = [];
-    console.log("Products length-" + products.length);
+    console.log("Products length -" + products.length);
     for (var i = 0; i < products.length; i++) {
       if (products[i].availableForSale) {
         var product = {};

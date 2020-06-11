@@ -57,8 +57,7 @@ export default {
       items: [
         { tab: "Details", content: "" },
         {
-          tab: "Sizing",
-          content: "test"
+          tab: "Sizing"
         },
         { tab: "Shipping & Returns", content: "Default shipping content" }
       ]
