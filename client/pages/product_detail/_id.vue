@@ -84,7 +84,7 @@
        </div>
 
      <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
-     <div style="width:200px;float:left;" class="summary-overview">
+     <div style="width:200px;float:left;text-align: center;" class="summary-overview">
 
 
    <span class="stamped-starrating stamped-summary-starrating" aria-hidden="true"> <i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i><i class="stamped-fa stamped-fa-star" aria-hidden="true"></i> </span>
