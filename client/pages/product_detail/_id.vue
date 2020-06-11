@@ -277,7 +277,7 @@ export default {
         var averageReview =
           reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
-        store.commit("setAverageReview", averageReview);
+        //store.commit("setAverageReview", averageReview);
       }
       return {
         selectedVariant: selectedVariant,
