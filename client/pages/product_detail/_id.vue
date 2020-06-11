@@ -273,12 +273,12 @@ export default {
       // for (var i = 0; i < reviewRating.length; i++) {
       //   ++this.series[0].data[reviewRating[i] - 1];
       // }
-      if (reviewRating.length > 0)
+      if (reviewRating.length > 0) {
         var averageReview =
           reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
-      console.log("reviewshown" + reviewsShown);
-      console.log("reviewprops" + reviewProps);
+        store.commit("setAverageReview", averageReview);
+      }
       return {
         selectedVariant: selectedVariant,
         product: product,

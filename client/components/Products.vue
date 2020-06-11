@@ -19,7 +19,7 @@
         class="mx-0"
       >
         <v-rating
-          :value="4.5"
+          :value="averageReview"
           color="amber"
           dense
           half-increments
@@ -27,7 +27,7 @@
           size="14"
         ></v-rating>
 
-        <div class="grey--text ml-4">4.5 (413)</div>
+        <div class="grey--text ml-4">{{averageReview}}</div>
       </v-row>
 
 
@@ -89,6 +89,9 @@ export default {
   },
 
   computed: {
+    averageReview() {
+      return this.$store.getters.averageReview;
+    },
     isUserLogged() {
       return this.$store.getters.isUserLoggedIn;
     },
