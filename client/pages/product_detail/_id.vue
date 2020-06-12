@@ -83,7 +83,7 @@
         ></v-rating>
        </div>
 
-     <!-- <VueApexCharts type="bar" height="350" :options="chartOptions" :series="series"></VueApexCharts> -->
+
      <div style="width:200px;float:left;text-align: center;" class="summary-overview">
 
 
