@@ -138,9 +138,11 @@ export const state = () => ({
   tabs: [],
   selectedTab: '',
   filterVal: 'Featured',
+
 })
 
 export const getters = {
+
   showCheckoutLoader: state => {
     return state.showCheckoutLoader
   },
@@ -219,6 +221,7 @@ export const getters = {
 }
 
 export const mutations = {
+
   resetProductReviews: (state) => {
     state.reviews = []
   },
@@ -258,7 +261,7 @@ export const mutations = {
       if (state.cart.items[itemIndex].quantity < 10) {
         state.cart.items[itemIndex].quantityExceeded = false
         state.cart.items[itemIndex].quantity = ++state.cart.items[itemIndex].quantity
-        state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 5)
+        state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 6)
       }
       else {
         state.cart.items[itemIndex].quantityExceeded = true
@@ -290,7 +293,7 @@ export const mutations = {
 
     }
 
-    state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 5)
+    state.cart.items[itemIndex].cumulativePrice = ('' + state.cart.items[itemIndex].quantity * parseFloat(state.cart.items[itemIndex].price)).slice(0, 6)
     if (state.cart.items[itemIndex].quantity == 0) {
 
       state.cart.items.splice(itemIndex, 1)
@@ -301,7 +304,7 @@ export const mutations = {
       total += parseFloat(state.cart.items[i].cumulativePrice)
     }
     //change currency
-    state.cart.subTotal = state.cart.items.length > 0 ? state.cart.items[0].currency + ' ' + ('' + total).slice(0, 5) : 'EUR 0.00'
+    state.cart.subTotal = state.cart.items.length > 0 ? state.cart.items[0].currency + ' ' + ('' + total).slice(0, 6) : 'EUR 0.00'
   },
   setAddedBtn: (state, data) => {
     state.products.forEach(el => {

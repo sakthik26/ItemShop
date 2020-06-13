@@ -18,8 +18,8 @@
         align="center"
         class="mx-0"
       >
-        <v-rating
-          :value="4.5"
+        <!-- <v-rating
+          :value="product.averageReview"
           color="amber"
           dense
           half-increments
@@ -27,7 +27,7 @@
           size="14"
         ></v-rating>
 
-        <div class="grey--text ml-4">4.5 (413)</div>
+        <div class="grey--text ml-4">{{product.averageReview}}</div> -->
       </v-row>
 
 
