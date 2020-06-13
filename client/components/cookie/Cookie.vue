@@ -83,7 +83,7 @@ export default {
   position: fixed
   bottom: 0
   margin: 0 auto
-    width: 100%
+  width: 100%
   &__link
     color: #ffffff
     text-decoration: underline
