@@ -139,7 +139,7 @@ export default {
       page: 1,
       reviewProps: [],
       reviewsShown: [],
-      averageReview: 0,
+      averageReview: 4,
       reviewCountPerPage: 6,
       showCheckoutDrawer: false,
       addToCartLabel: "Add to cart",
@@ -277,7 +277,8 @@ export default {
         var averageReview =
           reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
-        //store.commit("setAverageReview", averageReview);
+        store.commit("setAverageReview", averageReview);
+        console.log(store.state);
       }
       return {
         selectedVariant: selectedVariant,
