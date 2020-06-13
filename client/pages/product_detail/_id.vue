@@ -139,7 +139,7 @@ export default {
       page: 1,
       reviewProps: [],
       reviewsShown: [],
-      averageReview: 4,
+      averageReview: 0,
       reviewCountPerPage: 6,
       showCheckoutDrawer: false,
       addToCartLabel: "Add to cart",
@@ -244,7 +244,6 @@ export default {
       var actualReviews = [];
       for (var i = 0; i < reviews.length; i++)
         actualReviews = actualReviews.concat(reviews[i]);
-      console.log("actual review" + JSON.stringify(actualReviews));
       var productReviews = actualReviews.filter(review => {
         return review.product_title == product.title;
       });
@@ -277,8 +276,8 @@ export default {
         var averageReview =
           reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
-        store.commit("setAverageReview", averageReview);
-        console.log(store.state);
+        // store.commit("setAverageReview", averageReview);
+        // console.log(store.state);
       }
       return {
         selectedVariant: selectedVariant,

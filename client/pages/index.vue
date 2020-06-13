@@ -133,10 +133,27 @@ export default {
     // var collection = collections.filter(collection => collection.title == "Fitness");
     // console.log(test);
     var products = collection.products;
-    // console.log(JSON.stringify(products[0]));
-
+    // // console.log(JSON.stringify(products[0]));
+    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    // const url =
+    //   "https://judge.me/api/v1/reviews?api_token=o7MuslGD6xMPV77IKMdRzfahVJ0&shop_domain=itemshoppinfo.myshopify.com"; // site that doesn’t send Access-Control-*
+    // // fetch(proxyurl + reviewAPI+ "&page=" + 1) // https://cors-anywhere.herokuapp.com/https://example.com
+    // //   .then(response => response.json())
+    // //   .then(contents => console.log(contents))
+    // //   .catch(() =>
+    // //     console.log("Can’t access " + url + " response. Blocked by browser?")
+    // //   );
+    // var reviewResponse = [];
+    // for (var i = 1; i <= 1; i++) {
+    //   var reviews = await axios.get(proxyurl + url + "&page=" + i, {
+    //     headers: { "X-Requested-With": "https://test.com" }
+    //   });
+    //   if (reviews.data.reviews.length > 0)
+    //     reviewResponse.push(reviews.data.reviews);
+    // }
     var productsList = [];
     console.log("Products length -" + products.length);
+
     for (var i = 0; i < products.length; i++) {
       if (products[i].availableForSale) {
         var product = {};
@@ -155,9 +172,20 @@ export default {
         product.currency = products[i].variants[0].priceV2.currencyCode;
         product.quantity = 1;
         product.quantityExceeded = false;
-        console.log("actual state here" + JSON.stringify(store.state));
-        console.log("average review here " + store.state.averageReview);
-        product.averageReview = store.state.averageReview;
+
+        // console.log("review response" + JSON.stringify(reviewResponse));
+        // var productReviews = reviewResponse.filter(review => {
+        //   return review.product_title == products[i].title;
+        // });
+        // console.log(productReviews);
+        // var ratings = productReviews.filter(
+        //   productReview => productReview.rating
+        // );
+        // console.log(ratings);
+        // var averageReview =
+        //   ratings.reduce((a, b) => a + b, 0) / productReviews.length;
+
+        // product.averageReview = ratings;
         productsList.push(product);
       }
     }

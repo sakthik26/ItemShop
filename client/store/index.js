@@ -138,13 +138,11 @@ export const state = () => ({
   tabs: [],
   selectedTab: '',
   filterVal: 'Featured',
-  averageReview: 1,
+
 })
 
 export const getters = {
-  averageReview: state => {
-    return state.averageReview
-  },
+
   showCheckoutLoader: state => {
     return state.showCheckoutLoader
   },
@@ -223,9 +221,7 @@ export const getters = {
 }
 
 export const mutations = {
-  setAverageReview: (state, averageReview) => {
-    state.averageReview = averageReview
-  },
+
   resetProductReviews: (state) => {
     state.reviews = []
   },

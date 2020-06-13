@@ -18,7 +18,7 @@
         align="center"
         class="mx-0"
       >
-        <v-rating
+        <!-- <v-rating
           :value="product.averageReview"
           color="amber"
           dense
@@ -27,7 +27,7 @@
           size="14"
         ></v-rating>
 
-        <div class="grey--text ml-4">{{product.averageReview}}</div>
+        <div class="grey--text ml-4">{{product.averageReview}}</div> -->
       </v-row>
 
 
