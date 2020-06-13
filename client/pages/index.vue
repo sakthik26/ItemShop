@@ -155,6 +155,7 @@ export default {
         product.currency = products[i].variants[0].priceV2.currencyCode;
         product.quantity = 1;
         product.quantityExceeded = false;
+        console.log("actual state here" + store.state);
         console.log("average review here " + store.state.averageReview);
         product.averageReview = store.state.averageReview;
         productsList.push(product);
