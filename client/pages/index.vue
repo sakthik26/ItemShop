@@ -137,7 +137,6 @@ export default {
 
     var productsList = [];
     console.log("Products length -" + products.length);
-    console.log("actual state here" + JSON.stringify(store.state));
     for (var i = 0; i < products.length; i++) {
       if (products[i].availableForSale) {
         var product = {};
