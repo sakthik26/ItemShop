@@ -137,6 +137,7 @@ export default {
 
     var productsList = [];
     console.log("Products length -" + products.length);
+    console.log("actual state here" + JSON.stringify(store.state));
     for (var i = 0; i < products.length; i++) {
       if (products[i].availableForSale) {
         var product = {};
@@ -155,7 +156,7 @@ export default {
         product.currency = products[i].variants[0].priceV2.currencyCode;
         product.quantity = 1;
         product.quantityExceeded = false;
-        console.log("actual state here" + store.state);
+        console.log("actual state here" + JSON.stringify(store.state));
         console.log("average review here " + store.state.averageReview);
         product.averageReview = store.state.averageReview;
         productsList.push(product);
