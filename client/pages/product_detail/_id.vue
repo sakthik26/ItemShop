@@ -69,8 +69,9 @@
       </div>
     </div>
 
-     <div class ="review-title"> <h1>Customer Reviews</h1> </div>
+
     <div class="chart" v-if="averageReview">
+      <div class ="review-title"> <h1>Customer Reviews</h1> </div>
        <div class="rating-star">
        <div class="stamped-summary-text-1" style="display: block;font-size: 38px;line-height: 30px;font-weight: bold;margin-right: 5px;">{{averageReview}} </div>
         <v-rating
@@ -92,8 +93,7 @@
    <span class="stamped-summary-text" data-count="2" data-rating="5">Based on {{reviewProps.length}} Reviews</span>
 </span>
 </div>
-</div>
-    <div class="customer-reviews">
+<div class="customer-reviews">
 
     <Reviews v-for="review in reviewsShown" :reviewProps="review"> </Reviews>
 
@@ -103,6 +103,8 @@
       @input="onPageChange"
     ></v-pagination>
     </div>
+</div>
+
 
   </div>
 </template>
