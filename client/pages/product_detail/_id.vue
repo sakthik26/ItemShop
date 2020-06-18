@@ -44,7 +44,7 @@
 
           <div class="card-content__description">
             <p>
-            --- Description ---
+          
             </p>
           </div>
            <div class="card-content__other-details">
