@@ -51,21 +51,6 @@
           <!-- <img :src="product.image"> -->
            <Tabs v-bind:src="sizingImage" :description="description"></Tabs>
            </div>
-
-
-              <!-- <div class="card-content__reviews">
-                <div class="is-pulled-left">
-                  <p><strong>{{ product.reviews > 0 ? `${product.reviews} Reviews` : 'No reviews' }}</strong></p>
-                </div>
-                <div class="select is-rounded is-small is-pulled-right">
-                  <select @change="onSelectQuantity(product.id)" v-model="selected">
-                    <option v-for="quantity in quantityArray" :value="quantity">{{ quantity }}</option>
-                  </select>
-                </div>
-              </div> -->
-
-
-              <!-- <button class="button is-primary" @click="checkout(product.id)">Test Checkout</button> -->
       </div>
     </div>
 
