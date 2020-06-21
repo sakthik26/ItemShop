@@ -196,7 +196,7 @@ export default {
       var tabSections = productsList.map(product => {
         return product.tab;
       });
-      tabSections = Array.from(new Set(tabSections));
+      tabSections = Array.from(new Set(tabSections)).sort();
       var tabsWithId = [];
       for (var i = 0; i < tabSections.length; i++) {
         var obj = { id: i, title: tabSections[i] };
