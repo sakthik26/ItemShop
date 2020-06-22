@@ -44,7 +44,7 @@
 
           <div class="card-content__description">
             <p>
-          
+
             </p>
           </div>
            <div class="card-content__other-details">
@@ -276,7 +276,7 @@ export default {
         variantIdMap: variantIdMap,
         reviewsShown: reviewsShown,
         reviewProps: reviewProps,
-        averageReview: averageReview
+        averageReview: averageReview.toFixed(1)
       };
     }
   },
