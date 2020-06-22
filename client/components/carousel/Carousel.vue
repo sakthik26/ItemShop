@@ -53,12 +53,12 @@ div.v-carousel__item .images {
 
 @media screen and (min-width: 300px) and (max-width: 500px) {
   div.product-detail .v-carousel {
-    height: 315px !important;
+    height: 235px !important;
   }
 }
 @media screen and (min-width: 501px) {
   div.product-detail .v-carousel {
-    height: 400px !important;
+    height: 350px !important;
   }
 }
 </style>

@@ -49,7 +49,7 @@ products(first:40){
   //     console.log("Can’t access " + url + " response. Blocked by browser?")
   //   );
   var reviewResponse = []
-  for (var i = 1; i <= 4; i++) {
+  for (var i = 1; i <= 24; i++) {
     var reviews = await axios.get(proxyurl + url + "&page=" + i, {
       headers: { "X-Requested-With": "https://fit.itemshopp.com" }
     });
