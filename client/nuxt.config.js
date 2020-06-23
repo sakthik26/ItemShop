@@ -31,9 +31,9 @@ products(first:40){
           "36525a7f3f93cebcdf178ca9660fa06b"
       }
     })
-  console.log(res.data)
+  //console.log(res.data)
   var collection = res.data.data.collectionByHandle.products.edges
-  console.log(collection)
+  //console.log(collection)
 
 
 
@@ -76,7 +76,7 @@ products(first:40){
         }
       }
     ).then((response) => {
-      console.log('review inside axios' + JSON.stringify(reviewResponse))
+      //console.log('review inside axios' + JSON.stringify(reviewResponse))
       return {
         route: '/product_detail/' + response.data.data.node.id,
         payload: { response: response.data.data.node, reviews: reviewResponse }

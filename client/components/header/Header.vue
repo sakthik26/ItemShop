@@ -87,7 +87,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.$auth);
+    //  console.log(this.$auth);
     if (this.$auth.loggedIn) {
       this.$store.commit("isUserLoggedIn", true);
     }

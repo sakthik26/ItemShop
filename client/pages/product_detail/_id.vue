@@ -152,7 +152,7 @@ export default {
       // console.log("reviews here " + payload.reviews);
       var reviews = payload.reviews;
       var products = payload.response;
-      console.log("payload here " + JSON.stringify(products.variants.edges));
+
       // console.log('payload here'+payload)
 
       // console.log("enter id");
@@ -178,7 +178,7 @@ export default {
       product.price = products.variants.edges[0].node.price;
       product.currency = products.variants.edges[0].node.priceV2.currencyCode;
       product.quantity = 1;
-      console.log(product);
+
       for (var i = 0; i < products.images.edges.length; i++) {
         slides.push(products.images.edges[i].node.src);
       }
@@ -234,7 +234,7 @@ export default {
       var productReviews = actualReviews.filter(review => {
         return review.product_title == product.title;
       });
-      console.log("productReviews" + productReviews);
+
       var reviewCollection = [];
       for (var i = 0; i < productReviews.length; i++) {
         reviewCollection.push({
@@ -247,7 +247,7 @@ export default {
           })
         });
       }
-      console.log("reviewCollection" + reviewCollection);
+
       var reviewProps = [];
       var reviewsShown = [];
       var reviewCountPerPage = 6;
