@@ -60,7 +60,11 @@ export default {
         {
           tab: "Sizing"
         },
-        { tab: "Shipping & Returns", content: "Default shipping content" }
+        {
+          tab: "Shipping & Returns",
+          content:
+            "<div><span>We typically ship items within one to three days of receiving an order. From that point it takes 10-20 days for the items to arrive. </span></div><br /><div><span>As soon as your product ships, you'll receive a tracking number that will let you keep tabs of where your order is at all times.</span></div>"
+        }
       ]
     };
   },

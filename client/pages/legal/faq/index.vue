@@ -1,33 +1,13 @@
 <template>
 <div>
- <h1 class='policy-title'> FAQ </h1>
+ <h1 class='policy-title'> Frequently Asked Questions </h1>
 <div class="policy-content">
 
-<ol>
-<li><strong><span> How long are shipping times?</span></strong></li>
-</ol>
-<p><span>Your products will ship within two days of your order, and then take up to two weeks to reach your doorstep. Each product at -->company has an estimated delivery time that you can find in the product description. </span></p>
-<p><span> </span></p>
-<ol start="2">
-<li><strong><span> What's your return policy?</span></strong></li>
-</ol>
-<p><span>Instead of returning items, you can contact us for a full refund. Why? Returns run counter to our emphasis on sustainability: every return has a carbon footprint. So just tell us what went wrong, send along a pic, and we’ll give you your money back in full. Then, if possible, you can donate your product to a local charity or recycle it.</span></p>
-<p><span> </span></p>
-<ol start="3">
-<li><strong><span> Can I cancel my order?</span></strong></li>
-</ol>
-<p><span>Cancelations are possible if you do not receive your package within the timeframe specified for each individual product. Sometimes orders get sent out before we can process the cancelation. So if you cancel your order but still receive the package, then please go ahead and do one of three things: recycle it, donate it, or enjoy it.</span></p>
-<p><span> </span></p>
-<ol start="4">
-<li><strong><span> What happens if I receive the wrong item?</span></strong></li>
-</ol>
-<p><span>If there’s an issue with your order -- if it’s the wrong size, wrong color, defective, or otherwise not exactly what you wanted -- then simply notify us, and we’ll give you a refund. You won’t be asked to ship the product back to us.</span></p>
-<p><span> </span></p>
-<ol start="5">
-<li><strong><span> Do you offer exchanges?</span></strong></li>
-</ol>
-<p><span>We do not offer exchanges. However, if for any reason you didn’t get the exact product you expected, just let us know and we’ll get you a new one.</span></p>
-
+<div><strong>How long are shipping times?</strong><br />Your products will ship within two - five days of placing your order, and then take up to two - three weeks to reach your doorstep. Each product at ITEMSHOPP has an estimated delivery time that you can find in the product description.<br /> <br /><strong>What's your return policy?</strong><br />To be eligible for a return, your item must be in the same condition that you received it, unworn or unused, with tags, and in its original packaging. You’ll also need the receipt or proof of purchase. <br /><br />To start a return, you can contact us at <a href="mailto:itemshoppinfo@gmail.com">itemshoppinfo@gmail.com</a>. If your return is accepted, we’ll send you a return shipping label, as well as instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted. </div>
+<div><br /><strong>Can I cancel my order?</strong><br />Cancelations are possible if you do not receive your package within the timeframe specified.<br /><br /><strong>What happens if I receive the wrong item?</strong><br />If there’s an issue with your order -- if it’s the wrong size, wrong color, defective, or otherwise not exactly what you wanted -- then simply notify us, and we’ll give you a refund.<br /> <br /><strong>Do you offer exchanges?</strong><br />We do not offer exchanges. However, if for any reason you didn’t get the exact product you expected, just let us know and we’ll get you a new one.</div>
+<div>
+<div></div>
+</div>
   </div>
   </div>
 </template>
@@ -59,5 +39,9 @@ h1.policy-title {
   font-weight: bold;
   margin-bottom: 20px;
   font-size: 30px;
+}
+
+div.policy-content {
+  min-height: 500px;
 }
 </style>

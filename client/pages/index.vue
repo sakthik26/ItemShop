@@ -31,7 +31,7 @@ export default {
     //fetch the user information
     if (this.$store.getters.isUserLoggedIn) {
       axios
-        .get("https://hypezhop.eu.auth0.com/userinfo", {
+        .get("https://itemshopp.eu.auth0.com/userinfo", {
           headers: {
             Authorization: localStorage.getItem("auth._token.auth0") + ""
           }

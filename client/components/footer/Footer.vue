@@ -24,7 +24,7 @@
               <ul class="footer-navigation__sub">
 
 
-                  <li class="footer-navigation__sub-item"><nuxt-link to="/legal/faq">FAQ</nuxt-link></li>
+                  <li class="footer-navigation__sub-item"><nuxt-link to="/legal/faq">Frequently Asked Questions</nuxt-link></li>
 
                   <li class="footer-navigation__sub-item"><nuxt-link to="/legal/refund">Returns &amp; Exchanges</nuxt-link></li>
 
@@ -42,7 +42,7 @@
               <h2 class="footer-navigation__heading">About</h2>
               <ul class="footer-navigation__sub">
                      <li class="footer-navigation__sub-item"><a href="/legal/about">About Us</a></li>
-                      <li class="footer-navigation__sub-item"><a href="/legal/about">Contact</a></li>
+
               </ul>
 
           </li>

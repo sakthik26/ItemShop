@@ -116,8 +116,8 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  background: url("../../static/itemshopp_logo.png") no-repeat;
-      background-position: 0% 42%;
+  background: url("../../static/is_logo.png") no-repeat;
+  background-position: 0% 42%;
   background-size: 165px;
   width: 175px;
   height: 35px;

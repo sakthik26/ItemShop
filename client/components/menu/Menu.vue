@@ -104,10 +104,10 @@ export default {
     logout() {
       this.$store.commit("showProgressLoader", true);
       this.$auth.logout({
-        returnTo: "http://localhost:3000"
+        returnTo: "https://fit.itemshopp.com"
       });
       window.location.href =
-        "https://hypezhop.eu.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost:3000&client_id=jOpZ4JozQIu2Gwv4Nbtn97aFBF0UV2ap";
+        "https://itemshopp.eu.auth0.com/v2/logout?returnTo=https%3A%2F%2Ffit.itemshopp.com&client_id=tZY36GUUdDOXIGU9mmCxuKJeUegCGJ4f";
       setTimeout(function() {
         this.$store.commit("isUserLoggedIn", false);
         this.$store.commit("showProgressLoader", false);
@@ -163,6 +163,6 @@ div.show-dot span.v-badge__badge.primary {
   top: 10px !important;
 }
 div.hide-dot span.v-badge__badge.primary {
-    display: none;
+  display: none;
 }
 </style>
