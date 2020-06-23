@@ -1,7 +1,7 @@
 {
-  "name": "vuemmerce",
+  "name": "ITEMSHOPP",
   "version": "0.9.3",
-  "description": "Responsive ecommerce template built with Vue.js and Nuxt.js",
+  "description": "ITEMSHOPP",
   "author": "ivan lori <ivan.lori@protonmail.com>",
   "scripts": {
     "dev": "nuxt",

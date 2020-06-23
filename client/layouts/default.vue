@@ -20,6 +20,7 @@
   background: rgba(120, 120, 120, 0.7);
 ">
     <v-progress-circular
+    class="checkout-loader"
       :size="50"
       color="primary"
       indeterminate
@@ -125,7 +126,7 @@ div.outside {
     position: fixed;
 } */
 
-div.v-progress-circular {
+div.checkout-loader {
   position: absolute;
   top: 50%;
 }
