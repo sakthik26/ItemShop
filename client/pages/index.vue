@@ -127,7 +127,7 @@ export default {
     var collection = await $shopify.collection.fetchWithProducts(collectionId, {
       productsFirst: 40
     });
-    console.log(collection);
+    //console.log(collection);
     // Do something with the collections
     //Currently fetching only one collection
     // var collection = collections.filter(collection => collection.title == "Fitness");
@@ -152,7 +152,6 @@ export default {
     //     reviewResponse.push(reviews.data.reviews);
     // }
     var productsList = [];
-    console.log("Products length -" + products.length);
 
     for (var i = 0; i < products.length; i++) {
       if (products[i].availableForSale) {

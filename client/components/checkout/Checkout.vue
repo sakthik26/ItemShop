@@ -84,7 +84,6 @@ export default {
     };
   },
   mounted() {
-    console.log("cart");
     //this.cartItems = this.$store.getters.cartItems;
     // if (this.$store.getters.cartItems.length > 0) {
     //   this.disableCheckout = false;
@@ -118,7 +117,7 @@ export default {
       this.$store.commit("showLoader");
       this.$shopify.checkout.create().then(checkout => {
         // Do something with the checkout
-        console.log(checkout.id);
+
         var checkoutId = checkout.id;
         var cartItems = this.$store.getters.cartItems;
         if (cartItems.items.length > 0) {
