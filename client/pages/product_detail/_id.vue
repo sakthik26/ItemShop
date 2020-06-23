@@ -259,8 +259,9 @@ export default {
       // for (var i = 0; i < reviewRating.length; i++) {
       //   ++this.series[0].data[reviewRating[i] - 1];
       // }
+      var averageReview;
       if (reviewRating.length > 0) {
-        var averageReview =
+        averageReview =
           reviewRating.reduce((a, b) => a + b, 0) / reviewProps.length;
 
         // store.commit("setAverageReview", averageReview);
@@ -276,7 +277,7 @@ export default {
         variantIdMap: variantIdMap,
         reviewsShown: reviewsShown,
         reviewProps: reviewProps,
-        averageReview: averageReview.toFixed(1)
+        averageReview: averageReview ? averageReview.toFixed(1) : 0
       };
     }
   },
